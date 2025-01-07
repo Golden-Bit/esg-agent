@@ -163,7 +163,7 @@ async def upload_file_to_contexts(file: UploadFile,
             # Configure the loader for the uploaded file
             loader_config_id = f"{context}_{file.filename.replace(' ', '_')}_loader"
             doc_store_collection_name = f"{context}_{file.filename.replace(' ', '_')}_collection"
-
+            print(f"[INFO] doc_store_collection_name: {doc_store_collection_name}")
             loader_config_data = {
                 "config_id": loader_config_id,
                 "path": f"data_stores/data/{context}",
@@ -466,7 +466,7 @@ async def upload_document(
 #@app.post("/configure_and_load_chain_1/")
 async def configure_and_load_chain_1(
     context: str = Query("default", title="Context", description="The context for the chain configuration"),
-    model_name: str = Query("gpt-4o-mini", title="Model Name", description="The name of the LLM model to load, default is gpt-4o")
+    model_name: str = Query("gpt-4o", title="Model Name", description="The name of the LLM model to load, default is gpt-4o")
 ):
     """
     Configura e carica una chain in memoria basata sul contesto dato.

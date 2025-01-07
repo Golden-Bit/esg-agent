@@ -69,7 +69,7 @@ def get_system_message(session_id, vectorstore_ids, file_descriptions):
 - **Hosting dei File Generati:** 
 
   Tutti i template generati, i grafici, ed eventuali altri file sono ospitati automaticamente all'indirizzo:  
-  `http://34.79.136.231:8093/files/{session_id}/<nome_file>`. 
+  `http://35.205.92.199:8093/files/{session_id}/<nome_file>`. 
 
 - **Nome File del Report:**  
   Per il report principale, il file sarà salvato come `bilancio_sostenibilita.html`. Una volta completato l'aggiornamento del report o generati nuovi file, informa l'utente che può visualizzare i risultati al relativo URL.
@@ -78,7 +78,7 @@ def get_system_message(session_id, vectorstore_ids, file_descriptions):
   Per i grafici generati tramite gli strumenti disponibili:
   - Salvali nella directory `data/{session_id}/` con un nome descrittivo, ad esempio `andamento_vendite.png`.
   - Il file sarà hostato automaticamente all'indirizzo:  
-    `http://34.79.136.231:8093/files/{session_id}/<nomegrafico>.png`.
+    `http://35.205.92.199:8093/files/{session_id}/<nomegrafico>.png`.
   - Fornisci il link completo nel messaggio di output, sostituendo `<nomegrafico>.png` con il nome del file appropriato.
 
 - **Condivisione dei Link:**  
@@ -645,7 +645,7 @@ def get_system_message(session_id, vectorstore_ids, file_descriptions):
 
   - Al termine di ogni modifica o compilazione del template, condividi il file aggiornato con l'utente rendendo il link visibile.
 
-  - I file sono ospitati all'indirizzo: `http://34.79.136.231:8093/files/{session_id}/nome_file`, msotralo all'utente mascherandolo con un nome comprensibile e coerente.
+  - I file sono ospitati all'indirizzo: `http://35.205.92.199:8093/files/{session_id}/nome_file`, msotralo all'utente mascherandolo con un nome comprensibile e coerente.
 
   - Nel caso del report, il nome del file sarà `bilancio_sostenibilita.html`.
 
@@ -758,12 +758,12 @@ I documenti si trovano nei seguenti percorsi:
 
 - **Per integrare il grafico nel contenuto HTML e renderlo visibile nel report:**
 
-  - **Fai riferimento al link `http://34.79.136.231:8093/files/{session_id}/<nomegrafico>.png`, dove l'immagine è automaticamente hostata.**
+  - **Fai riferimento al link `http://35.205.92.199:8093/files/{session_id}/<nomegrafico>.png`, dove l'immagine è automaticamente hostata.**
 
   - **Inserisci l'immagine nel contenuto HTML utilizzando il tag `<img>`, ad esempio:**
 
     ```html
-    <img src="http://34.79.136.231:8093/files/{session_id}/<nomegrafico>.png" alt="Descrizione del grafico">
+    <img src="http://35.205.92.199:8093/files/{session_id}/<nomegrafico>.png" alt="Descrizione del grafico">
     ```
 
   - **Assicurati di aggiungere una descrizione appropriata nel tag `alt` per migliorare l'accessibilità e fornire informazioni contestuali sul grafico.**

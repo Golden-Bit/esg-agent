@@ -1,0 +1,227 @@
+[
+    {
+        "id": 1,
+        "domanda": "L'azienda adotta misure per ridurre i rischi legati al cambiamento climatico?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E1 Cambiamenti climatici",
+        "sotto_sezione": "Adattamento ai cambiamenti climatici"
+    },
+    {
+        "id": 2,
+        "domanda": "L'azienda intraprende azioni per ridurre le emissioni di gas serra (Scope 1, 2 e 3), promuovendo la decarbonizzazione e l'efficienza energetica?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E1 Cambiamenti climatici",
+        "sotto_sezione": "Mitigazione dei cambiamenti climatici"
+    },
+    {
+        "id": 3,
+        "domanda": "L'azienda utilizza energia sostenibile, promuove l'efficienza energetica e sta effettuando il passaggio a fonti energetiche rinnovabili, riducendo la dipendenza dai combustibili fossili?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E1 Cambiamenti climatici",
+        "sotto_sezione": "Energia"
+    },
+    {
+        "id": 4,
+        "domanda": "L'azienda monitora e riduce le emissioni di inquinanti atmosferici (es. polveri sottili, NOx, SOx) per migliorare la qualità dell'aria?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E2 Inquinamento",
+        "sotto_sezione": "Inquinamento dell'aria"
+    },
+    {
+        "id": 5,
+        "domanda": "L'azienda adotta misure per prevenire il rilascio di sostanze inquinanti che compromettono la qualità delle risorse idriche?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E2 Inquinamento",
+        "sotto_sezione": "Inquinamento dell'acqua"
+    },
+    {
+        "id": 6,
+        "domanda": "L'azienda implementa politiche per ridurre o prevenire la contaminazione del suolo derivante dalle proprie attività?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E2 Inquinamento",
+        "sotto_sezione": "Inquinamento del suolo"
+    },
+    {
+        "id": 7,
+        "domanda": "L'azienda monitora e mitiga gli effetti negativi delle proprie attività su animali, piante o catene alimentari, causati da sostanze chimiche o inquinanti?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E2 Inquinamento",
+        "sotto_sezione": "Inquinamento di organismi viventi e risorse alimentari"
+    },
+    {
+        "id": 8,
+        "domanda": "L'azienda evita l'uso di sostanze chimiche che possono avere un impatto negativo sulla salute umana o sull’ambiente, come il PVC o altre sostanze dannose?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E2 Inquinamento",
+        "sotto_sezione": "Sostanze preoccupanti"
+    },
+    {
+        "id": 9,
+        "domanda": "L'azienda ha adottato misure per eliminare o sostituire sostanze chimiche classificate come estremamente preoccupanti (SVHC - Substances of Very High Concern)?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E2 Inquinamento",
+        "sotto_sezione": "Sostanze estremamente preoccupanti"
+    },
+    {
+        "id": 10,
+        "domanda": "L'azienda implementa iniziative per ridurre il rilascio di microplastiche nell'ambiente attraverso i propri processi e prodotti?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E2 Inquinamento",
+        "sotto_sezione": "Microplastiche"
+    },
+    {
+        "id": 11,
+        "domanda": "Consumo idrico: L'azienda adotta misure per ridurre il consumo di acqua nei processi produttivi o operativi?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E3 Acqua e risorse marine",
+        "sotto_sezione": "Acque"
+    },
+    {
+        "id": 12,
+        "domanda": "Prelievi idrici: L'azienda monitora e gestisce i prelievi di acqua da fonti naturali per minimizzare l'impatto ambientale?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E3 Acqua e risorse marine",
+        "sotto_sezione": "Acque"
+    },
+    {
+        "id": 13,
+        "domanda": "Scarichi di acque: L'azienda considera il rilascio di acque reflue nell’ambiente, implementando sistemi di trattamento o politiche per ridurre l'inquinamento?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E3 Acqua e risorse marine",
+        "sotto_sezione": "Acque"
+    },
+    {
+        "id": 14,
+        "domanda": "Scarichi di acque negli oceani: L'azienda previene o riduce il rilascio di acque reflue negli oceani, adottando soluzioni sostenibili per proteggere gli ecosistemi marini?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E3 Acqua e risorse marine",
+        "sotto_sezione": "Risorse marine"
+    },
+    {
+        "id": 15,
+        "domanda": "Estrazione e uso di risorse marine: L'azienda regola e monitora l'estrazione e l'uso di materiali o organismi provenienti dagli ecosistemi marini per minimizzare gli impatti negativi?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E3 Acqua e risorse marine",
+        "sotto_sezione": "Risorse marine"
+    },
+    {
+        "id": 16,
+        "domanda": "Cambiamenti climatici: L'azienda considera i cambiamenti climatici come un fattore che contribuisce alla perdita di biodiversità e adotta misure per mitigare tale impatto?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E4 Biodiversità ed ecosistemi",
+        "sotto_sezione": "Fattori di impatto diretto sulla perdita di biodiversità"
+    },
+    {
+        "id": 17,
+        "domanda": "Cambiamento di uso del suolo, cambiamento di uso dell'acqua dolce e cambiamento di uso del mare: L'azienda monitora e gestisce il cambiamento nell’uso delle risorse terrestri, acquatiche e marine per ridurre gli impatti sugli ecosistemi?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E4 Biodiversità ed ecosistemi",
+        "sotto_sezione": "Fattori di impatto diretto sulla perdita di biodiversità"
+    },
+    {
+        "id": 18,
+        "domanda": "Sfruttamento diretto: L'azienda considera l’impatto delle proprie attività, come pesca, disboscamento o estrazione mineraria, sulla biodiversità e sugli habitat naturali?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E4 Biodiversità ed ecosistemi",
+        "sotto_sezione": "Fattori di impatto diretto sulla perdita di biodiversità"
+    },
+    {
+        "id": 19,
+        "domanda": "Specie esotiche invasive: L'azienda monitora l'introduzione di specie esotiche invasive e implementa strategie per ridurne l’impatto su ecosistemi e specie native?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E4 Biodiversità ed ecosistemi",
+        "sotto_sezione": "Fattori di impatto diretto sulla perdita di biodiversità"
+    },
+    {
+        "id": 20,
+        "domanda": "L'azienda monitora e valuta l’impatto delle proprie operazioni sulla popolazione delle specie locali?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E4 Biodiversità ed ecosistemi",
+        "sotto_sezione": "Impatto sullo stato della specie"
+    },
+    {
+        "id": 21,
+        "domanda": "Rischio di estinzione globale di una specie: L'azienda adotta misure per prevenire o mitigare i rischi di estinzione delle specie a livello globale?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E4 Biodiversità ed ecosistemi",
+        "sotto_sezione": "Impatto sullo stato della specie"
+    },
+    {
+        "id": 22,
+        "domanda": "Degrado del suolo: L'azienda adotta strategie per prevenire il degrado del suolo derivante dalle sue operazioni o dalla catena di fornitura?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E4 Biodiversità ed ecosistemi",
+        "sotto_sezione": "Impatti sull'estensione e sulla condizione degli ecosistemi"
+    },
+    {
+        "id": 23,
+        "domanda": "Desertificazione: L'azienda monitora e mitiga il rischio di desertificazione nelle aree in cui opera o da cui si approvvigiona?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E4 Biodiversità ed ecosistemi",
+        "sotto_sezione": "Impatti sull'estensione e sulla condizione degli ecosistemi"
+    },
+    {
+        "id": 24,
+        "domanda": "L'azienda monitora e ottimizza l’uso delle risorse naturali necessarie per alimentare i propri processi produttivi?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E5 Economia circolare",
+        "sotto_sezione": "Afflussi di risorse"
+    },
+    {
+        "id": 25,
+        "domanda": "L'azienda gestisce in modo sostenibile i materiali a fine ciclo di vita dei prodotti e dei servizi offerti?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS E5 Economia circolare",
+        "sotto_sezione": "Deflussi di risorse connessi a prodotti e servizi"
+    },
+
+    {
+        "id": 26,
+        "domanda": "Cultura d'impresa: L'azienda promuove una cultura organizzativa basata su principi etici e comportamenti responsabili?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS G1 Condotta delle imprese",
+        "sotto_sezione": "Cultura d'impresa"
+    },
+    {
+        "id": 27,
+        "domanda": "Protezione degli informatori: L'azienda ha creato meccanismi sicuri e affidabili per consentire ai dipendenti di segnalare comportamenti illeciti o non etici senza timore di ritorsioni?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS G1 Condotta delle imprese",
+        "sotto_sezione": "Protezione degli informatori"
+    },
+    {
+        "id": 28,
+        "domanda": "Benessere degli animali: L'azienda implementa politiche per garantire il benessere degli animali in tutte le fasi delle proprie attività?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS G1 Condotta delle imprese",
+        "sotto_sezione": "Benessere degli animali"
+    },
+    {
+        "id": 29,
+        "domanda": "Impegno politico e attività di lobbying: L'azienda opera in modo trasparente nelle sue attività di lobbying e nel supporto politico, rispettando i principi etici?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS G1 Condotta delle imprese",
+        "sotto_sezione": "Impegno politico e attività di lobbying"
+    },
+    {
+        "id": 30,
+        "domanda": "Gestione dei rapporti con i fornitori: L'azienda adotta pratiche trasparenti ed eque nella gestione dei rapporti con i fornitori, comprese le prassi di pagamento?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS G1 Condotta delle imprese",
+        "sotto_sezione": "Gestione dei rapporti con i fornitori"
+    },
+    {
+        "id": 31,
+        "domanda": "Prevenzione e individuazione: L'azienda ha implementato programmi di formazione e sistemi di controllo per prevenire e individuare la corruzione attiva e passiva?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS G1 Condotta delle imprese",
+        "sotto_sezione": "Corruzione attiva e passiva"
+    },
+    {
+        "id": 32,
+        "domanda": "Incidenti: L'azienda monitora e documenta gli incidenti legati a casi di corruzione attiva o passiva, adottando misure correttive adeguate?",
+        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "sezione": "ESRS G1 Condotta delle imprese",
+        "sotto_sezione": "Corruzione attiva e passiva"
+    }
+]
