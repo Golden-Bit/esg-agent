@@ -1,0 +1,26 @@
+[
+    {
+        "custom_asset_name": "",
+        "ghg_category": "mobile-combustion",
+        "method": "vehicle-type-method",
+        "type": "vehicle",
+        "subtype": "Vans|Battery",
+        "name": "Class III (1.74 to 3.5 tonnes)",
+        "unit": null,
+        "description": "Large goods vehicles (vans up to 3.5 tonnes).",
+        "emission_factor_kg": null,
+        "multiplying_factor": 1.0
+    },
+    {
+        "custom_asset_name": "",
+        "ghg_category": "mobile-combustion",
+        "method": "vehicle-type-method",
+        "type": "vehicle",
+        "subtype": "Vans|Battery",
+        "name": "Class III (1.74 to 3.5 tonnes)",
+        "unit": null,
+        "description": "Large goods vehicles (vans up to 3.5 tonnes).",
+        "emission_factor_kg": null,
+        "multiplying_factor": 1.0
+    }
+]

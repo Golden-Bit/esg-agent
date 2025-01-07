@@ -10,6 +10,8 @@ import re
 from docx import Document
 from html2docx import html2docx
 
+from scope1_form import render_scope1_form
+from scope2_form import render_scope2_form
 from forms_ui import render_questionnaire, load_questions
 from utilities import graph_notes_2, graph_notes_1_5, graph_notes_3_1, graph_notes_4_1, graph_notes_ESRS_index
 from utilities import linee_guida_intro, linee_guida_1_1, linee_guida_1_2, linee_guida_1_3, linee_guida_2, linee_guida_3, linee_guida_1_4, linee_guida_1_5, linee_guida_2_1, linee_guida_2_2, linee_guida_2_3, linee_guida_2_4, linee_guida_2_5, linee_guida_2_6, linee_guida_3_1, linee_guida_4_1, linee_guida_conclusione, linee_guida_4, linee_guida_info_contatto, linee_guida_nota_motedologica, linee_guida_3_2, linee_guida_3_3, linee_guida_4_2, linee_guida_4_3, linee_guida_indice_esrs
@@ -31,7 +33,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = copy.deepcopy(chatbot_config["messages"])
 
 if "session_id" not in st.session_state:
-    st.session_state.session_id = str(uuid.uuid4())
+    st.session_state.session_id = str(uuid.uuid4())[:6]
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = copy.deepcopy(chatbot_config["messages"])
@@ -543,12 +545,20 @@ def main():
     st.sidebar.header("Pages")
 
     with st.sidebar:
-        if st.button("Chatbot", key="chatbot_button", use_container_width=True):
+        if st.button("Bluen AI", key="chatbot_button", use_container_width=True):
             st.session_state["current_page"] = "chatbot"
 
         #with col2:
-        if st.button("Questionario", key="questionnaire_button", use_container_width=True):
+        if st.button("ESG Assessment Form", key="questionnaire_button", use_container_width=True):
             st.session_state["current_page"] = "questionnaire"
+
+        # AGGIUNTA: bottone per la pagina Scope 2
+        if st.sidebar.button("GHG Form (Scope 1)", key="scope1_button", use_container_width=True):
+            st.session_state["current_page"] = "scope1"
+
+        # AGGIUNTA: bottone per la pagina Scope 2
+        if st.sidebar.button("GHG Form (Scope 2)", key="scope2_button", use_container_width=True):
+            st.session_state["current_page"] = "scope2"
 
     st.sidebar.markdown("---")
 
@@ -557,6 +567,10 @@ def main():
         chatbot_page()  # Funzione che gestisce la logica del chatbot
     elif st.session_state.get("current_page") == "questionnaire":
         questionnaire_page()
+    elif st.session_state.get("current_page") == "scope1":
+        render_scope1_form()
+    elif st.session_state.get("current_page") == "scope2":
+        render_scope2_form()
 
 
 # Se l'utente non è loggato, mostra la login_page

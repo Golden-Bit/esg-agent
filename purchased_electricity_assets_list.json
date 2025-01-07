@@ -1,0 +1,38 @@
+[
+    {
+        "custom_asset_name": "",
+        "ghg_category": "purchased-electricity",
+        "method": "location-based-method",
+        "type": "location",
+        "subtype": null,
+        "name": "Bulgaria",
+        "unit": "kwh",
+        "description": null,
+        "emission_factor_kg": 0.53,
+        "multiplying_factor": 1.0
+    },
+    {
+        "custom_asset_name": "",
+        "ghg_category": "purchased-electricity",
+        "method": "location-based-method",
+        "type": "location",
+        "subtype": null,
+        "name": "Bulgaria",
+        "unit": "kwh",
+        "description": null,
+        "emission_factor_kg": 0.53,
+        "multiplying_factor": 1.0
+    },
+    {
+        "custom_asset_name": "",
+        "ghg_category": "purchased-electricity",
+        "method": "location-based-method",
+        "type": "location",
+        "subtype": null,
+        "name": "Austria",
+        "unit": "kwh",
+        "description": null,
+        "emission_factor_kg": 0.132,
+        "multiplying_factor": 1.0
+    }
+]

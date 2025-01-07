@@ -6,7 +6,7 @@ chatbot_config = dict()
 
 #######################################################
 
-chatbot_config["page_title"] = "Virtual Assistant For Report Generation"
+chatbot_config["page_title"] = "Bluen AI"
 chatbot_config["page_icon"] = ("https://static.wixstatic.com/media/63b1fb_da14ea815f4b48d096967626c9fa70a1~mv2.png")
 chatbot_config["ai_avatar_url"] = ("https://static.wixstatic.com/media/63b1fb_da14ea815f4b48d096967626c9fa70a1~mv2.png")
 chatbot_config["user_avatar_url"] = ("https://static.wixstatic.com/media/63b1fb_846e287f2bf24721a980952481819fb3~mv2.png")
