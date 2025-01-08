@@ -1,0 +1,44 @@
+[
+    {
+        "custom_asset_name": "Car #1 (Sales Team)",
+        "ghg_category": "mobile-combustion",
+        "method": "fuel-amount-method",
+        "type": "fuel",
+        "subtype": "petrol",
+        "name": "Petrol Car",
+        "unit": "liters",
+        "description_from_json": "EF from petrol reference",
+        "custom_description": "Auto aziendale vendite",
+        "emission_factor_kg": 2.31,
+        "multiplying_factor": 800.0,
+        "year": 2022
+    },
+    {
+        "custom_asset_name": "Van #2 (Logistics)",
+        "ghg_category": "mobile-combustion",
+        "method": "fuel-amount-method",
+        "type": "fuel",
+        "subtype": "diesel",
+        "name": "Diesel Van",
+        "unit": "liters",
+        "description_from_json": "EF from diesel reference",
+        "custom_description": "Furgone consegne locali",
+        "emission_factor_kg": 2.68,
+        "multiplying_factor": 1200.0,
+        "year": 2023
+    },
+    {
+        "custom_asset_name": "auto dirigenti",
+        "ghg_category": "mobile-combustion",
+        "method": "vehicle-type-method",
+        "type": "vehicle",
+        "subtype": "Cars (by size)|LPG",
+        "name": "Medium car",
+        "unit": "km",
+        "description_from_json": "Petrol/LPG/CNG - from 1.4-litre to 2.0-litre engine\r\nDiesel - from 1.7-litre to 2.0-litre engine\r\nOthers - vehicles models of a similar size (i.e. generally market segment C)",
+        "custom_description": "consumi relativi ad auto per dirigenti",
+        "emission_factor_kg": "0,17823",
+        "multiplying_factor": 5.0,
+        "year": 2023
+    }
+]

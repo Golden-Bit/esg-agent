@@ -110,6 +110,41 @@ def converti_html_in_docx_con_carta_intestata(html_content, template_path, outpu
     except Exception as e:
         print(f"Errore durante la conversione o l'inserimento: {e}")
 
+from html2docx import html2docx
+from docx import Document
+from io import BytesIO
 
-converti_html_in_docx_con_carta_intestata(html_content=html_content, template_path="Carta_intestata_Bluen.docx", output_path="output.docx")
+def converti_html_in_docx(html_content, template_path, output_path):
+    """
+    Converte l'HTML in contenuto DOCX e lo aggiunge a un documento esistente con carta intestata.
+
+    Args:
+        html_content (str): Contenuto HTML da convertire.
+        template_path (str): Percorso del documento DOCX esistente con carta intestata.
+        output_path (str): Percorso in cui salvare il documento aggiornato.
+    """
+    try:
+        # Converti l'HTML in un oggetto BytesIO
+        docx_io = html2docx(html_content, title="out_doc")
+
+        # Crea un nuovo documento Word dal contenuto convertito
+        temp_doc = Document(docx_io)
+
+        # Apri il documento DOCX esistente con carta intestata
+        template_doc = Document(template_path)
+
+        # Aggiungi il contenuto HTML convertito al documento esistente
+        for element in temp_doc.element.body:
+            template_doc.element.body.append(element)
+
+        # Salva il documento aggiornato con il contenuto HTML
+        template_doc.save(output_path)
+        print(f"Documento salvato con successo in: {output_path}")
+    except Exception as e:
+        print(f"Errore durante la conversione o l'inserimento: {e}")
+
+    return output_path
+
+
+converti_html_in_docx(html_content=html_content, template_path="Carta_intestata_Bluen.docx", output_path="output.docx")
 

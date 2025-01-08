@@ -2,225 +2,1044 @@
     {
         "id": 1,
         "domanda": "L'azienda adotta misure per ridurre i rischi legati al cambiamento climatico?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E1 Cambiamenti climatici",
         "sotto_sezione": "Adattamento ai cambiamenti climatici"
     },
     {
         "id": 2,
         "domanda": "L'azienda intraprende azioni per ridurre le emissioni di gas serra (Scope 1, 2 e 3), promuovendo la decarbonizzazione e l'efficienza energetica?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E1 Cambiamenti climatici",
         "sotto_sezione": "Mitigazione dei cambiamenti climatici"
     },
     {
         "id": 3,
         "domanda": "L'azienda utilizza energia sostenibile, promuove l'efficienza energetica e sta effettuando il passaggio a fonti energetiche rinnovabili, riducendo la dipendenza dai combustibili fossili?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E1 Cambiamenti climatici",
         "sotto_sezione": "Energia"
     },
     {
         "id": 4,
         "domanda": "L'azienda monitora e riduce le emissioni di inquinanti atmosferici (es. polveri sottili, NOx, SOx) per migliorare la qualità dell'aria?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E2 Inquinamento",
         "sotto_sezione": "Inquinamento dell'aria"
     },
     {
         "id": 5,
         "domanda": "L'azienda adotta misure per prevenire il rilascio di sostanze inquinanti che compromettono la qualità delle risorse idriche?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E2 Inquinamento",
         "sotto_sezione": "Inquinamento dell'acqua"
     },
     {
         "id": 6,
         "domanda": "L'azienda implementa politiche per ridurre o prevenire la contaminazione del suolo derivante dalle proprie attività?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E2 Inquinamento",
         "sotto_sezione": "Inquinamento del suolo"
     },
     {
         "id": 7,
         "domanda": "L'azienda monitora e mitiga gli effetti negativi delle proprie attività su animali, piante o catene alimentari, causati da sostanze chimiche o inquinanti?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E2 Inquinamento",
         "sotto_sezione": "Inquinamento di organismi viventi e risorse alimentari"
     },
     {
         "id": 8,
         "domanda": "L'azienda evita l'uso di sostanze chimiche che possono avere un impatto negativo sulla salute umana o sull’ambiente, come il PVC o altre sostanze dannose?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E2 Inquinamento",
         "sotto_sezione": "Sostanze preoccupanti"
     },
     {
         "id": 9,
         "domanda": "L'azienda ha adottato misure per eliminare o sostituire sostanze chimiche classificate come estremamente preoccupanti (SVHC - Substances of Very High Concern)?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E2 Inquinamento",
         "sotto_sezione": "Sostanze estremamente preoccupanti"
     },
     {
         "id": 10,
         "domanda": "L'azienda implementa iniziative per ridurre il rilascio di microplastiche nell'ambiente attraverso i propri processi e prodotti?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E2 Inquinamento",
         "sotto_sezione": "Microplastiche"
     },
     {
         "id": 11,
         "domanda": "Consumo idrico: L'azienda adotta misure per ridurre il consumo di acqua nei processi produttivi o operativi?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E3 Acqua e risorse marine",
         "sotto_sezione": "Acque"
     },
     {
         "id": 12,
         "domanda": "Prelievi idrici: L'azienda monitora e gestisce i prelievi di acqua da fonti naturali per minimizzare l'impatto ambientale?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E3 Acqua e risorse marine",
         "sotto_sezione": "Acque"
     },
     {
         "id": 13,
         "domanda": "Scarichi di acque: L'azienda considera il rilascio di acque reflue nell’ambiente, implementando sistemi di trattamento o politiche per ridurre l'inquinamento?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E3 Acqua e risorse marine",
         "sotto_sezione": "Acque"
     },
     {
         "id": 14,
         "domanda": "Scarichi di acque negli oceani: L'azienda previene o riduce il rilascio di acque reflue negli oceani, adottando soluzioni sostenibili per proteggere gli ecosistemi marini?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E3 Acqua e risorse marine",
         "sotto_sezione": "Risorse marine"
     },
     {
         "id": 15,
         "domanda": "Estrazione e uso di risorse marine: L'azienda regola e monitora l'estrazione e l'uso di materiali o organismi provenienti dagli ecosistemi marini per minimizzare gli impatti negativi?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E3 Acqua e risorse marine",
         "sotto_sezione": "Risorse marine"
     },
     {
         "id": 16,
         "domanda": "Cambiamenti climatici: L'azienda considera i cambiamenti climatici come un fattore che contribuisce alla perdita di biodiversità e adotta misure per mitigare tale impatto?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E4 Biodiversità ed ecosistemi",
         "sotto_sezione": "Fattori di impatto diretto sulla perdita di biodiversità"
     },
     {
         "id": 17,
         "domanda": "Cambiamento di uso del suolo, cambiamento di uso dell'acqua dolce e cambiamento di uso del mare: L'azienda monitora e gestisce il cambiamento nell’uso delle risorse terrestri, acquatiche e marine per ridurre gli impatti sugli ecosistemi?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E4 Biodiversità ed ecosistemi",
         "sotto_sezione": "Fattori di impatto diretto sulla perdita di biodiversità"
     },
     {
         "id": 18,
         "domanda": "Sfruttamento diretto: L'azienda considera l’impatto delle proprie attività, come pesca, disboscamento o estrazione mineraria, sulla biodiversità e sugli habitat naturali?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E4 Biodiversità ed ecosistemi",
         "sotto_sezione": "Fattori di impatto diretto sulla perdita di biodiversità"
     },
     {
         "id": 19,
         "domanda": "Specie esotiche invasive: L'azienda monitora l'introduzione di specie esotiche invasive e implementa strategie per ridurne l’impatto su ecosistemi e specie native?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E4 Biodiversità ed ecosistemi",
         "sotto_sezione": "Fattori di impatto diretto sulla perdita di biodiversità"
     },
     {
         "id": 20,
         "domanda": "L'azienda monitora e valuta l’impatto delle proprie operazioni sulla popolazione delle specie locali?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E4 Biodiversità ed ecosistemi",
         "sotto_sezione": "Impatto sullo stato della specie"
     },
     {
         "id": 21,
         "domanda": "Rischio di estinzione globale di una specie: L'azienda adotta misure per prevenire o mitigare i rischi di estinzione delle specie a livello globale?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E4 Biodiversità ed ecosistemi",
         "sotto_sezione": "Impatto sullo stato della specie"
     },
     {
         "id": 22,
         "domanda": "Degrado del suolo: L'azienda adotta strategie per prevenire il degrado del suolo derivante dalle sue operazioni o dalla catena di fornitura?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E4 Biodiversità ed ecosistemi",
         "sotto_sezione": "Impatti sull'estensione e sulla condizione degli ecosistemi"
     },
     {
         "id": 23,
         "domanda": "Desertificazione: L'azienda monitora e mitiga il rischio di desertificazione nelle aree in cui opera o da cui si approvvigiona?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E4 Biodiversità ed ecosistemi",
         "sotto_sezione": "Impatti sull'estensione e sulla condizione degli ecosistemi"
     },
     {
         "id": 24,
         "domanda": "L'azienda monitora e ottimizza l’uso delle risorse naturali necessarie per alimentare i propri processi produttivi?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E5 Economia circolare",
         "sotto_sezione": "Afflussi di risorse"
     },
     {
         "id": 25,
         "domanda": "L'azienda gestisce in modo sostenibile i materiali a fine ciclo di vita dei prodotti e dei servizi offerti?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS E5 Economia circolare",
         "sotto_sezione": "Deflussi di risorse connessi a prodotti e servizi"
     },
-
     {
         "id": 26,
         "domanda": "Cultura d'impresa: L'azienda promuove una cultura organizzativa basata su principi etici e comportamenti responsabili?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS G1 Condotta delle imprese",
         "sotto_sezione": "Cultura d'impresa"
     },
     {
         "id": 27,
         "domanda": "Protezione degli informatori: L'azienda ha creato meccanismi sicuri e affidabili per consentire ai dipendenti di segnalare comportamenti illeciti o non etici senza timore di ritorsioni?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS G1 Condotta delle imprese",
         "sotto_sezione": "Protezione degli informatori"
     },
     {
         "id": 28,
         "domanda": "Benessere degli animali: L'azienda implementa politiche per garantire il benessere degli animali in tutte le fasi delle proprie attività?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS G1 Condotta delle imprese",
         "sotto_sezione": "Benessere degli animali"
     },
     {
         "id": 29,
         "domanda": "Impegno politico e attività di lobbying: L'azienda opera in modo trasparente nelle sue attività di lobbying e nel supporto politico, rispettando i principi etici?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS G1 Condotta delle imprese",
         "sotto_sezione": "Impegno politico e attività di lobbying"
     },
     {
         "id": 30,
         "domanda": "Gestione dei rapporti con i fornitori: L'azienda adotta pratiche trasparenti ed eque nella gestione dei rapporti con i fornitori, comprese le prassi di pagamento?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS G1 Condotta delle imprese",
         "sotto_sezione": "Gestione dei rapporti con i fornitori"
     },
     {
         "id": 31,
         "domanda": "Prevenzione e individuazione: L'azienda ha implementato programmi di formazione e sistemi di controllo per prevenire e individuare la corruzione attiva e passiva?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS G1 Condotta delle imprese",
         "sotto_sezione": "Corruzione attiva e passiva"
     },
     {
         "id": 32,
+        "domanda": "Occupazione sicura: L'azienda garantisce contratti di lavoro stabili e sicuri per i propri dipendenti?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 33,
+        "domanda": "Orario di lavoro: L'azienda monitora e regola gli orari di lavoro per garantire il rispetto delle normative e il benessere dei dipendenti?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 34,
+        "domanda": "Salari adeguati: L'azienda assicura retribuzioni che rispettano gli standard di vita adeguati?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 35,
+        "domanda": "Dialogo sociale: L'azienda promuove il dialogo con i lavoratori e le loro rappresentanze per migliorare le condizioni lavorative?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 36,
+        "domanda": "Libertà di associazione e diritti di partecipazione: L'azienda tutela la libertà di associazione e garantisce diritti di informazione e consultazione per i lavoratori?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 37,
+        "domanda": "Contrattazione collettiva: L'azienda rispetta e applica contratti collettivi, includendo un'ampia copertura per i lavoratori?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 38,
+        "domanda": "Equilibrio tra vita professionale e vita privata: L'azienda implementa politiche per favorire un equilibrio tra lavoro e vita privata?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 39,
+        "domanda": "Salute e sicurezza: L'azienda adotta misure per garantire ambienti di lavoro sicuri e salubri?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 40,
+        "domanda": "Parità di genere e parità di retribuzione: L'azienda promuove la parità di genere e garantisce retribuzioni equitative per lavori di pari valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Parità di trattamento e opportunità per tutti"
+    },
+    {
+        "id": 41,
+        "domanda": "Formazione e sviluppo delle competenze: L'azienda offre opportunità di formazione e sviluppo per i propri dipendenti?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Parità di trattamento e opportunità per tutti"
+    },
+    {
+        "id": 42,
+        "domanda": "Occupazione e inclusione delle persone con disabilità: L'azienda favorisce l'inclusione lavorativa delle persone con disabilità?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Parità di trattamento e opportunità per tutti"
+    },
+    {
+        "id": 43,
+        "domanda": "Misure contro la violenza e le molestie: L'azienda ha implementato politiche per prevenire la violenza e le molestie sul luogo di lavoro?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Parità di trattamento e opportunità per tutti"
+    },
+    {
+        "id": 44,
+        "domanda": "Diversità: L'azienda promuove la diversità nel luogo di lavoro, garantendo un ambiente inclusivo?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Parità di trattamento e opportunità per tutti"
+    },
+    {
+        "id": 45,
+        "domanda": "Lavoro minorile: L'azienda verifica e previene ogni forma di sfruttamento del lavoro minorile nella propria attività e catena di fornitura?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Altri diritti connessi al lavoro"
+    },
+    {
+        "id": 46,
+        "domanda": "Lavoro forzato: L'azienda monitora e previene qualsiasi forma di lavoro forzato?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Altri diritti connessi al lavoro"
+    },
+    {
+        "id": 47,
+        "domanda": "Alloggi adeguati: L'azienda garantisce condizioni abitative adeguate per i lavoratori, ove applicabile?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Altri diritti connessi al lavoro"
+    },
+    {
+        "id": 48,
+        "domanda": "Riservatezza: L'azienda tutela la riservatezza e i dati personali dei propri dipendenti?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S1 Forza lavoro propria",
+        "sotto_sezione": "Altri diritti connessi al lavoro"
+    },
+    {
+        "id": 49,
+        "domanda": "Occupazione sicura: L'azienda monitora e garantisce condizioni di lavoro sicure per i lavoratori nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 50,
+        "domanda": "Orario di lavoro: L'azienda assicura che gli orari di lavoro rispettino le normative locali e i diritti dei lavoratori nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 51,
+        "domanda": "Salari adeguati: L'azienda verifica che i salari nella catena del valore siano adeguati agli standard di vita locali?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 52,
+        "domanda": "Dialogo sociale: L'azienda promuove il dialogo sociale e la partecipazione dei lavoratori attraverso rappresentanze locali?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 53,
+        "domanda": "Libertà di associazione: L'azienda garantisce la libertà di associazione e l'esistenza di comitati aziendali nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 54,
+        "domanda": "Contrattazione collettiva: L'azienda supporta la contrattazione collettiva per i lavoratori della catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 55,
+        "domanda": "Equilibrio tra vita professionale e vita privata: L'azienda implementa politiche che promuovano l'equilibrio tra lavoro e vita privata nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 56,
+        "domanda": "Salute e sicurezza: L'azienda verifica e garantisce condizioni di salute e sicurezza nei luoghi di lavoro della catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Condizioni di lavoro"
+    },
+    {
+        "id": 57,
+        "domanda": "Parità di genere e parità di retribuzione: L'azienda promuove la parità di genere e assicura parità di retribuzione per lavori di pari valore nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Parità di trattamento e opportunità per tutti"
+    },
+    {
+        "id": 58,
+        "domanda": "Formazione e sviluppo delle competenze: L'azienda supporta programmi di formazione e sviluppo per i lavoratori nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Parità di trattamento e opportunità per tutti"
+    },
+    {
+        "id": 59,
+        "domanda": "Occupazione e inclusione delle persone con disabilità: L'azienda promuove l'inclusione lavorativa delle persone con disabilità nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Parità di trattamento e opportunità per tutti"
+    },
+    {
+        "id": 60,
+        "domanda": "Misure contro la violenza e le molestie: L'azienda adotta politiche per prevenire la violenza e le molestie sul luogo di lavoro nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Parità di trattamento e opportunità per tutti"
+    },
+    {
+        "id": 61,
+        "domanda": "Diversità: L'azienda incoraggia la diversità e promuove ambienti inclusivi nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Parità di trattamento e opportunità per tutti"
+    },
+    {
+        "id": 62,
+        "domanda": "Lavoro minorile: L'azienda verifica e previene il lavoro minorile nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Altri diritti connessi al lavoro"
+    },
+    {
+        "id": 63,
+        "domanda": "Lavoro forzato: L'azienda monitora e combatte qualsiasi forma di lavoro forzato nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Altri diritti connessi al lavoro"
+    },
+    {
+        "id": 64,
+        "domanda": "Alloggi adeguati: L'azienda garantisce condizioni abitative dignitose per i lavoratori nella catena del valore, ove applicabile?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Altri diritti connessi al lavoro"
+    },
+    {
+        "id": 65,
+        "domanda": "Acqua e servizi igienico-sanitari: L'azienda assicura l'accesso ad acqua potabile e servizi igienico-sanitari adeguati per i lavoratori nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Altri diritti connessi al lavoro"
+    },
+    {
+        "id": 66,
+        "domanda": "Riservatezza: L'azienda tutela la riservatezza dei dati personali e delle informazioni sensibili dei lavoratori nella catena del valore?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S2 Lavoratori nella catena del valore",
+        "sotto_sezione": "Altri diritti connessi al lavoro"
+    },
+    {
+        "id": 67,
+        "domanda": "Alloggi adeguati: L'azienda contribuisce a garantire condizioni abitative adeguate per le comunità locali influenzate dalle sue attività?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S3 Comunità interessate",
+        "sotto_sezione": "Diritti economici, sociali e culturali delle comunità"
+    },
+    {
+        "id": 68,
+        "domanda": "Alimentazione adeguata: L'azienda promuove l'accesso a risorse alimentari sufficienti e di qualità per le comunità locali?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S3 Comunità interessate",
+        "sotto_sezione": "Diritti economici, sociali e culturali delle comunità"
+    },
+    {
+        "id": 69,
+        "domanda": "Acqua e servizi igienico-sanitari: L'azienda assicura che le sue operazioni non compromettano l'accesso delle comunità locali ad acqua potabile e servizi igienico-sanitari adeguati?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S3 Comunità interessate",
+        "sotto_sezione": "Diritti economici, sociali e culturali delle comunità"
+    },
+    {
+        "id": 70,
+        "domanda": "Impatti legati al territorio: L'azienda valuta e gestisce gli impatti delle proprie attività sul territorio delle comunità locali?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S3 Comunità interessate",
+        "sotto_sezione": "Diritti economici, sociali e culturali delle comunità"
+    },
+    {
+        "id": 71,
+        "domanda": "Impatti legati alla sicurezza: L'azienda adotta misure per prevenire rischi fisici o sociali che le sue attività potrebbero generare per le comunità locali?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S3 Comunità interessate",
+        "sotto_sezione": "Diritti economici, sociali e culturali delle comunità"
+    },
+    {
+        "id": 72,
+        "domanda": "Libertà di espressione: L'azienda rispetta e tutela la libertà di espressione delle comunità locali?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S3 Comunità interessate",
+        "sotto_sezione": "Diritti civili e politici delle comunità"
+    },
+    {
+        "id": 73,
+        "domanda": "Libertà di associazione: L'azienda sostiene il diritto delle comunità locali di associarsi liberamente?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S3 Comunità interessate",
+        "sotto_sezione": "Diritti civili e politici delle comunità"
+    },
+    {
+        "id": 74,
+        "domanda": "Impatti sui difensori dei diritti umani: L'azienda monitora e previene eventuali impatti negativi sulle attività dei difensori dei diritti umani nelle aree in cui opera?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S3 Comunità interessate",
+        "sotto_sezione": "Diritti civili e politici delle comunità"
+    },
+    {
+        "id": 75,
+        "domanda": "Consenso libero, previo e informato: L'azienda ottiene il consenso libero, previo e informato dei popoli indigeni per le attività che potrebbero influenzare le loro terre o risorse?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S3 Comunità interessate",
+        "sotto_sezione": "Diritti dei popoli indigeni"
+    },
+    {
+        "id": 76,
+        "domanda": "Autodeterminazione: L'azienda rispetta il diritto dei popoli indigeni all'autodeterminazione, incluso il controllo sulle proprie risorse?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S3 Comunità interessate",
+        "sotto_sezione": "Diritti dei popoli indigeni"
+    },
+    {
+        "id": 77,
+        "domanda": "Diritti culturali: L'azienda tutela e promuove il rispetto dei diritti culturali e delle tradizioni dei popoli indigeni?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S3 Comunità interessate",
+        "sotto_sezione": "Diritti dei popoli indigeni"
+    },
+    {
+        "id": 78,
+        "domanda": "Riservatezza: L'azienda adotta misure per proteggere i dati personali dei consumatori e degli utilizzatori finali, prevenendo abusi o violazioni della privacy?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S4 Consumatori e utilizzatori finali",
+        "sotto_sezione": "Impatti legati alle informazioni"
+    },
+    {
+        "id": 79,
+        "domanda": "Libertà di espressione: L'azienda promuove e tutela la libertà di espressione dei consumatori e degli utilizzatori finali nel contesto dell’uso dei propri prodotti o servizi?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S4 Consumatori e utilizzatori finali",
+        "sotto_sezione": "Impatti legati alle informazioni"
+    },
+    {
+        "id": 80,
+        "domanda": "Accesso a informazioni (di qualità): L'azienda garantisce ai consumatori e agli utilizzatori finali un accesso trasparente e di qualità alle informazioni sui prodotti e servizi offerti?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S4 Consumatori e utilizzatori finali",
+        "sotto_sezione": "Impatti legati alle informazioni"
+    },
+    {
+        "id": 81,
+        "domanda": "Salute e sicurezza: L'azienda implementa misure per assicurare che i prodotti o servizi offerti non compromettano la salute e la sicurezza dei consumatori e degli utilizzatori finali?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S4 Consumatori e utilizzatori finali",
+        "sotto_sezione": "Sicurezza personale dei consumatori e/o degli utilizzatori finali"
+    },
+    {
+        "id": 82,
+        "domanda": "Sicurezza della persona: L'azienda monitora e previene rischi che possano compromettere la sicurezza fisica o mentale dei consumatori durante l’uso dei propri prodotti o servizi?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S4 Consumatori e utilizzatori finali",
+        "sotto_sezione": "Sicurezza personale dei consumatori e/o degli utilizzatori finali"
+    },
+    {
+        "id": 83,
+        "domanda": "Protezione dei bambini: L'azienda adotta politiche specifiche per garantire la protezione dei bambini nei prodotti o servizi che offre?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S4 Consumatori e utilizzatori finali",
+        "sotto_sezione": "Sicurezza personale dei consumatori e/o degli utilizzatori finali"
+    },
+    {
+        "id": 84,
+        "domanda": "Non discriminazione: L'azienda garantisce l’accesso ai prodotti e servizi senza discriminazioni di alcun tipo?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S4 Consumatori e utilizzatori finali",
+        "sotto_sezione": "Inclusione sociale dei consumatori e/o degli utilizzatori finali"
+    },
+    {
+        "id": 85,
+        "domanda": "Accesso a prodotti e servizi: L'azienda promuove l’accessibilità ai propri prodotti e servizi per tutte le categorie di consumatori, incluse quelle più vulnerabili?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S4 Consumatori e utilizzatori finali",
+        "sotto_sezione": "Inclusione sociale dei consumatori e/o degli utilizzatori finali"
+    },
+    {
+        "id": 86,
+        "domanda": "Pratiche commerciali responsabili: L'azienda adotta pratiche commerciali trasparenti ed etiche, che tutelano gli interessi dei consumatori e degli utilizzatori finali?",
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
+        "sezione": "ESRS S4 Consumatori e utilizzatori finali",
+        "sotto_sezione": "Inclusione sociale dei consumatori e/o degli utilizzatori finali"
+    },
+    {
+        "id": 87,
         "domanda": "Incidenti: L'azienda monitora e documenta gli incidenti legati a casi di corruzione attiva o passiva, adottando misure correttive adeguate?",
-        "risposte": ["Sì", "No", "Rilevante per il futuro"],
+        "risposte": [
+            "Sì",
+            "No",
+            "Rilevante per il futuro",
+            "Nessuna risposta"
+        ],
         "sezione": "ESRS G1 Condotta delle imprese",
         "sotto_sezione": "Corruzione attiva e passiva"
     }

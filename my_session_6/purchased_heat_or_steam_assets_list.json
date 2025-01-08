@@ -1,0 +1,30 @@
+[
+    {
+        "custom_asset_name": "Calore Ufficio Roma",
+        "ghg_category": "purchased-heat-or-steAM",
+        "method": "location_based",
+        "type": "heat",
+        "subtype": "ufficio",
+        "name": "Calore",
+        "unit": "kWh",
+        "description_from_json": "Fattore medio regionale",
+        "custom_description": "Consumo di calore per ufficio a Roma",
+        "emission_factor_kg": 0.25,
+        "multiplying_factor": 8000.0,
+        "year": 2023
+    },
+    {
+        "custom_asset_name": "Vapore Stabilimento Napoli",
+        "ghg_category": "purchased-heat-or-steAM",
+        "method": "market_based",
+        "type": "steam",
+        "subtype": "stabilimento",
+        "name": "Vapore",
+        "unit": "kWh",
+        "description_from_json": "Fattore specifico del fornitore ABC",
+        "custom_description": "Consumo di vapore per stabilimento a Napoli",
+        "emission_factor_kg": 0.15,
+        "multiplying_factor": 15000.0,
+        "year": 2023
+    }
+]

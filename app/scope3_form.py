@@ -3,16 +3,22 @@ import json
 import os
 
 # ======================================================
-# 1) NOMI FILE DI SALVATAGGIO (Scope 2)
+# 1) NOMI FILE DI SALVATAGGIO (Scope 3)
+#    Esempio di categorie: "purchased-goods-and-services", "capital-goods", ecc.
 # ======================================================
 SAVE_FILES = {
-    "purchased-electricity": "purchased_electricity_assets_list.json",
-    "purchased-heat-or-steAM": "purchased_heat_or_steam_assets_list.json"
+    "purchased-goods-and-services": "purchased_goods_services_assets_list.json",
+    "capital-goods": "capital_goods_assets_list.json",
+    "upstream-transportation-and-distribution": "upstream_transport_assets_list.json",
+    "waste-generated-in-operations": "waste_generated_assets_list.json",
+    "business-travels": "business_travel_assets_list.json",
+    "employee-commuting": "employee_commuting_assets_list.json",
+    "upstream-leased-assets": "upstream_leased_assets_list.json",
+    "downstream-transportation-and-distribution": "downstream_transport_assets_list.json"
 }
 
 # ======================================================
-# 2) FUNZIONI PER CARICARE E SALVARE LE LISTE
-#    - Gestione della directory in base a session_id
+# 2) FUNZIONI PER CARICARE/SALVARE LISTE (session_id)
 # ======================================================
 def load_list_from_file(session_id: str, filename: str):
     """
@@ -51,87 +57,97 @@ def save_list_to_file(session_id: str, filename: str, data_list: list):
         json.dump(data_list, f, indent=4, ensure_ascii=False)
 
 # ======================================================
-# 3) CARICAMENTO DEI FILE JSON CON I FATTORI DI EMISSIONE (Scope 2)
-#    Questi file contengono i record con: ghg_category, method, type, ...
+# 3) CARICAMENTO DEI FILE JSON CON I FATTORI DI EMISSIONE (Scope 3)
 # ======================================================
-def load_json_file(filepath: str):
+def load_json_file(filepath):
     with open(filepath, "r", encoding="utf-8") as f:
         return json.load(f)
 
-purchased_electricity_data = load_json_file("purchased_electricity.json")
-purchased_heat_or_steam_data = load_json_file("purchased_heat_or_steam.json")
-all_data = purchased_electricity_data + purchased_heat_or_steam_data
+purchased_goods_data = load_json_file("purchased_goods_and_services.json")
+capital_goods_data = load_json_file("capital_goods.json")
+upstream_transport_data = load_json_file("upstream_transportation_and_distribution.json")
+waste_generated_data = load_json_file("waste_generated_in_operations.json")
+business_travel_data = load_json_file("business_travels.json")
+employee_commuting_data = load_json_file("employee_commuting.json")
+upstream_leased_data = load_json_file("upstream_leased_assets.json")
+downstream_transport_data = load_json_file("downstream_transportation_and_distribution.json")
+
+all_data = (
+    purchased_goods_data
+    + capital_goods_data
+    + upstream_transport_data
+    + waste_generated_data
+    + business_travel_data
+    + employee_commuting_data
+    + upstream_leased_data
+    + downstream_transport_data
+)
 
 # ======================================================
-# 4) FUNZIONI DI UTILITÀ (FILTRI, ECC.)
+# 4) FUNZIONI DI UTILITÀ (filtri, estrazione valori unici, ecc.)
 # ======================================================
 def get_unique_values_for_key(data, key):
     """
-    Ritorna i valori unici (non-None) per 'key' in 'data',
-    in una lista ordinata (escludendo duplicati).
+    - Leggiamo i valori da 'key'
+    - Convertiamo tutto in stringa (str(val)) per evitare errori di ordinamento
+      se ci sono mix di float/str
+    - Restituiamo la lista ordinata
     """
     values = set()
     for d in data:
         val = d.get(key)
         if val is not None:
-            values.add(val)
-    return sorted(list(values))
+            # Forziamo la conversione in stringa
+            values.add(str(val))
+    return sorted(values)
 
 def insert_none_option(options_list):
     """
-    Inserisce la voce '(nessuna)' come prima opzione.
+    Inserisce la stringa '(nessuna)' come prima voce,
+    così che la selectbox abbia un'opzione per non filtrare su quel campo.
     """
     return ["(nessuna)"] + options_list
 
 def filter_data(data, filter_dict):
     """
-    Filtra la lista 'data' in base ai (key, value) presenti in 'filter_dict'.
-    Se value == None, NON filtra su quel campo.
-    Altrimenti, matcha solo i record che hanno d.get(key) == value.
+    Filtra la lista 'data' in base ai (key, value) specificati in 'filter_dict'.
+    Ritorna solo gli item che matchano TUTTI i campi (se value != None).
     """
     filtered = data
     for k, v in filter_dict.items():
         if v is not None:
-            filtered = [d for d in filtered if d.get(k) == v]
+            # NOTA: poiché in get_unique_values_for_key abbiamo convertito in stringa,
+            # se i record originali in data sono float, potremmo dover convertire i record in string.
+            # In un contesto reale, devi gestire la coerenza dei tipi.
+            filtered = [d for d in filtered if str(d.get(k)) == v]
     return filtered
 
 # ======================================================
-# 5) FUNZIONE PRINCIPALE PER RENDERIZZARE LA PAGINA SCOPE 2
-#    Si accetta un parametro session_id per gestire i salvataggi in cartella
+# 5) FUNZIONE PRINCIPALE CHE RENDERIZZA LA PAGINA SCOPE 3
 # ======================================================
-def render_scope2_form(session_id: str):
+def render_scope3_form(session_id: str):
     """
-    Costruisce l'interfaccia Streamlit per gestire gli asset di Scope 2,
-    con salvataggio/caricamento basato su session_id in apposite directory.
+    Costruisce l'interfaccia Streamlit per gestire gli asset di Scope 3,
+    consentendo di salvare/caricare i dati in base alla directory `session_id`.
+    """
 
-    Param:
-        session_id (str): Identificatore di sessione, usato per determinare
-                          la cartella in cui salvare i file JSON.
-    """
-    st.title("Creazione di Asset GHG (Scope 2)")
-    #st.markdown(f"**Session ID** attuale: `{session_id}`")
+    st.title("Creazione di Asset GHG (Scope 3)")
+    #st.markdown(f"**Session ID**: `{session_id}`")
 
     st.markdown("""
     **Funzionalità**  
-    1. Ogni tendina (categoria, metodo, type, ecc.) contiene l’opzione **"(nessuna)"** (default).  
-    2. Se si lascia **"(nessuna)"**, non si filtra su quel campo.  
-    3. Possibilità di inserire un **Emission Factor personalizzato** e una **descrizione personalizzata**.  
-    4. Aggiungi l'asset a una lista (purchased-electricity o purchased-heat-or-steAM).  
-    5. **Visualizza** solo la lista corrispondente.  
-    6. **Pulsanti** per svuotare la lista e salvare su file JSON.
+    1. Ogni selectbox parte con **'(nessuna)'** così da poter NON filtrare se non si desidera.  
+    2. Evitiamo l'errore di sorting misto tra string e float forzando la conversione a string.  
+    3. Se c'è un solo record univoco **o** se l'utente definisce un EF personalizzato, possiamo aggiungere l'asset.
     """)
 
-    # 6) Inizializziamo in session_state i contenitori
-    if "purchased_electricity_assets_list" not in st.session_state:
-        st.session_state["purchased_electricity_assets_list"] = load_list_from_file(
-            session_id, SAVE_FILES.get("purchased-electricity", "purchased_electricity_assets_list.json")
-        )
-    if "purchased_heat_or_steam_assets_list" not in st.session_state:
-        st.session_state["purchased_heat_or_steam_assets_list"] = load_list_from_file(
-            session_id, SAVE_FILES.get("purchased-heat-or-steAM", "purchased_heat_or_steam_assets_list.json")
-        )
+    # Inizializziamo in session_state le liste
+    for cat_key, filename in SAVE_FILES.items():
+        ss_key = f"{cat_key}_assets_list"
+        if ss_key not in st.session_state:
+            st.session_state[ss_key] = load_list_from_file(session_id, filename)
 
-    # ========== STEP A: ghg_category ===========
+    # STEP 1: ghg_category
     all_categories = get_unique_values_for_key(all_data, "ghg_category")
     all_categories = insert_none_option(all_categories)
     selected_category = st.selectbox("Categoria (ghg_category)", all_categories, index=0)
@@ -143,7 +159,7 @@ def render_scope2_form(session_id: str):
 
     filtered_cat = filter_data(all_data, {"ghg_category": selected_category_value})
 
-    # ========== STEP B: method ===========
+    # STEP 2: method
     methods_for_cat = get_unique_values_for_key(filtered_cat, "method")
     methods_for_cat = insert_none_option(methods_for_cat)
     selected_method = st.selectbox("Metodo (method)", methods_for_cat, index=0)
@@ -155,7 +171,7 @@ def render_scope2_form(session_id: str):
 
     filtered_method = filter_data(filtered_cat, {"method": selected_method_value})
 
-    # ========== STEP C: type ===========
+    # STEP 3: type
     types_for_method = get_unique_values_for_key(filtered_method, "type")
     types_for_method = insert_none_option(types_for_method)
     selected_type = st.selectbox("Tipo (type)", types_for_method, index=0)
@@ -167,7 +183,7 @@ def render_scope2_form(session_id: str):
 
     filtered_type = filter_data(filtered_method, {"type": selected_type_value})
 
-    # ========== STEP D: subtype ===========
+    # STEP 4: subtype
     subtypes_for_type = get_unique_values_for_key(filtered_type, "subtype")
     subtypes_for_type = insert_none_option(subtypes_for_type)
     selected_subtype = st.selectbox("Sottotipo (subtype)", subtypes_for_type, index=0)
@@ -179,7 +195,7 @@ def render_scope2_form(session_id: str):
 
     filtered_subtype = filter_data(filtered_type, {"subtype": selected_subtype_value})
 
-    # ========== STEP E: name ===========
+    # STEP 5: name
     names_for_subtype = get_unique_values_for_key(filtered_subtype, "name")
     names_for_subtype = insert_none_option(names_for_subtype)
     selected_name = st.selectbox("Nome (name)", names_for_subtype, index=0)
@@ -191,7 +207,7 @@ def render_scope2_form(session_id: str):
 
     filtered_name = filter_data(filtered_subtype, {"name": selected_name_value})
 
-    # ========== STEP F: unit ===========
+    # STEP 6: unit
     units_for_name = get_unique_values_for_key(filtered_name, "unit")
     units_for_name = insert_none_option(units_for_name)
     selected_unit = st.selectbox("Unit (unit)", units_for_name, index=0)
@@ -203,13 +219,14 @@ def render_scope2_form(session_id: str):
 
     filtered_unit = filter_data(filtered_name, {"unit": selected_unit_value})
 
-    # 8) Mostra emission factor se univoco
     st.markdown("---")
-    n_rows = len(filtered_unit)
 
+    # Verifichiamo se c'è un singolo record
+    n_rows = len(filtered_unit)
     if n_rows == 1:
         row = filtered_unit[0]
-        deduced_co2_kg = row.get("total_co2_kg", "N/A") or "N/A"
+        # Forzando a str() nelle comparazioni e sorting, i record originali restano invariati
+        deduced_co2_kg = str(row.get("total_co2_kg", "N/A"))
         deduced_source = row.get("source", "Nessun riferimento")
         deduced_description = row.get("description", "Nessuna descrizione")
 
@@ -222,28 +239,23 @@ def render_scope2_form(session_id: str):
         if n_rows == 0:
             st.warning("Nessuna riga corrisponde ai filtri selezionati.")
         else:
-            st.warning(f"Sono presenti {n_rows} righe. Non è possibile dedurre univocamente i campi.")
+            st.warning(f"Trovate {n_rows} righe. Non è possibile dedurre un EF univoco.")
 
     st.markdown("---")
 
-    # 9) INPUT per personalizzazioni
+    # Campi personalizzati
     asset_label = st.text_input("Nome personalizzato per l'asset", "")
-    custom_emission_factor = st.number_input("Custom Emission Factor (kg CO2 eq)", min_value=0.0, value=0.0)
+    custom_emission_factor = st.number_input("Custom Emission Factor (kg CO2e)", min_value=0.0, value=0.0)
     custom_description = st.text_area("Descrizione personalizzata (opzionale)", "")
-    multiplying_factor = st.number_input("Fattore moltiplicativo (es. kWh consumati, etc.)",
-                                         min_value=0.0, value=1.0)
-    year = st.selectbox("Anno di riferimento",
-                        options=[1900 + i for i in range(125)],
-                        index=123,  # di default vicino al 2023
-                        help="Anno in cui è avvenuta l'attività associata all'emissione")
+    multiplying_factor = st.number_input("Fattore moltiplicativo (opzionale)", min_value=0.0, value=1.0)
+    year = st.selectbox("Anno di riferimento", options=[1900 + i for i in range(125)], index=123)
 
-    # Funzione per aggiungere
+    # Funzione di aggiunta
     def add_asset_to_list():
-        # Se custom_emission_factor > 0, usiamo quello. Altrimenti usiamo deduced_co2_kg
         if custom_emission_factor > 0:
-            final_co2_kg = custom_emission_factor
+            final_co2_kg = str(custom_emission_factor)
         else:
-            final_co2_kg = deduced_co2_kg
+            final_co2_kg = deduced_co2_kg  # è già str (o None)
 
         new_asset = {
             "custom_asset_name": asset_label,
@@ -260,33 +272,26 @@ def render_scope2_form(session_id: str):
             "year": year
         }
 
-        if selected_category_value == "purchased-electricity":
-            st.session_state["purchased_electricity_assets_list"].append(new_asset)
-            st.success(f"Aggiunto asset '{asset_label}' in 'Purchased Electricity'")
-        elif selected_category_value == "purchased-heat-or-steAM":
-            st.session_state["purchased_heat_or_steam_assets_list"].append(new_asset)
-            st.success(f"Aggiunto asset '{asset_label}' in 'Purchased Heat or Steam'")
+        ss_key = f"{selected_category_value}_assets_list" if selected_category_value else None
+        if ss_key and ss_key in st.session_state:
+            st.session_state[ss_key].append(new_asset)
+            st.success(f"Aggiunto asset '{asset_label}' in '{selected_category_value}'.")
         else:
-            st.error("Categoria non riconosciuta o '(nessuna)', impossibile aggiungere l'asset.")
+            st.error(f"Categoria {selected_category_value} non riconosciuta o '(nessuna)'; impossibile aggiungere l'asset.")
 
     if st.button("Aggiungi Asset"):
-        # Se c'è 1 riga univoca, ok
-        # Oppure EF personalizzato > 0
         if n_rows == 1 or custom_emission_factor > 0:
             add_asset_to_list()
         else:
-            st.error("Il filtro non è univoco e non hai inserito un EF personalizzato.")
+            st.error("Il filtraggio non è univoco e nessun EF personalizzato è stato inserito.")
 
-    # 10) Visualizza la lista associata a selected_category_value
     st.write("---")
-    st.write("## Elenco Asset per la Categoria: *{}*".format(selected_category_value or "(nessuna)"))
+    st.write(f"## Elenco Asset per la Categoria: *{selected_category_value or '(nessuna)'}*")
 
-    if selected_category_value == "purchased-electricity":
-        category_list = st.session_state["purchased_electricity_assets_list"]
-        file_to_save = SAVE_FILES["purchased-electricity"]
-    elif selected_category_value == "purchased-heat-or-steAM":
-        category_list = st.session_state["purchased_heat_or_steam_assets_list"]
-        file_to_save = SAVE_FILES["purchased-heat-or-steAM"]
+    ss_key_for_list = f"{selected_category_value}_assets_list" if selected_category_value else None
+    if ss_key_for_list and ss_key_for_list in st.session_state:
+        category_list = st.session_state[ss_key_for_list]
+        file_to_save = SAVE_FILES.get(selected_category_value, None)
     else:
         category_list = []
         file_to_save = None
@@ -294,28 +299,19 @@ def render_scope2_form(session_id: str):
     with st.expander("Visualizza / Nascondi la lista", expanded=True):
         st.json(category_list)
 
-    # 11) Pulsanti di svuotamento e salvataggio
     col1, col2 = st.columns(2)
-
     with col1:
         if st.button("Svuota la lista per la categoria selezionata"):
-            if selected_category_value == "purchased-electricity":
-                st.session_state["purchased_electricity_assets_list"] = []
-                st.info("Lista 'Purchased Electricity' svuotata.")
-            elif selected_category_value == "purchased-heat-or-steAM":
-                st.session_state["purchased_heat_or_steam_assets_list"] = []
-                st.info("Lista 'Purchased Heat or Steam' svuotata.")
+            if file_to_save and ss_key_for_list in st.session_state:
+                st.session_state[ss_key_for_list] = []
+                st.info(f"Lista '{selected_category_value}' svuotata.")
             else:
                 st.warning("Categoria non riconosciuta o '(nessuna)', impossibile svuotare la lista.")
 
     with col2:
         if st.button("Salva Assets per la categoria selezionata"):
             if file_to_save:
-                if selected_category_value == "purchased-electricity":
-                    save_list_to_file(session_id, file_to_save, st.session_state["purchased_electricity_assets_list"])
-                elif selected_category_value == "purchased-heat-or-steAM":
-                    save_list_to_file(session_id, file_to_save, st.session_state["purchased_heat_or_steam_assets_list"])
-
-                st.success(f"Salvato file '{file_to_save}' nella cartella '{session_id}/', con {len(category_list)} asset.")
+                save_list_to_file(session_id, file_to_save, category_list)
+                st.success(f"Salvato file '{file_to_save}' (nella cartella '{session_id}/') con {len(category_list)} asset.")
             else:
                 st.error("Categoria non riconosciuta o '(nessuna)', impossibile salvare.")

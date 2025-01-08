@@ -1,0 +1,30 @@
+[
+    {
+        "custom_asset_name": "Elettricità Ufficio Milano",
+        "ghg_category": "purchased-electricity",
+        "method": "location_based",
+        "type": "electricity",
+        "subtype": "ufficio",
+        "name": "Elettricità",
+        "unit": "kWh",
+        "description_from_json": "Fattore medio della rete nazionale",
+        "custom_description": "Consumo elettrico per ufficio a Milano",
+        "emission_factor_kg": 0.45,
+        "multiplying_factor": 10000.0,
+        "year": 2023
+    },
+    {
+        "custom_asset_name": "Elettricità Stabilimento Torino",
+        "ghg_category": "purchased-electricity",
+        "method": "market_based",
+        "type": "electricity",
+        "subtype": "stabilimento",
+        "name": "Elettricità",
+        "unit": "kWh",
+        "description_from_json": "Fattore specifico del fornitore XYZ",
+        "custom_description": "Consumo elettrico per stabilimento a Torino",
+        "emission_factor_kg": 0.35,
+        "multiplying_factor": 20000.0,
+        "year": 2023
+    }
+]

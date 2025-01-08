@@ -1,0 +1,50 @@
+[
+    {
+        "custom_asset_name": "Macchinario Stampante 3D",
+        "ghg_category": "capital-goods",
+        "method": "spend_based",
+        "type": "machinery",
+        "subtype": "manufacturing",
+        "name": "Stampante XYZ",
+        "unit": "EUR",
+        "description_from_json": "Emmissioni calcolate sulla spesa CAPEX.",
+        "custom_description": "Acquisto di stampante 3D per produzione.",
+        "emission_factor_kg": 0.3,
+        "multiplying_factor": 15000.0,
+        "year": 2024,
+        "capex_spend": 15000.0,
+        "emission_factor": 0.3
+    },
+    {
+        "custom_asset_name": "Infrastruttura IT",
+        "ghg_category": "capital-goods",
+        "method": "supplier_specific",
+        "type": "technology",
+        "subtype": "servers",
+        "name": "Server Rack A",
+        "unit": "unit",
+        "description_from_json": "Emmissioni fornite dal fornitore.",
+        "custom_description": "Acquisto di server rack da fornitore certificato.",
+        "emission_factor_kg": 1000.0,
+        "multiplying_factor": 10.0,
+        "year": 2024,
+        "quantity": 10.0,
+        "supplier_emission_factor": 1000.0
+    },
+    {
+        "custom_asset_name": "Struttura Edilizia",
+        "ghg_category": "capital-goods",
+        "method": "average_data",
+        "type": "building",
+        "subtype": "office",
+        "name": "Uffici Centralizzati",
+        "unit": "m2",
+        "description_from_json": "Emmissioni basate su dati medi di settore.",
+        "custom_description": "Costruzione di nuovi uffici aziendali.",
+        "emission_factor_kg": 50.0,
+        "multiplying_factor": 2000.0,
+        "year": 2024,
+        "quantity": 2000.0,
+        "average_emission_factor": 50.0
+    }
+]

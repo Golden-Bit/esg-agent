@@ -1,0 +1,51 @@
+[
+    {
+        "custom_asset_name": "Product Delivery Trucks",
+        "ghg_category": "downstream-transportation-and-distribution",
+        "method": "distance_based",
+        "type": "transport",
+        "subtype": "truck",
+        "name": "Regional Delivery Trucks",
+        "unit": "km",
+        "description_from_json": "Emissioni basate sulla distanza percorsa e massa trasportata.",
+        "custom_description": "Camion per consegne regionali di prodotti finiti.",
+        "emission_factor": 0.07,
+        "multiplying_factor": 2100.0,
+        "year": 2024,
+        "distance": 3000.0,
+        "mass": 10.0,
+        "emission_factor": 0.07
+    },
+    {
+        "custom_asset_name": "Export Shipping Vessels",
+        "ghg_category": "downstream-transportation-and-distribution",
+        "method": "spend_based",
+        "type": "transport",
+        "subtype": "shipping",
+        "name": "Cargo Ship Export",
+        "unit": "EUR",
+        "description_from_json": "Emissioni calcolate sulla spesa di trasporto marittimo.",
+        "custom_description": "Spedizione di prodotti finiti verso mercati esteri.",
+        "emission_factor": 0.25,
+        "multiplying_factor": 80000.0,
+        "year": 2024,
+        "transport_spend": 80000.0,
+        "emission_factor": 0.25
+    },
+    {
+        "custom_asset_name": "Local Courier Services",
+        "ghg_category": "downstream-transportation-and-distribution",
+        "method": "spend_based",
+        "type": "transport",
+        "subtype": "courier",
+        "name": "Express Courier",
+        "unit": "EUR",
+        "description_from_json": "Emissioni basate sulla spesa di servizi di corriere locale.",
+        "custom_description": "Servizi di corriere per consegne rapide locali.",
+        "emission_factor": 0.1,
+        "multiplying_factor": 5000.0,
+        "year": 2024,
+        "transport_spend": 5000.0,
+        "emission_factor": 0.1
+    }
+]

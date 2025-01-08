@@ -1,0 +1,30 @@
+[
+  {
+    "custom_asset_name": "Car #1 (Sales Team)",
+    "ghg_category": "mobile-combustion",
+    "method": "fuel-amount-method",
+    "type": "fuel",
+    "subtype": "petrol",
+    "name": "Petrol Car",
+    "unit": "liters",
+    "description_from_json": "EF from petrol reference",
+    "custom_description": "Auto aziendale vendite",
+    "emission_factor_kg": 2.31,
+    "multiplying_factor": 800.0,
+    "year": 2022
+  },
+  {
+    "custom_asset_name": "Van #2 (Logistics)",
+    "ghg_category": "mobile-combustion",
+    "method": "fuel-amount-method",
+    "type": "fuel",
+    "subtype": "diesel",
+    "name": "Diesel Van",
+    "unit": "liters",
+    "description_from_json": "EF from diesel reference",
+    "custom_description": "Furgone consegne locali",
+    "emission_factor_kg": 2.68,
+    "multiplying_factor": 1200.0,
+    "year": 2023
+  }
+]

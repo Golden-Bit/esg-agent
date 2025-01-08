@@ -1,0 +1,51 @@
+[
+    {
+        "custom_asset_name": "Plastic Waste from Packaging",
+        "ghg_category": "waste-generated-in-operations",
+        "method": "waste_type_method",
+        "type": "waste",
+        "subtype": "plastic",
+        "name": "Plastic Bottles",
+        "unit": "kg",
+        "description_from_json": "Emissioni calcolate sulla tipologia di rifiuto e metodo di smaltimento.",
+        "custom_description": "Rifiuti plastici generati dalle bottiglie di imballaggio.",
+        "emission_factor_kg": 2.0,
+        "multiplying_factor": 5000.0,
+        "year": 2024,
+        "waste_type": "plastic",
+        "waste_amount": 5000.0,
+        "emission_factor": 2.0
+    },
+    {
+        "custom_asset_name": "Paper Waste from Offices",
+        "ghg_category": "waste-generated-in-operations",
+        "method": "average_data",
+        "type": "waste",
+        "subtype": "paper",
+        "name": "Office Paper",
+        "unit": "kg",
+        "description_from_json": "Emissioni basate su dati medi di settore per la gestione dei rifiuti cartacei.",
+        "custom_description": "Rifiuti cartacei generati dagli uffici.",
+        "emission_factor_kg": 1.0,
+        "multiplying_factor": 3000.0,
+        "year": 2024,
+        "waste_amount": 3000.0,
+        "average_emission_factor": 1.0
+    },
+    {
+        "custom_asset_name": "Organic Waste from Cafeteria",
+        "ghg_category": "waste-generated-in-operations",
+        "method": "supplier_specific",
+        "type": "waste",
+        "subtype": "organic",
+        "name": "Food Scraps",
+        "unit": "kg",
+        "description_from_json": "Emissioni fornite dallo smaltitore per i rifiuti organici.",
+        "custom_description": "Rifiuti organici generati dalla mensa aziendale.",
+        "emission_factor_kg": 1.5,
+        "multiplying_factor": 2000.0,
+        "year": 2024,
+        "waste_amount": 2000.0,
+        "supplier_emission_factor": 1.5
+    }
+]

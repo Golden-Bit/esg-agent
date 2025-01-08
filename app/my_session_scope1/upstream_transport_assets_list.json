@@ -1,0 +1,35 @@
+[
+    {
+        "custom_asset_name": "Trasporto Materie Prime",
+        "ghg_category": "upstream-transportation-and-distribution",
+        "method": "distance_based",
+        "type": "road",
+        "subtype": "truck",
+        "name": "Trasporto Diesel",
+        "unit": "kg",
+        "description_from_json": "Emissioni calcolate basate su distanza e massa.",
+        "custom_description": "Trasporto materie prime da fornitore a magazzino.",
+        "emission_factor_kg": 0.06,
+        "multiplying_factor": 10000.0,
+        "year": 2024,
+        "distance": 500.0,
+        "mass_or_volume": 10.0,
+        "emission_factor": 0.06
+    },
+    {
+        "custom_asset_name": "Distribuzione Prodotti Finito",
+        "ghg_category": "upstream-transportation-and-distribution",
+        "method": "spend_based",
+        "type": "air",
+        "subtype": "cargo_plane",
+        "name": "Distribuzione Globale",
+        "unit": "EUR",
+        "description_from_json": "Emissioni calcolate sulla spesa di trasporto.",
+        "custom_description": "Distribuzione prodotti finiti a livello globale.",
+        "emission_factor_kg": 0.2,
+        "multiplying_factor": 50000.0,
+        "year": 2024,
+        "transport_spend": 50000.0,
+        "emission_factor": 0.2
+    }
+]

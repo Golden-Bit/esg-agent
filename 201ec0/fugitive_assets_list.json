@@ -1,0 +1,15 @@
+[
+    {
+        "custom_asset_name": "",
+        "ghg_category": "fugitive-emissions",
+        "method": "mass-balance-method",
+        "type": "gas",
+        "subtype": null,
+        "name": "1234yf",
+        "unit": "kg",
+        "description_from_json": null,
+        "custom_description": "",
+        "emission_factor_kg": "1",
+        "multiplying_factor": 1.0
+    }
+]
