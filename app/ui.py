@@ -295,9 +295,49 @@ def reports_page():
                 key=file
             )
 
+########################################
+# Funzioni di utilità per API Keys
+########################################
+
+def load_api_keys(filename="api_keys.json"):
+    """
+    Carica l'elenco delle chiavi API da un file JSON.
+    Se il file non esiste o è vuoto, restituisce una lista vuota.
+    """
+    if not os.path.exists(filename):
+        return []
+
+    with open(filename, "r", encoding="utf-8") as f:
+        try:
+            data = json.load(f)
+            return data.get("openai_api_keys", [])
+        except json.JSONDecodeError:
+            return []
+
+def save_api_keys(api_keys, filename="api_keys.json"):
+    """
+    Salva l'elenco delle chiavi API in un file JSON.
+    """
+    data = {"openai_api_keys": api_keys}
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+def generate_key_id():
+    """
+    Genera un ID univoco (brevi) per identificare ogni chiave.
+    """
+    return str(uuid.uuid4())[:8]
+
+########################################
+# Esempio di modifica al dashboard_page
+########################################
+
 def dashboard_page():
     st.title("Dashboard Admin")
 
+    # ---------------------------- #
+    # Sezione: Creazione Nuovo Utente
+    # ---------------------------- #
     st.subheader("Crea Nuovo Utente")
     with st.form("create_user_form"):
         new_username = st.text_input("Username")
@@ -305,24 +345,25 @@ def dashboard_page():
         submit_new_user = st.form_submit_button("Crea Utente")
         if submit_new_user:
             register_url = f"http://127.0.0.1:8100/register"
-            # Invia la richiesta di registrazione
             response = requests.post(register_url, json={"username": new_username, "password": new_password})
             if response.status_code == 200:
                 st.success("Utente creato con successo!")
             else:
                 st.error(f"Errore: {response.status_code} - {response.text}")
 
+    # ---------------------------- #
+    # Sezione: Cambia Password Utente
+    # ---------------------------- #
     st.subheader("Cambia Password Utente")
     with st.form("change_password_form"):
         target_username = st.text_input("Username Utente da modificare")
         new_password_for_user = st.text_input("Nuova Password", type="password")
         submit_change = st.form_submit_button("Cambia Password")
         if submit_change:
-            # Per l'admin, non serve fornire la vecchia password
-            reset_url = f"http://127.0.0.1:8100/reset_password"
+            reset_url = f"{api_address}/reset_password"
             payload = {
                 "requestor_username": "admin",
-                "requestor_password": "admin",  # Credenziali admin hardcoded (da personalizzare se necessario)
+                "requestor_password": "admin",  # Credenziali admin hardcoded
                 "target_username": target_username,
                 "new_password": new_password_for_user
             }
@@ -337,7 +378,7 @@ def dashboard_page():
         with open("users.json", "r") as f:
             users = json.load(f)
         for username, hashed_password in users.items():
-            # Password oscurata (ad es. mostra sempre "********")
+            # Password oscurata
             obfuscated = "********"
             col1, col2 = st.columns([3, 1])
             with col1:
@@ -352,17 +393,77 @@ def dashboard_page():
                     delete_url = f"{api_address}/delete_user"
                     payload = {
                         "requestor_username": "admin",
-                        "requestor_password": "admin",  # Credenziali admin hardcoded
+                        "requestor_password": "admin",
                         "target_username": username
                     }
                     response = requests.delete(delete_url, json=payload)
                     if response.status_code == 200:
                         st.success(f"Utente {username} eliminato.")
-                        st.rerun()  # Ricarica la pagina per aggiornare la lista
+                        st.experimental_rerun()
                     else:
                         st.error(f"Errore: {response.status_code} - {response.text}")
     else:
         st.write("Nessun utente registrato.")
+
+    # ---------------------------- #
+    # SEZIONE: Gestione Chiavi OpenAI
+    # ---------------------------- #
+    st.subheader("Gestione Chiavi OpenAI")
+
+    # Carica le chiavi esistenti dal file
+    api_keys = load_api_keys()
+
+    # Inizializza (se non esiste) lo stato per mostrare/nascondere le chiavi
+    if "show_api_keys" not in st.session_state:
+        st.session_state["show_api_keys"] = False
+
+    # Form per aggiungere una nuova chiave
+    with st.form("add_api_key_form"):
+        new_api_key = st.text_input("Inserisci nuova API Key OpenAI", type="password")
+        add_key_btn = st.form_submit_button("Aggiungi Chiave")
+        if add_key_btn and new_api_key.strip():
+            # Crea un record con ID e chiave
+            new_record = {
+                "id": generate_key_id(),
+                "key": new_api_key.strip()
+            }
+            api_keys.append(new_record)
+            save_api_keys(api_keys)
+            st.success("Nuova API Key aggiunta con successo!")
+            st.experimental_rerun()
+
+    # Bottone toggle: mostra/nascondi chiavi
+    if st.button("Mostra/Nascondi Chiavi"):
+        st.session_state["show_api_keys"] = not st.session_state["show_api_keys"]
+
+    # Se ci sono chiavi, visualizzale (mascherate o in chiaro)
+    if api_keys:
+        st.markdown("#### Chiavi API esistenti:")
+        for record in api_keys:
+            key_id = record["id"]
+            key_value = record["key"]
+
+            colA, colB, colC = st.columns([1.2, 3, 1])
+            with colA:
+                st.markdown(f"**ID:** `{key_id}`")
+            with colB:
+                if st.session_state["show_api_keys"]:
+                    # Mostra la chiave in chiaro
+                    st.markdown(f"**Key:** `{key_value}`")
+                else:
+                    # Oscura la chiave (es. sostituisce tutti i caratteri con asterischi)
+                    masked = "•" * len(key_value)
+                    st.markdown(f"**Key:** `{masked}`")
+            with colC:
+                # Pulsante di rimozione
+                if st.button("Rimuovi", key=f"remove_{key_id}"):
+                    # Rimuovi la chiave dall'elenco
+                    api_keys = [k for k in api_keys if k["id"] != key_id]
+                    save_api_keys(api_keys)
+                    st.success(f"Chiave con ID {key_id} rimossa.")
+                    st.experimental_rerun()
+    else:
+        st.markdown("*Nessuna chiave API salvata.*")
 
 
 def download_json_file(data: dict, filename: str):
