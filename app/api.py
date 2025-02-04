@@ -1,4 +1,5 @@
-
+import os
+from hashlib import sha256
 from fastapi import FastAPI, HTTPException, Depends, UploadFile, File, Form, Query, Body, status
 from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
@@ -47,6 +48,20 @@ class FileUploadResponse(BaseModel):
 def get_random_openai_api_key():
     return random.choice(openai_api_keys)
 
+USER_DB_FILE = "users.json"
+
+def load_users():
+    if not os.path.exists(USER_DB_FILE):
+        return {}
+    with open(USER_DB_FILE, "r") as f:
+        try:
+            return json.load(f)
+        except json.JSONDecodeError:
+            return {}
+
+def save_users(users: dict):
+    with open(USER_DB_FILE, "w") as f:
+        json.dump(users, f, indent=4)
 
 # Helper function to communicate with the existing API
 async def create_context_on_server(context_path: str, metadata: Optional[Dict[str, Any]] = None):
@@ -731,3 +746,122 @@ async def get_last_workflow(session_id: str = Query(..., description="The sessio
 
     print(response.json())
     return response.json()
+
+class User(BaseModel):
+    username: str = Field(..., example="nomeutente")
+    password: str = Field(..., example="password123")
+
+
+@app.post("/register")
+async def register(user: User):
+    """
+    Endpoint per registrare un nuovo utente. La password viene salvata in forma hashata.
+    """
+    users = load_users()
+    if user.username in users:
+        raise HTTPException(status_code=400, detail="Username già esistente")
+
+    # Hash della password
+    hashed_password = sha256(user.password.encode("utf-8")).hexdigest()
+    users[user.username] = hashed_password
+    save_users(users)
+
+    return {"message": "Utente registrato con successo"}
+
+
+@app.post("/login")
+async def login(user: User):
+    """
+    Endpoint per effettuare il login.
+    Restituisce {"login": True} se le credenziali sono corrette.
+    """
+    users = load_users()
+    if user.username not in users:
+        raise HTTPException(status_code=400, detail="Username o password non validi")
+
+    hashed_password = sha256(user.password.encode("utf-8")).hexdigest()
+    if users[user.username] != hashed_password:
+        raise HTTPException(status_code=400, detail="Username o password non validi")
+
+    return {"login": True}
+
+class ResetPasswordRequest(BaseModel):
+    requestor_username: str = Field(..., example="admin")
+    requestor_password: str = Field(..., example="admin")
+    target_username: str = Field(..., example="user1")
+    new_password: str = Field(..., example="newpassword123")
+    old_password: Optional[str] = Field(None, example="oldpassword")  # Richiesto solo per il flusso utente
+
+
+@app.post("/reset_password")
+async def reset_password(reset_request: ResetPasswordRequest):
+    """
+    Endpoint per resettare la password di un utente.
+
+    - Se il richiedente è admin (username "admin" e password "admin"), può resettare la password di qualsiasi utente.
+    - Altrimenti, l'utente può resettare la propria password solo fornendo anche la vecchia password.
+    """
+    users = load_users()
+
+    # Verifica che il richiedente esista
+    if reset_request.requestor_username not in users:
+        raise HTTPException(status_code=400, detail="Richiedente non trovato")
+
+    # Verifica le credenziali del richiedente
+    requestor_hashed = sha256(reset_request.requestor_password.encode("utf-8")).hexdigest()
+    if users[reset_request.requestor_username] != requestor_hashed:
+        raise HTTPException(status_code=400, detail="Credenziali del richiedente non valide")
+
+    # Flusso ADMIN: se l'utente richiedente è admin e usa le credenziali "admin/admin"
+    if reset_request.requestor_username == "admin" and reset_request.requestor_password == "admin":
+        if reset_request.target_username not in users:
+            raise HTTPException(status_code=400, detail="Utente target non esistente")
+        new_hashed = sha256(reset_request.new_password.encode("utf-8")).hexdigest()
+        users[reset_request.target_username] = new_hashed
+        save_users(users)
+        return {"message": f"Password per l'utente '{reset_request.target_username}' resettata con successo da admin"}
+
+    # Flusso UTENTE: l'utente può resettare solo la propria password
+    if reset_request.requestor_username != reset_request.target_username:
+        raise HTTPException(status_code=400, detail="Non autorizzato a resettare la password di un altro utente")
+
+    if not reset_request.old_password:
+        raise HTTPException(status_code=400, detail="La vecchia password è richiesta per il reset")
+
+    old_hashed = sha256(reset_request.old_password.encode("utf-8")).hexdigest()
+    if users[reset_request.requestor_username] != old_hashed:
+        raise HTTPException(status_code=400, detail="Vecchia password non corretta")
+
+    new_hashed = sha256(reset_request.new_password.encode("utf-8")).hexdigest()
+    users[reset_request.target_username] = new_hashed
+    save_users(users)
+
+    return {"message": "Password resettata con successo"}
+
+class DeleteUserRequest(BaseModel):
+    requestor_username: str = Field(..., example="admin")
+    requestor_password: str = Field(..., example="admin")
+    target_username: str = Field(..., example="user1")
+
+
+@app.delete("/delete_user")
+async def delete_user(delete_request: DeleteUserRequest):
+    users = load_users()  # Funzione già esistente per caricare il file "users.json"
+
+    # Verifica se l'utente richiedente è admin
+    if delete_request.requestor_username == "admin" and delete_request.requestor_password == "admin":
+        if delete_request.target_username not in users:
+            raise HTTPException(status_code=404, detail="Utente non trovato")
+        del users[delete_request.target_username]
+        save_users(users)
+        return {"detail": f"Utente {delete_request.target_username} eliminato con successo."}
+    else:
+        # Se non admin, l’utente può eliminare solo il proprio account
+        if delete_request.requestor_username != delete_request.target_username:
+            raise HTTPException(status_code=403, detail="Non autorizzato ad eliminare altri utenti")
+        hashed_password = sha256(delete_request.requestor_password.encode("utf-8")).hexdigest()
+        if users.get(delete_request.requestor_username) != hashed_password:
+            raise HTTPException(status_code=403, detail="Credenziali non valide")
+        del users[delete_request.target_username]
+        save_users(users)
+        return {"detail": f"Utente {delete_request.target_username} eliminato con successo."}

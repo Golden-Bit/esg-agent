@@ -54,16 +54,6 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 ########################################################################################################################
-def get_user_reports_dir(username: str) -> str:
-    """
-    Ritorna la directory dove salvare i file di report per un certo utente.
-    Esempio: 'username/reports/'
-    """
-    base_dir = username  # cartella base per l'utente
-    reports_dir = os.path.join(base_dir, "reports")
-    os.makedirs(reports_dir, exist_ok=True)  # Crea la directory se non esiste
-    return reports_dir
-
 def get_user_chats_dir(username: str) -> str:
     """
     Ritorna la directory dove salvare i file di chat per un certo utente.
@@ -87,33 +77,27 @@ def list_user_chats(username: str) -> list:
     chat_ids = [os.path.splitext(f)[0] for f in json_files]
     return chat_ids
 
-def load_chat_from_file(username: str, chat_id: str) -> dict:
+def load_chat_from_file(username: str, chat_id: str) -> list:
     """
-    Carica la chat (dizionario) dal file JSON corrispondente.
-    Se il file non esiste, ritorna un dizionario con nome e messages vuoti.
+    Carica la chat (lista di messaggi) dal file JSON corrispondente.
+    Se il file non esiste, ritorna una lista vuota.
     """
     chats_dir = get_user_chats_dir(username)
     chat_file = os.path.join(chats_dir, f"{chat_id}.json")
     if not os.path.exists(chat_file):
-        return {
-            "id": chat_id,
-            "name": "Nuova Chat",
-            "messages": []
-        }
+        return []
     with open(chat_file, "r", encoding="utf-8") as f:
         data = json.load(f)
     return data
 
-def save_chat_to_file(username: str, chat_id: str, chat_data: dict):
+def save_chat_to_file(username: str, chat_id: str, messages: list):
     """
-    Salva la struttura della chat (id, name, messages) nel file JSON corrispondente.
+    Salva la lista dei messaggi nel file JSON corrispondente.
     """
     chats_dir = get_user_chats_dir(username)
     chat_file = os.path.join(chats_dir, f"{chat_id}.json")
     with open(chat_file, "w", encoding="utf-8") as f:
-        json.dump(chat_data, f, ensure_ascii=False, indent=4)
-
-
+        json.dump(messages, f, ensure_ascii=False, indent=4)
 def questionnaire_page():
     """
     Funzione per mostrare la pagina del questionario.
@@ -260,40 +244,6 @@ def documents_page():
             st.error("Please ensure all URL forms are filled out completely.")
 
 
-def reports_page():
-    st.title("I tuoi Report")
-
-    username = st.session_state.get("username", None)
-    if not username:
-        st.error("Non sei loggato, impossibile visualizzare i report.")
-        return
-
-    # Ottieni la cartella dei report dell'utente
-    reports_dir = get_user_reports_dir(username)
-
-    if not os.path.exists(reports_dir):
-        st.write("Non ci sono report disponibili.")
-        return
-
-    files = os.listdir(reports_dir)
-    docx_files = [f for f in files if f.endswith(".docx")]
-
-    if not docx_files:
-        st.write("Non ci sono report disponibili.")
-        return
-
-    st.write("Seleziona un report per scaricarlo:")
-    for file in docx_files:
-        file_path = os.path.join(reports_dir, file)
-        # Forniamo un pulsante di download
-        with open(file_path, "rb") as f:
-            st.download_button(
-                label=f"Scarica {file}",
-                data=f.read(),
-                file_name=file,
-                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                key=file
-            )
 
 def dashboard_page():
     st.title("Dashboard Admin")
@@ -537,76 +487,119 @@ def download_report():
 
 
 def chatbot_page():
-    session_id = st.session_state.session_id
-    st.sidebar.header("Report")
-
-    if st.sidebar.button("Download Report", use_container_width=True):
-        download_report()
-
-    if st.sidebar.button("Genera Report", use_container_width=True):
-        if session_id:
-            st.sidebar.success("Generazione report in corso...")
-            generate_report(session_id)
-        else:
-            st.sidebar.error("Per favore, inserisci un Session ID valido.")
-    st.sidebar.markdown("---")
-
-    st.sidebar.markdown(
-        """
-        <style>
-        /* Contenitore con altezza fissa e scroll verticale */
-        .fixed-height-chats {
-            max-height: 250px; /* o l'altezza che preferisci */
-            overflow-y: auto;
-        }
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
 
     # Sidebar for file upload and chain configuration
     #st.sidebar.header("Upload Documents")
     if st.session_state.logged_in:
         st.sidebar.subheader("Le tue chat esistenti")
 
-        # 1) Pulsante "Crea Chat" con simbolo "+"
-        if st.sidebar.button("➕ Crea Chat", use_container_width=True, key="new_chat_button"):
+        # Carica la lista delle chat per l'utente
+        user_chats = list_user_chats(st.session_state["username"]) if "username" in st.session_state else []
+
+        for c_id in user_chats:
+            # Mostra ogni chat come un "bottone" o "card"
+            if st.sidebar.button(f"Chat: {c_id}", key=f"load_chat_{c_id}"):
+                st.session_state.chat_id = c_id
+                # Carica i messaggi dal file
+                loaded_msgs = load_chat_from_file(st.session_state["username"], c_id)
+                st.session_state.messages = loaded_msgs
+                st.session_state.chat_history = copy.deepcopy(loaded_msgs)
+                st.rerun()
+
+        # Pulsante per creare una "Nuova Chat"
+        if st.sidebar.button("Nuova Chat", key="new_chat_button"):
             new_id = str(uuid.uuid4())[:8]
             st.session_state.chat_id = new_id
-            st.session_state.chat_name = "Nuova Chat"  # Nome di default
             st.session_state.messages = copy.deepcopy(chatbot_config["messages"])
             st.session_state.chat_history = copy.deepcopy(chatbot_config["messages"])
             st.rerun()
-
-        # 2) Elenco chat in contenitore scrollabile
-        user_chats_ids = list_user_chats(st.session_state["username"])
-
-        # Avvolgi i pulsanti chat in un DIV con la classe "fixed-height-chats"
-        st.sidebar.markdown("<div class='fixed-height-chats'>", unsafe_allow_html=True)
-
-        for c_id in user_chats_ids:
-            # Carica i dati per recuperare il nome
-            tmp_data = load_chat_from_file(st.session_state["username"], c_id)
-            chat_name = tmp_data["name"]
-
-            # Pulsante con larghezza piena
-            if st.sidebar.button(chat_name, use_container_width=True, key=f"load_chat_{c_id}"):
-                st.session_state.chat_id = c_id
-                st.session_state.chat_name = tmp_data["name"]
-                st.session_state.messages = tmp_data["messages"]
-                st.session_state.chat_history = copy.deepcopy(tmp_data["messages"])
-                st.rerun()
-
-        # Chiudi il DIV scrollabile
-        st.sidebar.markdown("</div>", unsafe_allow_html=True)
-
     # Sidebar: Add "Genera Report" button at the top
     #st.sidebar.header("Actions")
     #session_id = st.sidebar.text_input("Session ID", value="", placeholder="Inserisci Session ID")
     session_id = st.session_state.session_id
     # Sidebar for file upload and chain configuration
+    """st.sidebar.header("Upload Documents")
+    #session_id = st.sidebar.text_input("Session ID")
+    uploaded_files = st.sidebar.file_uploader("Choose files", type=['pdf', 'txt', 'docx'], accept_multiple_files=True)
+
+    if st.sidebar.button("Upload and Process Documents", use_container_width=True):
+        if not session_id:
+            st.sidebar.error("Please enter a Session ID.")
+        elif not uploaded_files:
+            st.sidebar.error("Please upload at least one file.")
+        else:
+            # Process each uploaded file
+            for uploaded_file in uploaded_files:
+                file_id = uploaded_file.name.split(".")[0]
+                description = f"Document uploaded: {file_id}"
+
+                with st.spinner(f"Uploading and processing the document {file_id}..."):
+                    # Prepare the data
+                    files = {
+                        'uploaded_file': (uploaded_file.name, uploaded_file.read()),
+                    }
+                    data = {
+                        'session_id': session_id,
+                        'file_id': file_id,
+                        'description': description,
+                    }
+
+                    upload_document_url = f"http://127.0.0.1:8100/upload_document"
+
+                    try:
+                        response = requests.post(upload_document_url, data=data, files=files)
+                        if response.status_code == 200:
+                            st.sidebar.success(f"Document {file_id} uploaded and processed successfully.")
+                            print(f"Upload and process response for {file_id}:", response.json())
+                        else:
+                            st.sidebar.error(f"Failed to upload document {file_id}: {response.text}")
+                            print(f"Failed to upload document {file_id}: {response.status_code}, {response.text}")
+                    except Exception as e:
+                        st.sidebar.error(f"An error occurred: {e}")
+                        print(f"An error occurred during upload for {file_id}: {e}")
+
+            # Configure a single agent for all documents
+            with st.spinner("Configuring and loading the agent for all documents..."):
+                configure_chain_url = f"http://127.0.0.1:8100/configure_and_load_chain/?session_id={session_id}"
+                try:
+                    response = requests.post(configure_chain_url)
+                    if response.status_code == 200:
+                        st.sidebar.success("Agent configured and loaded successfully.")
+                        print("Configure agent response:", response.json())
+                    else:
+                        st.sidebar.error(f"Failed to configure agent: {response.text}")
+                        print(f"Failed to configure agent: {response.status_code}, {response.text}")
+                except Exception as e:
+                    st.sidebar.error(f"An error occurred: {e}")
+                    print(f"An error occurred during agent configuration: {e}")
 
     st.sidebar.markdown("---")
+
+    # Section for adding multiple URLs with descriptions
+    st.sidebar.header("Add URLs with Descriptions")
+
+    if "url_forms" not in st.session_state:
+        st.session_state.url_forms = [{"url": "", "description": ""}]
+
+    if st.sidebar.button("+ Add New URL Form", use_container_width=True):
+        st.session_state.url_forms.append({"url": "", "description": ""})
+
+    # Display all URL forms
+    for idx, form in enumerate(st.session_state.url_forms):
+        #st.sidebar.markdown(f"#### URL Form {idx + 1}")
+        form["url"] = st.sidebar.text_input(f"URL {idx + 1}", value=form["url"], key=f"url_{idx}")
+        form["description"] = st.sidebar.text_area(f"Description {idx + 1}", value=form["description"],
+                                                   key=f"description_{idx}")
+
+    # Save all URLs at once with a single button
+    if st.sidebar.button("Save All URLs", use_container_width=True):
+        if all(form["url"] and form["description"] for form in st.session_state.url_forms):
+            st.sidebar.success("All URLs and descriptions saved successfully.")
+        else:
+            st.sidebar.error("Please ensure all URL forms are filled out completely.")
+            """
+    st.sidebar.markdown("---")
+
 
 
     # Main chat interface
@@ -626,7 +619,17 @@ def chatbot_page():
 
         generate_response(prompt, session_id)
 
+    st.sidebar.header("Report")
 
+    if st.sidebar.button("Download Report", use_container_width=True):
+        download_report()
+
+    if st.sidebar.button("Genera Report", use_container_width=True):
+        if session_id:
+            st.sidebar.success("Generazione report in corso...")
+            generate_report(session_id)
+        else:
+            st.sidebar.error("Per favore, inserisci un Session ID valido.")
 
 
     st.sidebar.markdown(
@@ -687,13 +690,12 @@ def generate_response(prompt, session_id, auto_generated=False):
     st.session_state.messages.append({"role": "assistant", "content": full_response})
     st.session_state.chat_history.append({"role": "assistant", "content": full_response})
 
-    if "username" in st.session_state and "chat_id" in st.session_state and "chat_name" in st.session_state:
-        chat_data = {
-            "id": st.session_state.chat_id,
-            "name": st.session_state.chat_name,
-            "messages": st.session_state.messages
-        }
-        save_chat_to_file(st.session_state["username"], st.session_state.chat_id, chat_data)
+    if "username" in st.session_state and "chat_id" in st.session_state:
+        save_chat_to_file(
+            st.session_state["username"],
+            st.session_state["chat_id"],
+            st.session_state.messages
+        )
 
     aggiorna_html_address(full_response)
 def generate_report(session_id):
@@ -810,42 +812,6 @@ def generate_report(session_id):
         # Use auto_generated=True to avoid duplicating messages in chat history
         generate_response(message, session_id, auto_generated=True)
 
-    # AL TERMINE: salvataggio automatico del docx
-    username = st.session_state.get("username")
-    if username and st.session_state.current_html_address:
-        html_content = scarica_html(st.session_state.current_html_address)
-        if html_content:
-            docx_file_path = "final_report.docx"  # Nome di base, volendo puoi usare un timestamp
-            docx_file = converti_html_in_docx(html_content, docx_file_path)
-
-            # Ottieni la directory dell'utente per i report
-            user_reports_dir = get_user_reports_dir(username)
-
-            # Scegli un nome univoco (puoi usare un timestamp, un uuid, ecc.)
-            unique_filename = f"report_{uuid.uuid4().hex[:8]}.docx"
-            full_save_path = os.path.join(user_reports_dir, unique_filename)
-
-            # Salva effettivamente il file nella cartella utente
-            if docx_file:
-                # docx_file qui è "report.docx" già scritto su disco,
-                # se la tua funzione `converti_html_in_docx` crea un file fisico.
-                # In caso tu stia restituendo `bytes`, cambia di conseguenza.
-                if os.path.exists(docx_file):
-                    os.rename(docx_file, full_save_path)
-                else:
-                    # Se converti_html_in_docx restituisce bytes, gestisci così:
-                    # with open(full_save_path, "wb") as f:
-                    #     f.write(docx_file)
-                    pass
-
-                st.success(f"Report generato e salvato come: {full_save_path}")
-            else:
-                st.error("Impossibile convertire il contenuto HTML in DOCX.")
-        else:
-            st.error("Impossibile scaricare l'HTML dall'indirizzo corrente.")
-    else:
-        st.error("Report non generato o utente non loggato.")
-
 ########################################################################################################################
 
 def main():
@@ -892,9 +858,6 @@ def main():
         if st.button("Documents", key="documents_button", use_container_width=True):
             st.session_state["current_page"] = "documents"
 
-        if st.sidebar.button("Reports", key="reports_button", use_container_width=True):
-            st.session_state["current_page"] = "reports"
-
         # Se l'utente loggato è admin, mostra il bottone per la Dashboard
         if st.session_state.get("username") == "admin":
             if st.sidebar.button("Dashboard", key="dashboard_button", use_container_width=True):
@@ -916,8 +879,6 @@ def main():
         dashboard_page()
     elif st.session_state.get("current_page") == "documents":
         documents_page()
-    elif st.session_state.get("current_page") == "reports":
-        reports_page()
 
 # Se l'utente non è loggato, mostra la login_page
 if not st.session_state.logged_in:
