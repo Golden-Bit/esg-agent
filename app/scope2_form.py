@@ -10,6 +10,17 @@ SAVE_FILES = {
     "purchased-heat-or-steAM": "purchased_heat_or_steam_assets_list.json"
 }
 
+def get_user_session_forms_dir(username: str, session_id: str) -> str:
+    """
+    Ritorna il percorso in cui salvare i JSON dei forms per l'utente e la sessione specificati.
+    Esempio: 'USERS_DATA/<username>/<session_id>/forms'.
+    """
+    base_dir = os.path.join("USERS_DATA", username, session_id)
+    forms_dir = os.path.join(base_dir, "forms")
+    os.makedirs(forms_dir, exist_ok=True)
+    return forms_dir
+
+
 # ======================================================
 # 2) FUNZIONI PER CARICARE E SALVARE LE LISTE
 #    - Gestione della directory in base a session_id

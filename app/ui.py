@@ -161,21 +161,41 @@ def save_form_responses_locally(username: str, session_id: str, form_data: dict,
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(form_data, f, ensure_ascii=False, indent=4)
 
-def questionnaire_page():
-    if "questionnaire_responses" not in st.session_state:
-        st.session_state["questionnaire_responses"] = {}
 
+def questionnaire_page():
+    username = st.session_state.get("username")
+    session_id = st.session_state.session_id
+
+    # 1) Carica risposte se esiste forms/<questionnaire.json>
+    if username:
+        forms_dir = get_user_session_forms_dir(username, session_id)
+        q_file_path = os.path.join(forms_dir, "questionnaire.json")
+        if os.path.exists(q_file_path):
+            # Carichiamo su st.session_state le risposte
+            with open(q_file_path, "r", encoding="utf-8") as f:
+                saved_data = json.load(f)
+            st.session_state["questionnaire_responses"] = saved_data
+        else:
+            # Se non esiste, magari inizializziamo un dict vuoto (o lasciamo com’è)
+            if "questionnaire_responses" not in st.session_state:
+                st.session_state["questionnaire_responses"] = {}
+    else:
+        st.warning("Non sei loggato, i dati del questionario non potranno essere salvati/caricati.")
+
+    # 2) Carichiamo le domande (forms.json), dopodiché popoliamo l'interfaccia
     questions_file = "forms.json"
     questions = load_questions(questions_file)
 
+    # 3) Render del questionario
     st.session_state["questionnaire_responses"] = render_questionnaire(questions)
 
-    # Bottone di salvataggio locale
+    # 4) Bottone di salvataggio locale
     if st.button("Salva questionario in locale"):
-        username = st.session_state.get("username")
-        session_id = st.session_state.session_id
         if username:
-            save_form_responses_locally(username, session_id, st.session_state["questionnaire_responses"])
+            # Salvataggio
+            save_form_responses_locally(username, session_id,
+                                        st.session_state["questionnaire_responses"],
+                                        filename="questionnaire.json")
             st.success("Questionario salvato localmente!")
         else:
             st.warning("Devi essere loggato per salvare localmente.")

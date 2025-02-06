@@ -11,20 +11,33 @@ SAVE_FILES = {
     "fugitive-emissions": "fugitive_assets_list.json"
 }
 
+def get_user_session_forms_dir(username: str, session_id: str) -> str:
+    """
+    Ritorna il percorso in cui salvare i JSON dei forms per l'utente e la sessione specificati.
+    Esempio: 'USERS_DATA/<username>/<session_id>/forms'.
+    """
+    base_dir = os.path.join("USERS_DATA", username, session_id)
+    forms_dir = os.path.join(base_dir, "forms")
+    os.makedirs(forms_dir, exist_ok=True)
+    return forms_dir
+
+
 # ======================================================
 # 2) FUNZIONI PER CARICARE E SALVARE LE LISTE
 #    Con gestione della directory session_id
 # ======================================================
-def load_list_from_file(session_id, filename):
+def load_list_from_file(session_id, filename, username=None):
     """
-    Carica una lista da file JSON in 'session_id/filename', se esiste.
+    Carica una lista da file JSON in 'USERS_DATA/<username>/<session_id>/forms/<filename>', se esiste.
     Ritorna una lista vuota in caso di errore o file mancante.
     """
-    session_dir = os.path.join(".", session_id)
-    if not os.path.exists(session_dir):
-        os.makedirs(session_dir, exist_ok=True)
+    # 1) Ricava la directory forms
+    forms_dir = get_user_session_forms_dir(username, session_id)
 
-    fullpath = os.path.join(session_dir, filename)
+    # 2) Costruisce il path
+    fullpath = os.path.join(forms_dir, filename)
+
+    # 3) Carica il file se esiste
     if os.path.isfile(fullpath):
         try:
             with open(fullpath, "r", encoding="utf-8") as f:
@@ -39,18 +52,22 @@ def load_list_from_file(session_id, filename):
         return []
 
 
-def save_list_to_file(session_id, filename, data_list):
+def save_list_to_file(session_id, filename, data_list, username=None):
     """
-    Salva la lista 'data_list' in un file JSON all'interno di 'session_id/filename',
+    Salva la lista 'data_list' in un file JSON all'interno di
+    'USERS_DATA/<username>/<session_id>/forms/<filename>',
     creando la directory se non esiste.
     """
-    session_dir = os.path.join(".", session_id)
-    if not os.path.exists(session_dir):
-        os.makedirs(session_dir, exist_ok=True)
+    # 1) Ricava la directory forms
+    forms_dir = get_user_session_forms_dir(username, session_id)
 
-    fullpath = os.path.join(session_dir, filename)
+    # 2) Costruisce il path
+    fullpath = os.path.join(forms_dir, filename)
+
+    # 3) Scrive il file
     with open(fullpath, "w", encoding="utf-8") as f:
         json.dump(data_list, f, indent=4, ensure_ascii=False)
+
 
 
 # ======================================================
@@ -112,17 +129,14 @@ def filter_data(data, filter_dict):
 def render_scope1_form(session_id: str):
     """
     Costruisce l'interfaccia Streamlit per gestire gli asset di Scope 1
-    (Stationary, Mobile e Fugitive).
+    (Stationary, Mobile e Fugitive) e salva/carica i dati nella cartella 'forms'
+    relativa alla sessione.
+
     Param:
         session_id (str): Identificatore di sessione, usato per
-                          salvare i file in directory "session_id/".
+                          salvare i file in "USERS_DATA/<username>/<session_id>/forms".
     """
     st.title("Creazione di Asset GHG (Scope 1)")
-
-    #st.markdown(f"""
-    #**Session ID**: `{session_id}`
-    #Questo ID verrà utilizzato per salvare i file JSON in una cartella dedicata.
-    #""")
 
     st.markdown("""
     **Funzionalità principali**  
@@ -132,18 +146,49 @@ def render_scope1_form(session_id: str):
     4. **Visualizza** solo la lista corrispondente alla categoria selezionata.  
     5. **Pulsante** per svuotare la lista della categoria selezionata.  
     6. **Caricamento automatico** dei dati salvati all'avvio (se esistono i file).  
-    7. **Pulsante 'Salva Asset'** per salvare su file la lista corrente nella directory corrispondente.
+    7. **Pulsante 'Salva Asset'** per salvare su file la lista corrente nella directory forms.
     """)
 
-    # 6) Inizializzazione delle liste in session_state (caricamento dai file, in base a session_id)
+    # Ricaviamo l'username dal session_state (assumendo tu lo salvi lì dopo il login)
+    username = st.session_state.get("username", None)
+    if not username:
+        st.warning("Attenzione: non sei loggato, non potrai salvare/caricare i form in locale.")
+        # Puoi decidere se proseguire comunque o fare un return.
+        # return
+
+    # ================== 1) CARICAMENTO LISTE DA FILE  ==================
+    # Se i file di Scope 1 sono i seguenti (esempio):
+    # scope1-stationary.json, scope1-mobile.json, scope1-fugitive.json
+    # in una cartella forms/ sotto la sessione:
+    # "USERS_DATA/<username>/<session_id>/forms/scope1-stationary.json" etc.
+    # supponiamo di avere un dict globale:
+    # SAVE_FILES = {
+    #   "stationary-combustion": "scope1-stationary.json",
+    #   "mobile-combustion": "scope1-mobile.json",
+    #   "fugitive-emissions": "scope1-fugitive.json"
+    # }
+
+    # L'idea: stiamo inizializzando 3 liste in session_state
     if "stationary_assets_list" not in st.session_state:
-        st.session_state["stationary_assets_list"] = load_list_from_file(session_id, SAVE_FILES["stationary-combustion"])
+        st.session_state["stationary_assets_list"] = load_list_from_file(
+            session_id,
+            SAVE_FILES["stationary-combustion"],
+            username=username  # se la funzione load_list_from_file supporta
+        )
 
     if "mobile_assets_list" not in st.session_state:
-        st.session_state["mobile_assets_list"] = load_list_from_file(session_id, SAVE_FILES["mobile-combustion"])
+        st.session_state["mobile_assets_list"] = load_list_from_file(
+            session_id,
+            SAVE_FILES["mobile-combustion"],
+            username=username
+        )
 
     if "fugitive_assets_list" not in st.session_state:
-        st.session_state["fugitive_assets_list"] = load_list_from_file(session_id, SAVE_FILES["fugitive-emissions"])
+        st.session_state["fugitive_assets_list"] = load_list_from_file(
+            session_id,
+            SAVE_FILES["fugitive-emissions"],
+            username=username
+        )
 
     # ========== STEP A: CATEGORY ================
     all_categories = get_unique_values_for_key(all_data, "ghg_category")
@@ -217,7 +262,7 @@ def render_scope1_form(session_id: str):
 
     filtered_unit = filter_data(filtered_name, {"unit": selected_unit_value})
 
-    # 8) Mostra emission factor e altre info se c'è un solo record
+    # Mostra info emission factor e description se c'è 1 sola riga
     st.markdown("---")
 
     n_rows = len(filtered_unit)
@@ -256,7 +301,7 @@ def render_scope1_form(session_id: str):
     year = st.selectbox("Anno di riferimento", options=[1900 + i for i in range(125)], index=123,  # default near 2023
                         help="Anno in cui è avvenuta l'attività associata all'emissione")
 
-    # 9) Funzione per aggiungere
+    # Funzione helper per aggiungere
     def add_asset_to_list():
         if custom_emission_factor > 0:
             final_co2_kg = custom_emission_factor
@@ -292,17 +337,16 @@ def render_scope1_form(session_id: str):
             st.error("Categoria non riconosciuta, impossibile aggiungere l'asset.")
 
     if st.button("Aggiungi Asset"):
-        # Se n_rows == 1, abbiamo un record univoco
-        # Oppure se custom_emission_factor > 0, l'utente forza un EF
+        # Se n_rows == 1, abbiamo un record univoco, oppure l'utente ha forzato EF custom
         if n_rows == 1 or custom_emission_factor > 0:
             add_asset_to_list()
         else:
             st.error("Impossibile aggiungere. Il filtraggio non è univoco e nessun EF personalizzato è stato inserito.")
 
-    # 10) Visualizzazione della lista
     st.write("---")
     st.write("## Elenco Asset per la Categoria: *{}*".format(selected_category_value or "(nessuna)"))
 
+    # Seleziona la lista in base alla categoria
     if selected_category_value == "stationary-combustion":
         category_list = st.session_state["stationary_assets_list"]
         file_to_save = SAVE_FILES["stationary-combustion"]
@@ -319,9 +363,9 @@ def render_scope1_form(session_id: str):
     with st.expander("Visualizza/Riduci la lista", expanded=True):
         st.json(category_list)
 
-    # 11) Pulsanti per svuotare o salvare
     col1, col2 = st.columns(2)
 
+    # Pulsante per svuotare
     with col1:
         if st.button("Svuota la lista per la categoria selezionata"):
             if selected_category_value == "stationary-combustion":
@@ -336,16 +380,12 @@ def render_scope1_form(session_id: str):
             else:
                 st.warning("Categoria non riconosciuta o '(nessuna)', impossibile svuotare la lista.")
 
+    # Pulsante per salvare
     with col2:
         if st.button("Salva Assets per la categoria selezionata"):
             if file_to_save:
-                if selected_category_value == "stationary-combustion":
-                    save_list_to_file(session_id, file_to_save, st.session_state["stationary_assets_list"])
-                elif selected_category_value == "mobile-combustion":
-                    save_list_to_file(session_id, file_to_save, st.session_state["mobile_assets_list"])
-                elif selected_category_value == "fugitive-emissions":
-                    save_list_to_file(session_id, file_to_save, st.session_state["fugitive_assets_list"])
-
-                st.success(f"Salvato file '{file_to_save}' (nella cartella '{session_id}/') con {len(category_list)} asset.")
+                # Salviamo la lista attuale su disco
+                save_list_to_file(session_id, file_to_save, category_list, username=username)
+                st.success(f"Salvato file '{file_to_save}' (forms dir per session '{session_id}') con {len(category_list)} asset.")
             else:
                 st.error("Categoria non riconosciuta o '(nessuna)', impossibile salvare.")
