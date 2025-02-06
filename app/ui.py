@@ -54,6 +54,47 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 ########################################################################################################################
+
+def get_user_session_dir(username: str, session_id: str) -> str:
+    """
+    Ritorna il percorso della cartella dedicata all'utente e alla specifica session_id.
+    Esempio: 'mario/AB12/'
+    """
+    user_dir = username
+    session_dir = os.path.join("USERS_DATA", user_dir, session_id)
+    os.makedirs(session_dir, exist_ok=True)
+    return session_dir
+
+def get_user_session_files_dir(username: str, session_id: str) -> str:
+    """
+    Ritorna il percorso in cui salvare i file caricati (PDF, docx, etc.)
+    Esempio: 'mario/AB12/files/'
+    """
+    base_dir = get_user_session_dir(username, session_id)
+    files_dir = os.path.join(base_dir, "files")
+    os.makedirs(files_dir, exist_ok=True)
+    return files_dir
+
+def get_user_session_urls_dir(username: str, session_id: str) -> str:
+    """
+    Ritorna il percorso in cui salvare le risorse delle URL (es. HTML scaricato, etc.).
+    Esempio: 'mario/AB12/urls/'
+    """
+    base_dir = get_user_session_dir(username, session_id)
+    urls_dir = os.path.join(base_dir, "urls")
+    os.makedirs(urls_dir, exist_ok=True)
+    return urls_dir
+
+def get_user_session_forms_dir(username: str, session_id: str) -> str:
+    """
+    Ritorna il percorso in cui salvare i JSON dei forms.
+    Esempio: 'mario/AB12/forms/'
+    """
+    base_dir = get_user_session_dir(username, session_id)
+    forms_dir = os.path.join(base_dir, "forms")
+    os.makedirs(forms_dir, exist_ok=True)
+    return forms_dir
+
 def get_user_reports_dir(username: str) -> str:
     """
     Ritorna la directory dove salvare i file di report per un certo utente.
@@ -114,30 +155,30 @@ def save_chat_to_file(username: str, chat_id: str, chat_data: dict):
         json.dump(chat_data, f, ensure_ascii=False, indent=4)
 
 
-def questionnaire_page():
-    """
-    Funzione per mostrare la pagina del questionario.
-    """
-    #st.title("Questionario ESG")
-    #st.markdown("Completa il questionario seguente.")
+def save_form_responses_locally(username: str, session_id: str, form_data: dict, filename: str = "questionnaire.json"):
+    forms_dir = get_user_session_forms_dir(username, session_id)
+    file_path = os.path.join(forms_dir, filename)
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(form_data, f, ensure_ascii=False, indent=4)
 
-    # Renderizza il questionario e salva le risposte nella variabile di sessione
+def questionnaire_page():
     if "questionnaire_responses" not in st.session_state:
-        st.session_state["questionnaire_responses"] = {}  # Inizializza risposte vuote
+        st.session_state["questionnaire_responses"] = {}
 
     questions_file = "forms.json"
     questions = load_questions(questions_file)
 
-    st.session_state["questionnaire_responses"] = render_questionnaire(questions)  # Usa render_quest()
+    st.session_state["questionnaire_responses"] = render_questionnaire(questions)
 
-    # Pulsante per salvare e tornare al chatbot
-    #if st.button("Salva e torna al chatbot"):
-    #    # Salva le risposte su file
-    #    with open("responses.json", "w", encoding="utf-8") as f:
-    #        json.dump(st.session_state["questionnaire_responses"], f, ensure_ascii=False, indent=4)
-
-    #    st.session_state["current_page"] = "chatbot"  # Cambia pagina al chatbot
-    #    st.rerun()  # Ricarica la pagina per riflettere il cambio di stato
+    # Bottone di salvataggio locale
+    if st.button("Salva questionario in locale"):
+        username = st.session_state.get("username")
+        session_id = st.session_state.session_id
+        if username:
+            save_form_responses_locally(username, session_id, st.session_state["questionnaire_responses"])
+            st.success("Questionario salvato localmente!")
+        else:
+            st.warning("Devi essere loggato per salvare localmente.")
 
 def login_page():
     """
@@ -175,12 +216,35 @@ def documents_page():
     """
     Pagina dedicata al caricamento e alla gestione dei documenti
     """
+    import os
+    import json
+    import base64
+    import uuid
+    from pathlib import Path
+
     st.title("Gestione Documenti")
 
-    # Sezione "Upload Documents"
-    st.header("Upload Documents")
+    # Recupera username e session_id dalla sessione
+    username = st.session_state.get("username", None)
     session_id = st.session_state.session_id
-    uploaded_files = st.file_uploader("Choose files", type=['pdf', 'txt', 'docx'], accept_multiple_files=True)
+
+    # 1) Chiave del widget file_uploader (per poterlo ricreare e azzerare)
+    # Se non esiste ancora in session_state, la creiamo
+    if "file_upload_widget_key" not in st.session_state:
+        st.session_state.file_upload_widget_key = "file_upload_main"
+
+    # --------------------------------------- #
+    # SEZIONE: Upload Documents
+    # --------------------------------------- #
+    st.header("Upload Documents")
+
+    # Widget file_uploader con la chiave (variabile) in session_state
+    uploaded_files = st.file_uploader(
+        "Choose files",
+        type=['pdf', 'txt', 'docx'],
+        accept_multiple_files=True,
+        key=st.session_state.file_upload_widget_key
+    )
 
     if st.button("Upload and Process Documents", use_container_width=True):
         if not session_id:
@@ -194,18 +258,42 @@ def documents_page():
                 description = f"Document uploaded: {file_id}"
 
                 with st.spinner(f"Uploading and processing the document {file_id}..."):
-                    # Prepare the data
-                    files = {
-                        'uploaded_file': (uploaded_file.name, uploaded_file.read()),
-                    }
+                    # 1) Leggi il contenuto del file in memoria
+                    file_bytes = uploaded_file.read()
+
+                    # 2) Se l'utente è loggato, salviamo localmente
+                    if username:
+                        local_files_dir = get_user_session_files_dir(username, session_id)
+                        local_file_path = os.path.join(local_files_dir, uploaded_file.name)
+
+                        # Salva fisicamente il file in locale
+                        with open(local_file_path, "wb") as f:
+                            f.write(file_bytes)
+                    else:
+                        local_file_path = None
+                        st.warning("Non sei loggato, il file non verrà salvato in locale.")
+
+                    # 3) Preparazione parametri POST
                     data = {
                         'session_id': session_id,
                         'file_id': file_id,
                         'description': description,
                     }
-
                     upload_document_url = f"http://127.0.0.1:8100/upload_document"
 
+                    # 4) Prepara il file per la POST
+                    if local_file_path and os.path.exists(local_file_path):
+                        # Riapriamo il file salvato in locale
+                        files = {
+                            'uploaded_file': (uploaded_file.name, open(local_file_path, "rb")),
+                        }
+                    else:
+                        # Altrimenti usiamo i bytes in memoria
+                        files = {
+                            'uploaded_file': (uploaded_file.name, file_bytes),
+                        }
+
+                    # 5) Invio la richiesta al backend
                     try:
                         response = requests.post(upload_document_url, data=data, files=files)
                         if response.status_code == 200:
@@ -218,7 +306,7 @@ def documents_page():
                         st.error(f"An error occurred: {e}")
                         print(f"An error occurred during upload for {file_id}: {e}")
 
-            # Configure a single agent for all documents
+            # 6) Configurazione e caricamento della chain
             with st.spinner("Configuring and loading the agent for all documents..."):
                 configure_chain_url = f"http://127.0.0.1:8100/configure_and_load_chain/?session_id={session_id}"
                 try:
@@ -233,31 +321,133 @@ def documents_page():
                     st.error(f"An error occurred: {e}")
                     print(f"An error occurred during agent configuration: {e}")
 
-    st.markdown("---")
+        # Al termine di TUTTI gli upload, cambiamo la chiave del widget → svuotiamo la lista
+        st.session_state.file_upload_widget_key = "file_upload_" + str(uuid.uuid4())[:6]
+        st.rerun()
 
-    # Sezione "Add URLs with Descriptions"
+    # --------------------------------------- #
+    # MOSTRA FILE CARICATI LOCALMENTE (con card + link download)
+    # --------------------------------------- #
+    st.markdown("---")
+    if username:
+        files_dir = get_user_session_files_dir(username, session_id)
+        st.subheader("File caricati localmente (per questa sessione)")
+
+        if os.path.exists(files_dir):
+            local_files = sorted(Path(files_dir).glob("*.*"))
+            if local_files:
+                # Contenitore scrollabile
+                st.markdown("<div style='max-height:300px; overflow-y:auto;'>", unsafe_allow_html=True)
+
+                for local_file_path in local_files:
+                    file_name = local_file_path.name
+
+                    # Creiamo un link testuale cliccabile per il download
+                    with open(local_file_path, "rb") as f:
+                        file_data = f.read()
+                    b64_file = base64.b64encode(file_data).decode()
+                    download_link = f'<a href="data:application/octet-stream;base64,{b64_file}" download="{file_name}">Clicca per scaricare</a>'
+
+                    st.markdown(f"""
+                    <div style="border:1px solid #ddd; border-radius:5px; padding:10px; margin-bottom:10px;">
+                        <strong>{file_name}</strong><br>
+                        {download_link}
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                st.markdown("</div>", unsafe_allow_html=True)
+            else:
+                st.info("Nessun file presente nella cartella locale.")
+        else:
+            st.info("La cartella files per questa sessione non esiste ancora.")
+    else:
+        st.warning("Effettua il login per visualizzare i file caricati localmente.")
+
+    # --------------------------------------- #
+    # SEZIONE: Add URLs with Descriptions
+    # --------------------------------------- #
+    st.markdown("---")
     st.header("Add URLs with Descriptions")
 
-    if "url_forms" not in st.session_state:
-        st.session_state.url_forms = [{"url": "", "description": ""}]
+    # Per la singola form di URL
+    if "new_url_value" not in st.session_state:
+        st.session_state.new_url_value = ""
 
-    if st.button("+ Add New URL Form", key="add_new_url_button", use_container_width=True):
-        st.session_state.url_forms.append({"url": "", "description": ""})
+    if "new_url_desc" not in st.session_state:
+        st.session_state.new_url_desc = ""
 
-    # Display all URL forms
-    for idx, form in enumerate(st.session_state.url_forms):
-        colA, colB = st.columns(2)
-        with colA:
-            form["url"] = st.text_input(f"URL {idx + 1}", value=form["url"], key=f"url_{idx}")
-        with colB:
-            form["description"] = st.text_area(f"Description {idx + 1}", value=form["description"],
-                                               key=f"description_{idx}")
+    # Input e text_area unici
+    st.session_state.new_url_value = st.text_input("URL", value=st.session_state.new_url_value, key="url_unique")
+    st.session_state.new_url_desc = st.text_area("Description", value=st.session_state.new_url_desc, key="desc_unique")
 
-    if st.button("Save All URLs", key="save_all_urls_button", use_container_width=True):
-        if all(form["url"] and form["description"] for form in st.session_state.url_forms):
-            st.success("All URLs and descriptions saved successfully.")
+    # Pulsante di salvataggio
+    if st.button("Salva URL", key="save_single_url_button", use_container_width=True):
+        # Verifichiamo che non siano vuoti
+        if st.session_state.new_url_value.strip() and st.session_state.new_url_desc.strip():
+            # Salviamo nel file
+            if username:
+                urls_dir = get_user_session_urls_dir(username, session_id)
+                urls_file_path = os.path.join(urls_dir, "urls_list.json")
+
+                # Leggiamo la lista esistente (se c'è)
+                if os.path.exists(urls_file_path):
+                    with open(urls_file_path, "r", encoding="utf-8") as f:
+                        saved_urls = json.load(f)
+                else:
+                    saved_urls = []
+
+                # Append la nuova URL
+                saved_urls.append({
+                    "url": st.session_state.new_url_value,
+                    "description": st.session_state.new_url_desc
+                })
+
+                # Riscriviamo
+                with open(urls_file_path, "w", encoding="utf-8") as f:
+                    json.dump(saved_urls, f, ensure_ascii=False, indent=4)
+
+                st.success("URL salvata con successo!")
+
+                # Reset campi input
+                st.session_state.new_url_value = ""
+                st.session_state.new_url_desc = ""
+                st.rerun()
+            else:
+                st.warning("Devi essere loggato per salvare localmente.")
         else:
-            st.error("Please ensure all URL forms are filled out completely.")
+            st.warning("Compila sia URL che Description.")
+
+    # MOSTRA GLI URL SALVATI LOCALMENTE (card style, in contenitore scrollabile)
+    if username:
+        urls_dir = get_user_session_urls_dir(username, session_id)
+        urls_file_path = os.path.join(urls_dir, "urls_list.json")
+        if os.path.exists(urls_file_path):
+            with open(urls_file_path, "r", encoding="utf-8") as f:
+                saved_urls = json.load(f)
+
+            st.subheader("URL salvati localmente (per questa sessione)")
+            if saved_urls:
+                # Contenitore scrollabile
+                st.markdown("<div style='max-height:300px; overflow-y:auto;'>", unsafe_allow_html=True)
+
+                for i, item in enumerate(saved_urls, start=1):
+                    url_val = item["url"]
+                    desc = item["description"]
+                    st.markdown(f"""
+                    <div style="border:1px solid #ddd; border-radius:5px; padding:10px; margin-bottom:10px;">
+                        <strong>URL #{i}</strong><br>
+                        <em>Link:</em> <a href="{url_val}" target="_blank">{url_val}</a><br>
+                        <em>Descrizione:</em> {desc}
+                    </div>
+                    """, unsafe_allow_html=True)
+
+                st.markdown("</div>", unsafe_allow_html=True)
+            else:
+                st.info("Non ci sono URL salvati.")
+        else:
+            st.info("Nessun file urls_list.json trovato nella cartella locale.")
+    else:
+        st.warning("Effettua il login per visualizzare gli URL salvati.")
 
 
 def reports_page():
@@ -399,7 +589,7 @@ def dashboard_page():
                     response = requests.delete(delete_url, json=payload)
                     if response.status_code == 200:
                         st.success(f"Utente {username} eliminato.")
-                        st.experimental_rerun()
+                        st.rerun()
                     else:
                         st.error(f"Errore: {response.status_code} - {response.text}")
     else:
@@ -430,7 +620,7 @@ def dashboard_page():
             api_keys.append(new_record)
             save_api_keys(api_keys)
             st.success("Nuova API Key aggiunta con successo!")
-            st.experimental_rerun()
+            st.rerun()
 
     # Bottone toggle: mostra/nascondi chiavi
     if st.button("Mostra/Nascondi Chiavi"):
@@ -461,7 +651,7 @@ def dashboard_page():
                     api_keys = [k for k in api_keys if k["id"] != key_id]
                     save_api_keys(api_keys)
                     st.success(f"Chiave con ID {key_id} rimossa.")
-                    st.experimental_rerun()
+                    st.rerun()
     else:
         st.markdown("*Nessuna chiave API salvata.*")
 
