@@ -25,41 +25,40 @@ def get_user_session_forms_dir(username: str, session_id: str) -> str:
 # 2) FUNZIONI PER CARICARE E SALVARE LE LISTE
 #    - Gestione della directory in base a session_id
 # ======================================================
-def load_list_from_file(session_id: str, filename: str):
+def load_list_from_file(session_id: str, filename: str, username: str = None):
     """
-    Carica una lista da file JSON in 'session_id/filename', se esiste.
-    Restituisce una lista vuota in caso di errore o file mancante.
+    Carica una lista da file JSON nella directory della sessione.
+    Se il file non esiste, restituisce una lista vuota.
     """
-    session_dir = os.path.join(".", session_id)
-    if not os.path.exists(session_dir):
-        os.makedirs(session_dir, exist_ok=True)
+    if not username:
+        return []  # Se manca username, impossibile accedere alla cartella utente
 
-    fullpath = os.path.join(session_dir, filename)
+    forms_dir = get_user_session_forms_dir(username, session_id)
+    fullpath = os.path.join(forms_dir, filename)
+
     if os.path.isfile(fullpath):
         try:
             with open(fullpath, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                if isinstance(data, list):
-                    return data
-                else:
-                    return []
+                return data if isinstance(data, list) else []
         except:
             return []
-    else:
-        return []
+    return []
 
-def save_list_to_file(session_id: str, filename: str, data_list: list):
-    """
-    Salva la lista 'data_list' in un file JSON all'interno di 'session_id/filename',
-    creando la directory se non esiste.
-    """
-    session_dir = os.path.join(".", session_id)
-    if not os.path.exists(session_dir):
-        os.makedirs(session_dir, exist_ok=True)
 
-    fullpath = os.path.join(session_dir, filename)
+def save_list_to_file(session_id: str, filename: str, data_list: list, username: str = None):
+    """
+    Salva la lista 'data_list' in un file JSON all'interno della directory della sessione.
+    """
+    if not username:
+        return  # Se manca username, non possiamo salvare
+
+    forms_dir = get_user_session_forms_dir(username, session_id)
+    fullpath = os.path.join(forms_dir, filename)
+
     with open(fullpath, "w", encoding="utf-8") as f:
         json.dump(data_list, f, indent=4, ensure_ascii=False)
+
 
 # ======================================================
 # 3) CARICAMENTO DEI FILE JSON CON I FATTORI DI EMISSIONE (Scope 2)
@@ -133,13 +132,21 @@ def render_scope2_form(session_id: str):
     """)
 
     # 6) Inizializziamo in session_state i contenitori
+    # Recuperiamo l'username (se disponibile)
+    username = st.session_state.get("username", None)
+    if not username:
+        st.warning("Attenzione: non sei loggato, quindi non potrai salvare o caricare i form.")
+        return
+
+    # Inizializzazione in session_state
     if "purchased_electricity_assets_list" not in st.session_state:
         st.session_state["purchased_electricity_assets_list"] = load_list_from_file(
-            session_id, SAVE_FILES.get("purchased-electricity", "purchased_electricity_assets_list.json")
+            session_id, SAVE_FILES["purchased-electricity"], username=username
         )
+
     if "purchased_heat_or_steam_assets_list" not in st.session_state:
         st.session_state["purchased_heat_or_steam_assets_list"] = load_list_from_file(
-            session_id, SAVE_FILES.get("purchased-heat-or-steAM", "purchased_heat_or_steam_assets_list.json")
+            session_id, SAVE_FILES["purchased-heat-or-steAM"], username=username
         )
 
     # ========== STEP A: ghg_category ===========
@@ -323,10 +330,13 @@ def render_scope2_form(session_id: str):
         if st.button("Salva Assets per la categoria selezionata"):
             if file_to_save:
                 if selected_category_value == "purchased-electricity":
-                    save_list_to_file(session_id, file_to_save, st.session_state["purchased_electricity_assets_list"])
+                    save_list_to_file(session_id, file_to_save, st.session_state["purchased_electricity_assets_list"],
+                                      username=username)
                 elif selected_category_value == "purchased-heat-or-steAM":
-                    save_list_to_file(session_id, file_to_save, st.session_state["purchased_heat_or_steam_assets_list"])
+                    save_list_to_file(session_id, file_to_save, st.session_state["purchased_heat_or_steam_assets_list"],
+                                      username=username)
 
-                st.success(f"Salvato file '{file_to_save}' nella cartella '{session_id}/', con {len(category_list)} asset.")
+                st.success(
+                    f"Salvato file '{file_to_save}' in 'USERS_DATA/{username}/{session_id}/forms/' con {len(category_list)} asset.")
             else:
                 st.error("Categoria non riconosciuta o '(nessuna)', impossibile salvare.")
