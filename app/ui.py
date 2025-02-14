@@ -54,6 +54,25 @@ if "logged_in" not in st.session_state:
     st.session_state.logged_in = False
 
 ########################################################################################################################
+def list_user_sessions(username: str) -> list:
+    """
+    Restituisce la lista di 'session_id' già esistenti per un dato utente,
+    andando a verificare le sottocartelle in USERS_DATA/<username>/.
+    """
+    base_path = os.path.join("USERS_DATA", username)
+    if not os.path.isdir(base_path):
+        return []
+
+    # Filtra solo le sottocartelle (ognuna dovrebbe essere un session_id)
+    possible_sessions = []
+    for item in os.listdir(base_path):
+        full_item_path = os.path.join(base_path, item)
+        if os.path.isdir(full_item_path):
+            # item potrebbe essere un session_id
+            possible_sessions.append(item)
+
+    return sorted(possible_sessions)
+
 
 def get_user_session_dir(username: str, session_id: str) -> str:
     """
@@ -163,36 +182,38 @@ def save_form_responses_locally(username: str, session_id: str, form_data: dict,
 
 
 def questionnaire_page():
+    """
+    Pagina Streamlit per il questionario ESG con supporto per il salvataggio e il recupero delle risposte salvate.
+    """
     username = st.session_state.get("username")
-    session_id = st.session_state.session_id
+    session_id = st.session_state.get("session_id", "default_session")
 
-    # 1) Carica risposte se esiste forms/<questionnaire.json>
+    # 1) Carica risposte se esiste forms/questionnaire.json
+    saved_responses = {}  # Dizionario vuoto per evitare errori se non esiste il file
+
     if username:
         forms_dir = get_user_session_forms_dir(username, session_id)
         q_file_path = os.path.join(forms_dir, "questionnaire.json")
+
         if os.path.exists(q_file_path):
-            # Carichiamo su st.session_state le risposte
             with open(q_file_path, "r", encoding="utf-8") as f:
-                saved_data = json.load(f)
-            st.session_state["questionnaire_responses"] = saved_data
-        else:
-            # Se non esiste, magari inizializziamo un dict vuoto (o lasciamo com’è)
-            if "questionnaire_responses" not in st.session_state:
-                st.session_state["questionnaire_responses"] = {}
+                saved_responses = json.load(f)
+
+        # Memorizziamo in session_state per utilizzo futuro
+        st.session_state["questionnaire_responses"] = saved_responses
     else:
         st.warning("Non sei loggato, i dati del questionario non potranno essere salvati/caricati.")
 
-    # 2) Carichiamo le domande (forms.json), dopodiché popoliamo l'interfaccia
+    # 2) Carichiamo le domande
     questions_file = "forms.json"
     questions = load_questions(questions_file)
 
-    # 3) Render del questionario
-    st.session_state["questionnaire_responses"] = render_questionnaire(questions)
+    # 3) Render del questionario, passando le risposte salvate
+    st.session_state["questionnaire_responses"] = render_questionnaire(questions, saved_responses)
 
     # 4) Bottone di salvataggio locale
     if st.button("Salva questionario in locale"):
         if username:
-            # Salvataggio
             save_form_responses_locally(username, session_id,
                                         st.session_state["questionnaire_responses"],
                                         filename="questionnaire.json")
@@ -846,6 +867,64 @@ def download_report():
     else:
         st.error("Nessun indirizzo HTML corrente trovato.")
 
+def workspace_management_page():
+    """
+    Pagina per creare, visualizzare ed eliminare gli Spazi di Lavoro.
+    (A livello di codice useremo la logica session_id, ma in UI mostriamo 'Spazio di Lavoro').
+    """
+    st.title("Gestione Spazi di Lavoro")
+
+    username = st.session_state.get("username", None)
+    if not username:
+        st.error("Devi essere loggato per gestire i tuoi Spazi di Lavoro.")
+        return
+
+    # 1) Creazione di un nuovo Spazio di Lavoro
+    st.subheader("Crea un nuovo Spazio di Lavoro")
+    new_workspace_name = st.text_input("Nome per il tuo nuovo Spazio di Lavoro", placeholder="es. Progetto Alpha")
+
+    if st.button("Crea Spazio di Lavoro"):
+        if new_workspace_name.strip():
+            # Genera un nuovo session_id (a livello di codice)
+            new_session_id = str(uuid.uuid4())[:6]
+            # Crea la cartella associata all'utente e a questo session_id
+            created_path = get_user_session_dir(username, new_session_id)
+            # Se vuoi, puoi salvare da qualche parte la 'denominazione' e l'associazione a new_session_id
+            # Ma se ti basta il folder naming con session_id, puoi semplicemente mostrare un messaggio di conferma
+            st.success(f"Spazio di Lavoro '{new_workspace_name}' creato con ID: {new_session_id}")
+        else:
+            st.warning("Inserisci un nome valido per lo Spazio di Lavoro.")
+
+    st.markdown("---")
+
+    # 2) Elenco Spazi di Lavoro esistenti
+    st.subheader("I tuoi Spazi di Lavoro esistenti")
+    existing_workspaces = list_user_sessions(username)
+    if not existing_workspaces:
+        st.info("Non ci sono ancora Spazi di Lavoro.")
+    else:
+        for sid in existing_workspaces:
+            # Mostra una card con info (session_id = sid), pulsante per selezionarlo o per eliminarlo
+            col1, col2, col3 = st.columns([3, 1, 1])
+            with col1:
+                st.write(f"**Spazio di Lavoro (ID)**: {sid}")
+                # Potresti avere un file "nome.txt" in get_user_session_dir(...) dove salvi il nome
+                # e qui lo mostri. Oppure usi direttamente sid come "nome".
+            with col2:
+                if st.button("Usa", key=f"use_{sid}"):
+                    st.session_state.session_id = sid
+                    st.success(f"Ora stai lavorando nello Spazio ID: {sid}")
+            with col3:
+                if st.button("Elimina", key=f"delete_{sid}"):
+                    # Eliminare fisicamente la cartella se vuoi (ATTENZIONE: rimuovi tutti i dati!)
+                    import shutil
+                    full_path = get_user_session_dir(username, sid)
+                    try:
+                        shutil.rmtree(full_path)
+                        st.success(f"Spazio di Lavoro {sid} eliminato con successo.")
+                        st.rerun()
+                    except Exception as e:
+                        st.error(f"Errore durante l'eliminazione: {e}")
 
 def chatbot_page():
     session_id = st.session_state.session_id
@@ -953,7 +1032,7 @@ def generate_response(prompt, session_id, auto_generated=False):
     """Handles generating a response based on a prompt."""
     chain_id = f"{session_id}-workflow_generation_chain"
     input_suffix = f"""*NOTE IMPORTANTI:* 
-    - Preleva informazioni utili dai vector stores, dai file in locale e dai seguenti URLs se necessario: {json.dumps(st.session_state.url_forms, indent=2) if st.session_state.url_forms else "[urls assenti]"}
+    - Preleva informazioni utili dai vector stores, dai file in locale e dai seguenti URLs se necessario: {json.dumps(st.session_state.url_forms, indent=2) if st.session_state.get("url_forms") else "[urls assenti]"}
     - non devi necessariamente fare grafici in qualuqnue circostanza, evita i grafici inutili e poco professionali, cioè che potrebberoe ssere trnaquillamente spiegati a parole o in tabella. focalizzati sui grafici richeisti.
     - quando generi grafici stai molto attentoa  usare etichette sintetiche per evitare che si sovrapponghino, oppure usa ad esempio colori con leggenda nei grafici a barre e altri tipi di grafici in cui nomi lunghi delle etichette deid ati su gli assi potrebbero sovrapporsi."""
 
@@ -1184,6 +1263,10 @@ def main():
         if st.button("Bluen AI", key="chatbot_button", use_container_width=True):
             st.session_state["current_page"] = "chatbot"
 
+        # AGGIUNGI QUESTO TASTO
+        if st.sidebar.button("Spazi di Lavoro", key="workspace_button", use_container_width=True):
+            st.session_state["current_page"] = "workspace"
+
         #with col2:
         if st.button("ESG Assessment Form", key="questionnaire_button", use_container_width=True):
             st.session_state["current_page"] = "questionnaire"
@@ -1229,6 +1312,8 @@ def main():
         documents_page()
     elif st.session_state.get("current_page") == "reports":
         reports_page()
+    elif st.session_state["current_page"] == "workspace":
+        workspace_management_page()
 
 # Se l'utente non è loggato, mostra la login_page
 if not st.session_state.logged_in:

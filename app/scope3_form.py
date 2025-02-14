@@ -30,41 +30,40 @@ def get_user_session_forms_dir(username: str, session_id: str) -> str:
 # ======================================================
 # 2) FUNZIONI PER CARICARE/SALVARE LISTE (session_id)
 # ======================================================
-def load_list_from_file(session_id: str, filename: str):
+def load_list_from_file(session_id: str, filename: str, username: str = None):
     """
-    Carica una lista da file JSON in 'session_id/filename', se esiste.
-    Restituisce una lista vuota in caso di errore o file mancante.
+    Carica una lista da file JSON all'interno della cartella dell'utente e sessione.
+    Se il file non esiste, restituisce una lista vuota.
     """
-    session_dir = os.path.join(".", session_id)
-    if not os.path.exists(session_dir):
-        os.makedirs(session_dir, exist_ok=True)
+    if not username:
+        return []  # Se manca username, impossibile accedere alla cartella utente
 
-    fullpath = os.path.join(session_dir, filename)
+    forms_dir = get_user_session_forms_dir(username, session_id)
+    fullpath = os.path.join(forms_dir, filename)
+
     if os.path.isfile(fullpath):
         try:
             with open(fullpath, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                if isinstance(data, list):
-                    return data
-                else:
-                    return []
+                return data if isinstance(data, list) else []
         except:
             return []
-    else:
-        return []
+    return []
 
-def save_list_to_file(session_id: str, filename: str, data_list: list):
-    """
-    Salva la lista 'data_list' in un file JSON all'interno di 'session_id/filename',
-    creando la directory se non esiste.
-    """
-    session_dir = os.path.join(".", session_id)
-    if not os.path.exists(session_dir):
-        os.makedirs(session_dir, exist_ok=True)
 
-    fullpath = os.path.join(session_dir, filename)
+def save_list_to_file(session_id: str, filename: str, data_list: list, username: str = None):
+    """
+    Salva la lista 'data_list' in un file JSON all'interno della directory della sessione.
+    """
+    if not username:
+        return  # Se manca username, non possiamo salvare
+
+    forms_dir = get_user_session_forms_dir(username, session_id)
+    fullpath = os.path.join(forms_dir, filename)
+
     with open(fullpath, "w", encoding="utf-8") as f:
         json.dump(data_list, f, indent=4, ensure_ascii=False)
+
 
 # ======================================================
 # 3) CARICAMENTO DEI FILE JSON CON I FATTORI DI EMISSIONE (Scope 3)
@@ -151,11 +150,18 @@ def render_scope3_form(session_id: str):
     3. Se c'è un solo record univoco **o** se l'utente definisce un EF personalizzato, possiamo aggiungere l'asset.
     """)
 
-    # Inizializziamo in session_state le liste
+
+    # Recuperiamo l'username (se disponibile)
+    username = st.session_state.get("username", None)
+    if not username:
+        st.warning("Attenzione: non sei loggato, quindi non potrai salvare o caricare i form.")
+        return
+
+    # Inizializziamo le liste in session_state
     for cat_key, filename in SAVE_FILES.items():
         ss_key = f"{cat_key}_assets_list"
         if ss_key not in st.session_state:
-            st.session_state[ss_key] = load_list_from_file(session_id, filename)
+            st.session_state[ss_key] = load_list_from_file(session_id, filename, username=username)
 
     # STEP 1: ghg_category
     all_categories = get_unique_values_for_key(all_data, "ghg_category")
@@ -321,7 +327,9 @@ def render_scope3_form(session_id: str):
     with col2:
         if st.button("Salva Assets per la categoria selezionata"):
             if file_to_save:
-                save_list_to_file(session_id, file_to_save, category_list)
-                st.success(f"Salvato file '{file_to_save}' (nella cartella '{session_id}/') con {len(category_list)} asset.")
+                save_list_to_file(session_id, file_to_save, category_list, username=username)
+                st.success(
+                    f"Salvato file '{file_to_save}' in 'USERS_DATA/{username}/{session_id}/forms/' con {len(category_list)} asset.")
             else:
                 st.error("Categoria non riconosciuta o '(nessuna)', impossibile salvare.")
+
