@@ -137,7 +137,7 @@ def login_page():
         if login_button:
             try:
                 # Costruisci l'URL per l'endpoint di login usando api_address
-                login_url = f"http://127.0.0.1:8100/login"
+                login_url = f"https://www.bluen.ai/api4/login"
                 # Invia la richiesta POST con le credenziali come JSON
                 response = requests.post(login_url, json={"username": username, "password": password})
                 if response.status_code == 200:
@@ -188,7 +188,7 @@ def documents_page():
                         'description': description,
                     }
 
-                    upload_document_url = f"http://127.0.0.1:8100/upload_document"
+                    upload_document_url = f"https://www.bluen.ai/api4/upload_document"
 
                     try:
                         response = requests.post(upload_document_url, data=data, files=files)
@@ -204,7 +204,7 @@ def documents_page():
 
             # Configure a single agent for all documents
             with st.spinner("Configuring and loading the agent for all documents..."):
-                configure_chain_url = f"http://127.0.0.1:8100/configure_and_load_chain/?session_id={session_id}"
+                configure_chain_url = f"https://www.bluen.ai/api4/configure_and_load_chain/?session_id={session_id}"
                 try:
                     response = requests.post(configure_chain_url)
                     if response.status_code == 200:
@@ -254,7 +254,7 @@ def dashboard_page():
         new_password = st.text_input("Password", type="password")
         submit_new_user = st.form_submit_button("Crea Utente")
         if submit_new_user:
-            register_url = f"http://127.0.0.1:8100/register"
+            register_url = f"https://www.bluen.ai/api4/register"
             # Invia la richiesta di registrazione
             response = requests.post(register_url, json={"username": new_username, "password": new_password})
             if response.status_code == 200:
@@ -269,7 +269,7 @@ def dashboard_page():
         submit_change = st.form_submit_button("Cambia Password")
         if submit_change:
             # Per l'admin, non serve fornire la vecchia password
-            reset_url = f"http://127.0.0.1:8100/reset_password"
+            reset_url = f"https://www.bluen.ai/api4/reset_password"
             payload = {
                 "requestor_username": "admin",
                 "requestor_password": "admin",  # Credenziali admin hardcoded (da personalizzare se necessario)
@@ -544,7 +544,7 @@ def chatbot_page():
                         'description': description,
                     }
 
-                    upload_document_url = f"http://127.0.0.1:8100/upload_document"
+                    upload_document_url = f"https://www.bluen.ai/api4/upload_document"
 
                     try:
                         response = requests.post(upload_document_url, data=data, files=files)
@@ -560,7 +560,7 @@ def chatbot_page():
 
             # Configure a single agent for all documents
             with st.spinner("Configuring and loading the agent for all documents..."):
-                configure_chain_url = f"http://127.0.0.1:8100/configure_and_load_chain/?session_id={session_id}"
+                configure_chain_url = f"https://www.bluen.ai/api4/configure_and_load_chain/?session_id={session_id}"
                 try:
                     response = requests.post(configure_chain_url)
                     if response.status_code == 200:

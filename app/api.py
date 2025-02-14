@@ -13,7 +13,9 @@ from starlette.responses import StreamingResponse
 
 from app.utilities import get_system_message
 
-app = FastAPI()
+app = FastAPI(
+    root_path="/api4"
+)
 
 app.add_middleware(
     CORSMiddleware,
