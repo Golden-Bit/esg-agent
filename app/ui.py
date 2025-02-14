@@ -237,7 +237,7 @@ def login_page():
                 # Costruisci l'URL per l'endpoint di login usando api_address
                 login_url = f"https://www.bluen.ai/api4/login"
                 # Invia la richiesta POST con le credenziali come JSON
-                response = requests.post(login_url, json={"username": username, "password": password})
+                response = requests.post(login_url, json={"username": username, "password": password}, verify=False)
                 if response.status_code == 200:
                     data = response.json()
                     if data.get("login") is True:
@@ -336,7 +336,7 @@ def documents_page():
 
                     # 5) Invio la richiesta al backend
                     try:
-                        response = requests.post(upload_document_url, data=data, files=files)
+                        response = requests.post(upload_document_url, data=data, files=files, verify=False)
                         if response.status_code == 200:
                             st.success(f"Document {file_id} uploaded and processed successfully.")
                             print(f"Upload and process response for {file_id}:", response.json())
@@ -351,7 +351,7 @@ def documents_page():
             with st.spinner("Configuring and loading the agent for all documents..."):
                 configure_chain_url = f"https://www.bluen.ai/api4/configure_and_load_chain/?session_id={session_id}"
                 try:
-                    response = requests.post(configure_chain_url)
+                    response = requests.post(configure_chain_url, verify=False)
                     if response.status_code == 200:
                         st.success("Agent configured and loaded successfully.")
                         print("Configure agent response:", response.json())
@@ -576,7 +576,7 @@ def dashboard_page():
         submit_new_user = st.form_submit_button("Crea Utente")
         if submit_new_user:
             register_url = f"https://www.bluen.ai/api4/register"
-            response = requests.post(register_url, json={"username": new_username, "password": new_password})
+            response = requests.post(register_url, json={"username": new_username, "password": new_password}, verify=False)
             if response.status_code == 200:
                 st.success("Utente creato con successo!")
             else:
@@ -598,7 +598,7 @@ def dashboard_page():
                 "target_username": target_username,
                 "new_password": new_password_for_user
             }
-            response = requests.post(reset_url, json=payload)
+            response = requests.post(reset_url, json=payload, verify=False)
             if response.status_code == 200:
                 st.success("Password cambiata con successo!")
             else:
@@ -627,7 +627,7 @@ def dashboard_page():
                         "requestor_password": "admin",
                         "target_username": username
                     }
-                    response = requests.delete(delete_url, json=payload)
+                    response = requests.delete(delete_url, json=payload, verify=False)
                     if response.status_code == 200:
                         st.success(f"Utente {username} eliminato.")
                         st.rerun()
@@ -724,7 +724,7 @@ def aggiorna_html_address(message):
 def scarica_html(url):
     """Scarica il contenuto HTML da un URL."""
     try:
-        risposta = requests.get(url)
+        risposta = requests.get(url, verify=False)
         if risposta.status_code == 200:
             return risposta.text
         else:
