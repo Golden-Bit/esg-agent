@@ -20,7 +20,7 @@ def scarica_html(url):
 
 
 # URL del file HTML
-url_file_html = "http://35.205.92.199:8093/files/685675637467/bilancio_sostenibilita.html"
+url_file_html = "http://34.91.209.79:8093/files/685675637467/bilancio_sostenibilita.html"
 
 # Scarica e stampa il contenuto HTML
 codice_html = scarica_html(url_file_html)

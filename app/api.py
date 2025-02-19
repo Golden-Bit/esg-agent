@@ -181,22 +181,63 @@ async def upload_file_to_contexts(file: UploadFile,
             loader_config_id = f"{context}_{file.filename.replace(' ', '_')}_loader"
             doc_store_collection_name = f"{context}_{file.filename.replace(' ', '_')}_collection"
             print(f"[INFO] doc_store_collection_name: {doc_store_collection_name}")
+
+
+
+
+
+
+            file_type = file.filename.split(".")[-1].lower()
+
+            loaders = {
+                # "pdf": "PyMuPDFLoader",
+                # "txt": "TextLoader",
+                "png": "ImageDescriptionLoader",
+                "jpg": "ImageDescriptionLoader",
+                "default": "UnstructuredLoader"
+            }
+
+            kwargs = {
+                # "pdf": {
+                # "pages": None,
+                # "page_chunks": True,
+                # "write_images": False,
+                # "image_size_limit": 0.025,
+                # "embed_images": True,
+                # "image_path": "C:\\Users\\Golden Bit\\Desktop\\projects_in_progress\\GoldenProjects\\golden_bit\\repositories\\nlp-core-api\\tmp",
+                # },
+                "png": {
+                    "openai_api_key": get_random_openai_api_key(),
+                    "resize_to": (256, 256)
+                },
+                "jpg": {
+                    "openai_api_key": get_random_openai_api_key(),
+                    "resize_to": (256, 256)
+                },
+                # "txt": {}
+
+                "default": {
+                    "strategy": "hi_res",
+                    "partition_via_api": False
+                }
+            }
+
             loader_config_data = {
                 "config_id": loader_config_id,
                 "path": f"data_stores/data/{context}",
                 "loader_map": {
-                  f"{file.filename.replace(' ', '_')}": "PyMuPDFLoader"
+                    f"{file.filename.replace(' ', '_')}": loaders.get(file_type) or loaders["default"]
                 },
                 "loader_kwargs_map": {
-                  f"{file.filename.replace(' ', '_')}": {"extract_images": True}
+                    f"{file.filename.replace(' ', '_')}": kwargs.get(file_type) or kwargs["default"]
                 },
                 "metadata_map": {
-                  f"{file.filename.replace(' ', '_')}": {
-                    "source_context": f"{context}"
-                  }
+                    f"{file.filename.replace(' ', '_')}": {
+                        "source_context": f"{context}"
+                    }
                 },
                 "default_metadata": {
-                   "source_context": f"{context}"
+                    "source_context": f"{context}"
                 },
                 "recursive": True,
                 "max_depth": 5,
@@ -206,21 +247,24 @@ async def upload_file_to_contexts(file: UploadFile,
                 "use_multithreading": True,
                 "max_concurrency": 8,
                 "exclude": [
-                  "*.tmp",
-                  "*.log"
+                    "*.tmp",
+                    "*.log"
                 ],
                 "sample_size": 10,
                 "randomize_sample": True,
                 "sample_seed": 42,
                 "output_store_map": {
-                  f"{file.filename.replace(' ', '_')}": {
-                    "collection_name": doc_store_collection_name
-                  }
+                    f"{file.filename.replace(' ', '_')}": {
+                        "collection_name": doc_store_collection_name
+                    }
                 },
                 "default_output_store": {
-                  "collection_name": doc_store_collection_name
+                    "collection_name": doc_store_collection_name
                 }
-              }
+            }
+
+
+
 
             # Configure the loader on the original API
             loader_response = await client.post(f"{NLP_CORE_SERVICE}/document_loaders/configure_loader", json=loader_config_data)

@@ -83,14 +83,14 @@ L'architettura del progetto è composta da diverse componenti integrate:
 -   **Hosting dei File**: Tutti i file generati, inclusi il report e i grafici, sono ospitati all'indirizzo:
     
     ```
-    http://35.205.92.199:8093/files/{session_id}/<nome_file>
+    http://34.91.209.79:8093/files/{session_id}/<nome_file>
     
     ```
     
 -   **Accesso al Report**: Il Bilancio di Sostenibilità generato è disponibile come `bilancio_sostenibilita.html` e può essere visualizzato tramite il link:
     
     ```
-    http://35.205.92.199:8093/files/{session_id}/bilancio_sostenibilita.html
+    http://34.91.209.79:8093/files/{session_id}/bilancio_sostenibilita.html
     
     ```
     

@@ -26,7 +26,7 @@ def render_questionnaire(questions, saved_responses=None):
     current_sub_section = None
 
     for question in questions:
-        question_id = question["id"]
+        question_id = str(question["id"])
 
         # Recupera la risposta precedente se esiste
         previous_answer = saved_responses.get(question_id, None) if saved_responses else None
@@ -57,8 +57,8 @@ def render_questionnaire(questions, saved_responses=None):
         )
 
     # Pulsante per inviare le risposte
-    if st.button("Invia le risposte"):
-        save_responses(responses, "responses.json")
-        st.success("Risposte salvate con successo!")
+    #if st.button("Invia le risposte"):
+    #    save_responses(responses, "responses.json")
+    #    st.success("Risposte salvate con successo!")
 
     return responses

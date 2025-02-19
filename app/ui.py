@@ -9,7 +9,9 @@ import copy
 import re
 from docx import Document
 from html2docx import html2docx
+import os
 
+from prompt_utils import gather_all_forms_data
 from scope3_form import render_scope3_form
 from scope1_form import render_scope1_form
 from scope2_form import render_scope2_form
@@ -207,7 +209,6 @@ def questionnaire_page():
     # 2) Carichiamo le domande
     questions_file = "forms.json"
     questions = load_questions(questions_file)
-
     # 3) Render del questionario, passando le risposte salvate
     st.session_state["questionnaire_responses"] = render_questionnaire(questions, saved_responses)
 
@@ -235,7 +236,7 @@ def login_page():
         if login_button:
             try:
                 # Costruisci l'URL per l'endpoint di login usando api_address
-                login_url = f"https://www.bluen.ai/api4/login"
+                login_url = f"http://34.91.209.79:800/login"
                 # Invia la richiesta POST con le credenziali come JSON
                 response = requests.post(login_url, json={"username": username, "password": password})
                 if response.status_code == 200:
@@ -320,7 +321,7 @@ def documents_page():
                         'file_id': file_id,
                         'description': description,
                     }
-                    upload_document_url = f"https://www.bluen.ai/api4/upload_document"
+                    upload_document_url = f"http://34.91.209.79:800/upload_document"
 
                     # 4) Prepara il file per la POST
                     if local_file_path and os.path.exists(local_file_path):
@@ -349,7 +350,7 @@ def documents_page():
 
             # 6) Configurazione e caricamento della chain
             with st.spinner("Configuring and loading the agent for all documents..."):
-                configure_chain_url = f"https://www.bluen.ai/api4/configure_and_load_chain/?session_id={session_id}"
+                configure_chain_url = f"http://34.91.209.79:800/configure_and_load_chain/?session_id={session_id}"
                 try:
                     response = requests.post(configure_chain_url)
                     if response.status_code == 200:
@@ -575,7 +576,7 @@ def dashboard_page():
         new_password = st.text_input("Password", type="password")
         submit_new_user = st.form_submit_button("Crea Utente")
         if submit_new_user:
-            register_url = f"https://www.bluen.ai/api4/register"
+            register_url = f"http://34.91.209.79:800/register"
             response = requests.post(register_url, json={"username": new_username, "password": new_password})
             if response.status_code == 200:
                 st.success("Utente creato con successo!")
@@ -889,8 +890,12 @@ def workspace_management_page():
             new_session_id = str(uuid.uuid4())[:6]
             # Crea la cartella associata all'utente e a questo session_id
             created_path = get_user_session_dir(username, new_session_id)
-            # Se vuoi, puoi salvare da qualche parte la 'denominazione' e l'associazione a new_session_id
-            # Ma se ti basta il folder naming con session_id, puoi semplicemente mostrare un messaggio di conferma
+
+            # Aggiungi queste RIGHE:
+            workspace_name_path = os.path.join(created_path, "workspace_name.txt")
+            with open(workspace_name_path, "w", encoding="utf-8") as f:
+                f.write(new_workspace_name.strip())
+
             st.success(f"Spazio di Lavoro '{new_workspace_name}' creato con ID: {new_session_id}")
         else:
             st.warning("Inserisci un nome valido per lo Spazio di Lavoro.")
@@ -900,6 +905,7 @@ def workspace_management_page():
     # 2) Elenco Spazi di Lavoro esistenti
     st.subheader("I tuoi Spazi di Lavoro esistenti")
     existing_workspaces = list_user_sessions(username)
+
     if not existing_workspaces:
         st.info("Non ci sono ancora Spazi di Lavoro.")
     else:
@@ -907,16 +913,23 @@ def workspace_management_page():
             # Mostra una card con info (session_id = sid), pulsante per selezionarlo o per eliminarlo
             col1, col2, col3 = st.columns([3, 1, 1])
             with col1:
-                st.write(f"**Spazio di Lavoro (ID)**: {sid}")
-                # Potresti avere un file "nome.txt" in get_user_session_dir(...) dove salvi il nome
-                # e qui lo mostri. Oppure usi direttamente sid come "nome".
+                # Aggiungi queste righe per leggere il nome se esiste:
+                session_path = get_user_session_dir(username, sid)
+                name_file = os.path.join(session_path, "workspace_name.txt")
+                if os.path.exists(name_file):
+                    with open(name_file, "r", encoding="utf-8") as f:
+                        workspace_name = f.read().strip()
+                else:
+                    workspace_name = "Senza Nome"
+
+                st.write(f"**Spazio di Lavoro**: {workspace_name} (ID: {sid})")
+
             with col2:
                 if st.button("Usa", key=f"use_{sid}"):
                     st.session_state.session_id = sid
                     st.success(f"Ora stai lavorando nello Spazio ID: {sid}")
             with col3:
                 if st.button("Elimina", key=f"delete_{sid}"):
-                    # Eliminare fisicamente la cartella se vuoi (ATTENZIONE: rimuovi tutti i dati!)
                     import shutil
                     full_path = get_user_session_dir(username, sid)
                     try:
@@ -971,24 +984,108 @@ def chatbot_page():
         # 2) Elenco chat in contenitore scrollabile
         user_chats_ids = list_user_chats(st.session_state["username"])
 
-        # Avvolgi i pulsanti chat in un DIV con la classe "fixed-height-chats"
-        st.sidebar.markdown("<div class='fixed-height-chats'>", unsafe_allow_html=True)
+        with st.sidebar:  # Tutto ciò che segue viene visualizzato nella sidebar
+            st.markdown("<div class='fixed-height-chats'>", unsafe_allow_html=True)
 
-        for c_id in user_chats_ids:
-            # Carica i dati per recuperare il nome
-            tmp_data = load_chat_from_file(st.session_state["username"], c_id)
-            chat_name = tmp_data["name"]
+            # Se non esistono nel session_state, le inizializziamo
+            if "show_rename_chat" not in st.session_state:
+                st.session_state.show_rename_chat = None  # ID chat da rinominare (oppure None)
+            if "rename_input_value" not in st.session_state:
+                st.session_state.rename_input_value = ""
 
-            # Pulsante con larghezza piena
-            if st.sidebar.button(chat_name, use_container_width=True, key=f"load_chat_{c_id}"):
-                st.session_state.chat_id = c_id
-                st.session_state.chat_name = tmp_data["name"]
-                st.session_state.messages = tmp_data["messages"]
-                st.session_state.chat_history = copy.deepcopy(tmp_data["messages"])
-                st.rerun()
+            user_chats_ids = list_user_chats(st.session_state["username"])
 
-        # Chiudi il DIV scrollabile
-        st.sidebar.markdown("</div>", unsafe_allow_html=True)
+            for c_id in user_chats_ids:
+                tmp_data = load_chat_from_file(st.session_state["username"], c_id)
+                chat_name = tmp_data["name"]
+
+                if c_id == st.session_state.get("chat_id"):
+                    # CHAT CORRENTE: due colonne
+                    colA, colB = st.columns([0.88, 0.12])
+                    with colA:
+                        if st.button(chat_name, use_container_width=True, key=f"load_chat_{c_id}"):
+                            st.session_state.chat_id = c_id
+                            st.session_state.chat_name = tmp_data["name"]
+                            st.session_state.messages = tmp_data["messages"]
+                            st.session_state.chat_history = copy.deepcopy(tmp_data["messages"])
+                            st.rerun()
+                    with colB:
+                        # Pulsante ingranaggio per la chat attiva
+                        if st.button("⚙", key=f"gear_chat_{c_id}"):
+                            st.session_state.show_rename_chat = c_id
+                            st.session_state.rename_input_value = chat_name
+                else:
+                    # CHAT NON CORRENTE: pulsante su tutta la larghezza
+                    if st.button(chat_name, use_container_width=True, key=f"load_chat_{c_id}"):
+                        st.session_state.chat_id = c_id
+                        st.session_state.chat_name = tmp_data["name"]
+                        st.session_state.messages = tmp_data["messages"]
+                        st.session_state.chat_history = copy.deepcopy(tmp_data["messages"])
+                        st.rerun()
+
+                if st.session_state.show_rename_chat == c_id:
+                    # Piccola spaziatura
+                    #st.markdown("<div style='margin:5px 0;'></div>", unsafe_allow_html=True)
+
+                    # Campo input SENZA etichetta, con placeholder
+                    new_name = st.text_input(
+                        label="",
+                        value=st.session_state.rename_input_value,
+                        key=f"rename_input_{c_id}",
+                        placeholder="Inserisci nuovo nome..."
+                    )
+
+                    # Creiamo due colonne per affiancare 'Salva' e 'Elimina'
+                    col_save, col_delete = st.columns(2)
+
+                    with col_save:
+                        if st.button("Salva", key=f"save_chat_{c_id}", use_container_width=True):
+                            updated_chat_data = {
+                                "id": c_id,
+                                "name": new_name.strip() if new_name.strip() else "Nuova Chat",
+                                "messages": tmp_data["messages"]
+                            }
+                            save_chat_to_file(st.session_state["username"], c_id, updated_chat_data)
+
+                            # Se la chat rinominata è quella attiva, aggiorniamo anche session_state
+                            if st.session_state.chat_id == c_id:
+                                st.session_state.chat_name = updated_chat_data["name"]
+
+                            # Nascondiamo form e ricarichiamo
+                            st.session_state.show_rename_chat = None
+                            st.success("Nome chat aggiornato!")
+                            st.rerun()
+
+                    with col_delete:
+                        if st.button("Elimina", key=f"delete_chat_{c_id}", use_container_width=True):
+                            # Eliminiamo fisicamente il file JSON corrispondente
+                            chats_dir = get_user_chats_dir(st.session_state["username"])
+                            chat_file = os.path.join(chats_dir, f"{c_id}.json")
+
+                            try:
+                                if os.path.exists(chat_file):
+                                    os.remove(chat_file)
+                                    # Se la chat eliminata è quella attiva, azzeriamo lo stato
+                                    if st.session_state.chat_id == c_id:
+                                        st.session_state.chat_id = None
+                                        st.session_state.chat_name = None
+                                        st.session_state.messages = []
+                                        st.session_state.chat_history = []
+
+                                    st.success("Chat eliminata con successo!")
+                                else:
+                                    st.warning("Il file della chat non esiste già.")
+                            except Exception as e:
+                                st.error(f"Errore durante l'eliminazione: {e}")
+
+                            # Chiudiamo la form e ricarichiamo la sidebar
+                            st.session_state.show_rename_chat = None
+                            st.rerun()
+
+                    # Piccola spaziatura
+                    st.markdown("<div style='margin:5px 0;'></div>", unsafe_allow_html=True)
+
+            st.markdown("</div>", unsafe_allow_html=True)
 
     # Sidebar: Add "Genera Report" button at the top
     #st.sidebar.header("Actions")
@@ -1031,8 +1128,17 @@ def chatbot_page():
 def generate_response(prompt, session_id, auto_generated=False):
     """Handles generating a response based on a prompt."""
     chain_id = f"{session_id}-workflow_generation_chain"
+
+    forms_data = gather_all_forms_data(st.session_state.get("username", None), session_id)
+
     input_suffix = f"""*NOTE IMPORTANTI:* 
     - Preleva informazioni utili dai vector stores, dai file in locale e dai seguenti URLs se necessario: {json.dumps(st.session_state.url_forms, indent=2) if st.session_state.get("url_forms") else "[urls assenti]"}
+    - Inoltre dovrai usufruire anche delle informazioni otetnute dai forms e dai dati compilati in relazione alla ienda che si sta analizzando:
+    
+        '''
+        {forms_data}.
+        '''
+        
     - non devi necessariamente fare grafici in qualuqnue circostanza, evita i grafici inutili e poco professionali, cioè che potrebberoe ssere trnaquillamente spiegati a parole o in tabella. focalizzati sui grafici richeisti.
     - quando generi grafici stai molto attentoa  usare etichette sintetiche per evitare che si sovrapponghino, oppure usa ad esempio colori con leggenda nei grafici a barre e altri tipi di grafici in cui nomi lunghi delle etichette deid ati su gli assi potrebbero sovrapporsi."""
 
@@ -1256,6 +1362,19 @@ def main():
     )
 
     st.sidebar.markdown("---")
+
+    # Mostra il nome dello Spazio di Lavoro corrente (se esiste)
+    if st.session_state.get("username") and st.session_state.get("session_id"):
+        session_path = get_user_session_dir(st.session_state["username"], st.session_state["session_id"])
+        name_file = os.path.join(session_path, "workspace_name.txt")
+        if os.path.exists(name_file):
+            with open(name_file, "r", encoding="utf-8") as f:
+                workspace_name = f.read().strip()
+            st.sidebar.markdown(f"**Spazio di Lavoro Attuale:** {workspace_name}")
+        else:
+            st.sidebar.markdown("*Nessuno Spazio di Lavoro selezionato.*")
+    else:
+        st.sidebar.markdown("*Nessuno Spazio di Lavoro selezionato.*")
 
     st.sidebar.header("Pages")
 

@@ -81,7 +81,7 @@ def main():
                         'description': description,
                     }
 
-                    upload_document_url = f"https://www.bluen.ai/api4/upload_document"
+                    upload_document_url = f"http://34.91.209.79:800/upload_document"
 
                     try:
                         response = requests.post(upload_document_url, data=data, files=files)
@@ -97,7 +97,7 @@ def main():
 
             # Configure a single agent for all documents
             with st.spinner("Configuring and loading the agent for all documents..."):
-                configure_chain_url = f"https://www.bluen.ai/api4/configure_and_load_chain/?session_id={session_id}"
+                configure_chain_url = f"http://34.91.209.79:800/configure_and_load_chain/?session_id={session_id}"
                 try:
                     response = requests.post(configure_chain_url)
                     if response.status_code == 200:

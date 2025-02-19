@@ -21,9 +21,8 @@ chatbot_config["powered_by"] = "<p style='text-align: center; color: nightblue;'
 chatbot_config["copyright"] = "<h4 style='text-align: center; color: nightblue;'>© 2023 by Gold Solar srl</h4>"
 
 #######################################################
-
-chatbot_config["api_address"] = "http://35.205.92.199:8100"
-
+chatbot_config["api_address"] = "http://34.91.209.79:8100"
+#chatbot_config["api_address"] = "http://35.205.92.199:8100"
 #######################################################
 
 chatbot_config["messages"] = []
