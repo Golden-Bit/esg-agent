@@ -19,7 +19,7 @@ def render_questionnaire(questions, saved_responses=None):
     - `questions`: Lista di domande prese dal file JSON.
     - `saved_responses`: Dizionario delle risposte precedenti, se esistono.
     """
-    st.title("Questionario ESG")
+
     responses = {}
 
     current_section = None

@@ -316,6 +316,8 @@ async def upload_file_to_contexts(file: UploadFile,
 
             ### Add Documents from the Document Store to the Vector Store ###
             # Use the document collection name associated with the context
+            # TODO:
+            #  - comprendi come mai se eseguo due uploda in sequenza, non risultato in vector store dati estratti da seocdno upload. INDAGA.
             add_docs_response = await client.post(
                 f"{NLP_CORE_SERVICE}/vector_stores/vector_store/add_documents_from_store/{vector_store_id}",
                 params={"document_collection": doc_store_collection_name}, timeout=timeout_settings)
@@ -454,16 +456,16 @@ async def upload_document(
     print(create_context_response)
     print(upload_file_response)
 
-    configure_and_load_chain_response = await configure_and_load_chain_1(context=_id, model_name="gpt-4o-mini")
+    #configure_and_load_chain_response = await configure_and_load_chain_1(context=_id, model_name="gpt-4o-mini")
 
-    print(configure_and_load_chain_response)
+    #print(configure_and_load_chain_response)
 
-    chain_id = f"{_id}-doc_analysis_chain"
+    #chain_id = f"{_id}-doc_analysis_chain"
 
-    query = {
-        "chat_history": [],
-        "input": "Analizza il documento fornito e crea una descrizione dettalgiata del suo contenuto. usa lo strumento di ricerca in vector store"
-    }
+    #query = {
+    #    "chat_history": [],
+    #    "input": "Analizza il documento fornito e crea una descrizione dettalgiata del suo contenuto. usa lo strumento di ricerca in vector store"
+    #}
 
     inference_kwargs = {}
 

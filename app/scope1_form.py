@@ -298,7 +298,7 @@ def render_scope1_form(session_id: str):
     multiplying_factor = st.number_input("Fattore moltiplicativo (opzionale)", min_value=0.0, value=1.0,
                                          help="Ad es. i litri di carburante, i kWh consumati, ecc.")
 
-    year = st.selectbox("Anno di riferimento", options=[1900 + i for i in range(125)], index=123,  # default near 2023
+    year = st.selectbox("Anno di riferimento", options=[1900 + i for i in range(126)], index=123,  # default near 2023
                         help="Anno in cui è avvenuta l'attività associata all'emissione")
 
     # Funzione helper per aggiungere
@@ -367,7 +367,7 @@ def render_scope1_form(session_id: str):
 
     # Pulsante per svuotare
     with col1:
-        if st.button("Svuota la lista per la categoria selezionata"):
+        if st.button("Svuota la lista per la categoria selezionata", use_container_width=True):
             if selected_category_value == "stationary-combustion":
                 st.session_state["stationary_assets_list"] = []
                 st.info("Lista Stationary Combustion svuotata.")
@@ -382,7 +382,7 @@ def render_scope1_form(session_id: str):
 
     # Pulsante per salvare
     with col2:
-        if st.button("Salva Assets per la categoria selezionata"):
+        if st.button("Salva Assets per la categoria selezionata", use_container_width=True):
             if file_to_save:
                 # Salviamo la lista attuale su disco
                 save_list_to_file(session_id, file_to_save, category_list, username=username)

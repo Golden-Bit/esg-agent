@@ -1,6 +1,6 @@
 {
-  "nlp_core_service": "http://35.205.92.199:8100",
-  "mongodb_service": "http://35.205.92.199:8094",
+  "nlp_core_service": "http://34.91.209.79:8100",
+  "mongodb_service": "http://34.91.209.79:8094",
   "openai_api_keys": [
     "..."
   ]

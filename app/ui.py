@@ -187,8 +187,21 @@ def questionnaire_page():
     """
     Pagina Streamlit per il questionario ESG con supporto per il salvataggio e il recupero delle risposte salvate.
     """
+
     username = st.session_state.get("username")
     session_id = st.session_state.get("session_id", "default_session")
+
+    st.title("Questionario ESG")
+
+    # Bottone di salvataggio locale
+    if st.button("Salva questionario in locale", use_container_width=True):
+        if username:
+            save_form_responses_locally(username, session_id,
+                                        st.session_state["questionnaire_responses"],
+                                        filename="questionnaire.json")
+            st.success("Questionario salvato localmente!")
+        else:
+            st.warning("Devi essere loggato per salvare localmente.")
 
     # 1) Carica risposte se esiste forms/questionnaire.json
     saved_responses = {}  # Dizionario vuoto per evitare errori se non esiste il file
@@ -212,15 +225,7 @@ def questionnaire_page():
     # 3) Render del questionario, passando le risposte salvate
     st.session_state["questionnaire_responses"] = render_questionnaire(questions, saved_responses)
 
-    # 4) Bottone di salvataggio locale
-    if st.button("Salva questionario in locale"):
-        if username:
-            save_form_responses_locally(username, session_id,
-                                        st.session_state["questionnaire_responses"],
-                                        filename="questionnaire.json")
-            st.success("Questionario salvato localmente!")
-        else:
-            st.warning("Devi essere loggato per salvare localmente.")
+
 
 def login_page():
     """
@@ -236,7 +241,7 @@ def login_page():
         if login_button:
             try:
                 # Costruisci l'URL per l'endpoint di login usando api_address
-                login_url = f"http://34.91.209.79:8000/login"
+                login_url = f"http://127.0.0.1:8000/login"
                 # Invia la richiesta POST con le credenziali come JSON
                 response = requests.post(login_url, json={"username": username, "password": password})
                 if response.status_code == 200:
@@ -269,6 +274,23 @@ def documents_page():
     # Recupera username e session_id dalla sessione
     username = st.session_state.get("username", None)
     session_id = st.session_state.session_id
+
+    # --- Nuovo: Pulsante per configurare la catena ---
+    st.header("Configurazione della Catena")
+    if st.button("Configura e Carica Catena", key="configure_chain_button", use_container_width=True):
+        with st.spinner("Configurazione e caricamento della catena in corso..."):
+            configure_chain_url = f"http://127.0.0.1:8000/configure_and_load_chain/?session_id={session_id}"
+            try:
+                response = requests.post(configure_chain_url)
+                if response.status_code == 200:
+                    st.success("Catena configurata e caricata con successo.")
+                    print("Configure agent response:", response.json())
+                else:
+                    st.error(f"Errore durante la configurazione della catena: {response.text}")
+                    print(f"Failed to configure agent: {response.status_code}, {response.text}")
+            except Exception as e:
+                st.error(f"Errore durante la configurazione della catena: {e}")
+                print(f"An error occurred during agent configuration: {e}")
 
     # 1) Chiave del widget file_uploader (per poterlo ricreare e azzerare)
     # Se non esiste ancora in session_state, la creiamo
@@ -321,7 +343,7 @@ def documents_page():
                         'file_id': file_id,
                         'description': description,
                     }
-                    upload_document_url = f"http://34.91.209.79:8000/upload_document"
+                    upload_document_url = f"http://127.0.0.1:8000/upload_document"
 
                     # 4) Prepara il file per la POST
                     if local_file_path and os.path.exists(local_file_path):
@@ -349,19 +371,21 @@ def documents_page():
                         print(f"An error occurred during upload for {file_id}: {e}")
 
             # 6) Configurazione e caricamento della chain
-            with st.spinner("Configuring and loading the agent for all documents..."):
-                configure_chain_url = f"http://34.91.209.79:8000/configure_and_load_chain/?session_id={session_id}"
-                try:
-                    response = requests.post(configure_chain_url)
-                    if response.status_code == 200:
-                        st.success("Agent configured and loaded successfully.")
-                        print("Configure agent response:", response.json())
-                    else:
-                        st.error(f"Failed to configure agent: {response.text}")
-                        print(f"Failed to configure agent: {response.status_code}, {response.text}")
-                except Exception as e:
-                    st.error(f"An error occurred: {e}")
-                    print(f"An error occurred during agent configuration: {e}")
+            #with st.spinner("Configuring and loading the agent for all documents..."):
+                # TODO:
+                #  - aggiungi eliminazione catena e scaricamento da memoria, cosi da ricrearla ogni volta
+            #    configure_chain_url = f"http://127.0.0.1:8000/configure_and_load_chain/?session_id={session_id}"
+            #    try:
+            #        response = requests.post(configure_chain_url)
+            #        if response.status_code == 200:
+            #            st.success("Agent configured and loaded successfully.")
+            #            print("Configure agent response:", response.json())
+            #        else:
+            #            st.error(f"Failed to configure agent: {response.text}")
+            #            print(f"Failed to configure agent: {response.status_code}, {response.text}")
+            #    except Exception as e:
+            #        st.error(f"An error occurred: {e}")
+            #        print(f"An error occurred during agent configuration: {e}")
 
         # Al termine di TUTTI gli upload, cambiamo la chiave del widget → svuotiamo la lista
         st.session_state.file_upload_widget_key = "file_upload_" + str(uuid.uuid4())[:6]
@@ -453,6 +477,9 @@ def documents_page():
                 # Reset campi input
                 st.session_state.new_url_value = ""
                 st.session_state.new_url_desc = ""
+
+                st.session_state["url_forms"] = saved_urls
+
                 st.rerun()
             else:
                 st.warning("Devi essere loggato per salvare localmente.")
@@ -495,37 +522,26 @@ def documents_page():
 def reports_page():
     st.title("I tuoi Report")
 
-    username = st.session_state.get("username", None)
-    if not username:
-        st.error("Non sei loggato, impossibile visualizzare i report.")
+    # Recupera il session_id dalla sessione
+    session_id = st.session_state.get("session_id")
+    if not session_id:
+        st.error("Session ID non disponibile.")
         return
 
-    # Ottieni la cartella dei report dell'utente
-    reports_dir = get_user_reports_dir(username)
+    # Costruisci l'URL del file HTML remoto
+    url = f"http://34.91.209.79:8093/files/{session_id}/bilancio_sostenibilita.html"
 
-    if not os.path.exists(reports_dir):
-        st.write("Non ci sono report disponibili.")
-        return
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            html_content = response.text
+            # Visualizza il contenuto HTML renderizzato nella pagina
+            st.components.v1.html(html_content, height=800, scrolling=True)
+        else:
+            st.warning("Il file HTML non è presente.")
+    except Exception as e:
+        st.error("Errore durante il caricamento del file HTML.")
 
-    files = os.listdir(reports_dir)
-    docx_files = [f for f in files if f.endswith(".docx")]
-
-    if not docx_files:
-        st.write("Non ci sono report disponibili.")
-        return
-
-    st.write("Seleziona un report per scaricarlo:")
-    for file in docx_files:
-        file_path = os.path.join(reports_dir, file)
-        # Forniamo un pulsante di download
-        with open(file_path, "rb") as f:
-            st.download_button(
-                label=f"Scarica {file}",
-                data=f.read(),
-                file_name=file,
-                mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-                key=file
-            )
 
 ########################################
 # Funzioni di utilità per API Keys
@@ -576,7 +592,7 @@ def dashboard_page():
         new_password = st.text_input("Password", type="password")
         submit_new_user = st.form_submit_button("Crea Utente")
         if submit_new_user:
-            register_url = f"http://34.91.209.79:8000/register"
+            register_url = f"http://127.0.0.1:8000/register"
             response = requests.post(register_url, json={"username": new_username, "password": new_password})
             if response.status_code == 200:
                 st.success("Utente creato con successo!")
@@ -884,7 +900,7 @@ def workspace_management_page():
     st.subheader("Crea un nuovo Spazio di Lavoro")
     new_workspace_name = st.text_input("Nome per il tuo nuovo Spazio di Lavoro", placeholder="es. Progetto Alpha")
 
-    if st.button("Crea Spazio di Lavoro"):
+    if st.button("Crea Spazio di Lavoro", use_container_width=True):
         if new_workspace_name.strip():
             # Genera un nuovo session_id (a livello di codice)
             new_session_id = str(uuid.uuid4())[:6]
@@ -925,11 +941,11 @@ def workspace_management_page():
                 st.write(f"**Spazio di Lavoro**: {workspace_name} (ID: {sid})")
 
             with col2:
-                if st.button("Usa", key=f"use_{sid}"):
+                if st.button("Usa", key=f"use_{sid}", use_container_width=True):
                     st.session_state.session_id = sid
                     st.success(f"Ora stai lavorando nello Spazio ID: {sid}")
             with col3:
-                if st.button("Elimina", key=f"delete_{sid}"):
+                if st.button("Elimina", key=f"delete_{sid}", use_container_width=True):
                     import shutil
                     full_path = get_user_session_dir(username, sid)
                     try:
@@ -1111,10 +1127,14 @@ def chatbot_page():
         st.session_state.messages.append({"role": "user", "content": prompt})
         st.session_state.chat_history.append({"role": "user", "content": prompt})
 
-        generate_response(prompt, session_id)
-
-
-
+        stop = False
+        # Use auto_generated=True to avoid duplicating messages in chat history
+        while not stop:
+            try:
+                generate_response(prompt, session_id, auto_generated=False)
+                stop = True
+            except Exception as e:
+                print(f"Error: {e}")
 
     st.sidebar.markdown(
         """
@@ -1133,14 +1153,18 @@ def generate_response(prompt, session_id, auto_generated=False):
 
     input_suffix = f"""*NOTE IMPORTANTI:* 
     - Preleva informazioni utili dai vector stores, dai file in locale e dai seguenti URLs se necessario: {json.dumps(st.session_state.url_forms, indent=2) if st.session_state.get("url_forms") else "[urls assenti]"}
-    - Inoltre dovrai usufruire anche delle informazioni otetnute dai forms e dai dati compilati in relazione alla ienda che si sta analizzando:
+    - Inoltre dovrai usufruire anche delle informazioni ottrnute dai forms e dai dati compilati in relazione alla ienda che si sta analizzando:
     
         '''
         {forms_data}.
         '''
         
     - non devi necessariamente fare grafici in qualuqnue circostanza, evita i grafici inutili e poco professionali, cioè che potrebberoe ssere trnaquillamente spiegati a parole o in tabella. focalizzati sui grafici richeisti.
-    - quando generi grafici stai molto attentoa  usare etichette sintetiche per evitare che si sovrapponghino, oppure usa ad esempio colori con leggenda nei grafici a barre e altri tipi di grafici in cui nomi lunghi delle etichette deid ati su gli assi potrebbero sovrapporsi."""
+    - quando generi grafici stai molto attentoa  usare etichette sintetiche per evitare che si sovrapponghino, oppure usa ad esempio colori con leggenda nei grafici a barre e altri tipi di grafici in cui nomi lunghi delle etichette deid ati su gli assi potrebbero sovrapporsi.
+    - IMPORTANTE: SE STAI GENERANDOS SEZIONI DEL REPORT DI SOSTENIBILITA'ALLORA DEVI FARE RIFERIMENTO ALL'AZIENDA DISCUSSA NEI VECTOR STORE E NEI URLS FORNITI. DUQNEUD OVRAIA DATARE TUTTI CI CONTENUTIE D I GRAFICI AI DATI FORNITI IN RELAZIONE A TALE AZIENDA!!!. 
+    - IMPORTANTISSIMO: SE NON HAI DATI E INFO A SUFFICIENZA PER CREARE CERTI GRAFICI O FORNIRE CERTE INFORMAZIONI NEL REPORT, ALLORA EVITA DI MENSIONARE TALI INFORMAZIONI!!!.
+    - IMPORTANTISSIMO: NELLA GENERAZIONE DELLE SEZIONI DOVERAI USARE ASSOLUTAMENTE SOLO DATI REALI INERENTI L AZIENDA IN ESAME. DUQNUE ATTINGI LE INFORMAZIONI DA I FORM I QUESTIONARI E I DOCUEMNTI NEI VECTOR STORE E LE REGOLAMENTAAZINI ESRS E GHG NOTE E RELTIVE FORMULE. INOLTRE DOVRAI ATTINGERE DAGLI URLS FORNMITI.  SE NON DISPONI DI SUFFICIENTI INFORMAZIONI EVITA DI TRTTARE CERTI ARGOMENTI. INOLTRE SE TI VIENE FORNITA UNA VISURA OD OCUEMNTI SIMILIS FRUTTALA PER OTTENRE INFROMAZIONI SULL'AZIENDA , DA RIPORTARE NEL REPORT. DUNQUE ASSICURATI DI NON USARE INFORMAIZONI INVENTATE DAL NULLA O RECUPERATE DAGLI ESMEPI DI REPORT FORNITI NELS SYSTEM MESSAGE. SEPCIALEMNTE SULLE DATE O SU GRAFICI E ALTRO, SE NON DISPONI DI INFROMAZIONI EVITA DI RAPPREENTARLI NELL OUTPUT!!!"""
+
 
     # Show the user message in the chat only if it's not auto-generated
     if not auto_generated:
@@ -1305,6 +1329,16 @@ def generate_report(session_id):
     for message in report_messages:
         # Use auto_generated=True to avoid duplicating messages in chat history
         generate_response(message, session_id, auto_generated=True)
+        for message in report_messages:
+            stop = False
+            # Use auto_generated=True to avoid duplicating messages in chat history
+            while not stop:
+                try:
+                    generate_response(message, session_id, auto_generated=True)
+                    stop = True
+
+                except Exception as e:
+                    print(f"Error: {e}")
 
     # AL TERMINE: salvataggio automatico del docx
     username = st.session_state.get("username")

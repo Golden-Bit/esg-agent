@@ -264,7 +264,7 @@ def render_scope3_form(session_id: str):
     custom_emission_factor = st.number_input("Custom Emission Factor (kg CO2e)", min_value=0.0, value=0.0)
     custom_description = st.text_area("Descrizione personalizzata (opzionale)", "")
     multiplying_factor = st.number_input("Fattore moltiplicativo (opzionale)", min_value=0.0, value=1.0)
-    year = st.selectbox("Anno di riferimento", options=[1900 + i for i in range(125)], index=123)
+    year = st.selectbox("Anno di riferimento", options=[1900 + i for i in range(126)], index=123)
 
     # Funzione di aggiunta
     def add_asset_to_list():
@@ -317,7 +317,7 @@ def render_scope3_form(session_id: str):
 
     col1, col2 = st.columns(2)
     with col1:
-        if st.button("Svuota la lista per la categoria selezionata"):
+        if st.button("Svuota la lista per la categoria selezionata", use_container_width=True):
             if file_to_save and ss_key_for_list in st.session_state:
                 st.session_state[ss_key_for_list] = []
                 st.info(f"Lista '{selected_category_value}' svuotata.")
@@ -325,7 +325,7 @@ def render_scope3_form(session_id: str):
                 st.warning("Categoria non riconosciuta o '(nessuna)', impossibile svuotare la lista.")
 
     with col2:
-        if st.button("Salva Assets per la categoria selezionata"):
+        if st.button("Salva Assets per la categoria selezionata", use_container_width=True):
             if file_to_save:
                 save_list_to_file(session_id, file_to_save, category_list, username=username)
                 st.success(

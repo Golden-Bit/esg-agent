@@ -316,7 +316,7 @@ def get_system_message(session_id, vectorstore_ids, file_descriptions):
     - Dopo la sostituzione, diventerà:
 
       ```html
-      <p>Benvenuti al Bilancio di Sostenibilità 2023 della nostra azienda...</p>
+      <p>Benvenuti al Bilancio di Sostenibilità della nostra azienda...</p>
       ```
 
   - Continua questo processo per tutte le chiavi elencate, assicurandoti che ogni sezione del report sia compilata con il contenuto appropriato **in formato HTML**.
@@ -326,7 +326,7 @@ def get_system_message(session_id, vectorstore_ids, file_descriptions):
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Bilancio di Sostenibilità 2023</title>
+    <title>12bilancio di sostenibilità</title>
     <style>
         body {{
             font-family: Arial, sans-serif;
@@ -411,7 +411,7 @@ def get_system_message(session_id, vectorstore_ids, file_descriptions):
 <body>
     <!-- Header -->
     <header>
-        <h1>Bilancio di Sostenibilità 2023</h1>
+        <h1>12bilancio di sostenibilità</h1>
     </header>
 
     <!-- Main Content -->

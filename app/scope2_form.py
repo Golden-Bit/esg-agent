@@ -251,7 +251,7 @@ def render_scope2_form(session_id: str):
     multiplying_factor = st.number_input("Fattore moltiplicativo (es. kWh consumati, etc.)",
                                          min_value=0.0, value=1.0)
     year = st.selectbox("Anno di riferimento",
-                        options=[1900 + i for i in range(125)],
+                        options=[1900 + i for i in range(126)],
                         index=123,  # di default vicino al 2023
                         help="Anno in cui è avvenuta l'attività associata all'emissione")
 
@@ -316,7 +316,7 @@ def render_scope2_form(session_id: str):
     col1, col2 = st.columns(2)
 
     with col1:
-        if st.button("Svuota la lista per la categoria selezionata"):
+        if st.button("Svuota la lista per la categoria selezionata", use_container_width=True):
             if selected_category_value == "purchased-electricity":
                 st.session_state["purchased_electricity_assets_list"] = []
                 st.info("Lista 'Purchased Electricity' svuotata.")
@@ -327,7 +327,7 @@ def render_scope2_form(session_id: str):
                 st.warning("Categoria non riconosciuta o '(nessuna)', impossibile svuotare la lista.")
 
     with col2:
-        if st.button("Salva Assets per la categoria selezionata"):
+        if st.button("Salva Assets per la categoria selezionata", use_container_width=True):
             if file_to_save:
                 if selected_category_value == "purchased-electricity":
                     save_list_to_file(session_id, file_to_save, st.session_state["purchased_electricity_assets_list"],
