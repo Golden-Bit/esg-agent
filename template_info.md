@@ -209,7 +209,7 @@ Per ciascuna chiave elencata, sostituire il placeholder corrispondente nel templ
 - Dopo la sostituzione, diventerà:
 
   ```html
-  <p>Benvenuti al Bilancio di Sostenibilità 2023 di [Nome Azienda]. In questo documento, condividiamo il nostro impegno e i progressi verso un futuro più sostenibile...</p>
+  <p>Benvenuti al 12bilancio di sostenibilità di [Nome Azienda]. In questo documento, condividiamo il nostro impegno e i progressi verso un futuro più sostenibile...</p>
   ```
 
 Ripetere questo processo per ogni chiave, assicurandosi che il contenuto inserito sia coerente, accurato e rifletta fedelmente le attività e le iniziative dell'azienda.

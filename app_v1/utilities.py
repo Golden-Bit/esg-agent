@@ -74,10 +74,12 @@ def get_system_message(session_id, vectorstore_ids, file_descriptions):
 - **Nome File del Report:**  
   Per il report principale, il file sarà salvato come `bilancio_sostenibilita.html`. Una volta completato l'aggiornamento del report o generati nuovi file, informa l'utente che può visualizzare i risultati al relativo URL.
 
-
-
-
-
+- **Grafici Generati:**  
+  Per i grafici generati tramite gli strumenti disponibili:
+  - Salvali nella directory `data/{session_id}/` con un nome descrittivo, ad esempio `andamento_vendite.png`.
+  - Il file sarà hostato automaticamente all'indirizzo:  
+    `http://34.91.209.79:8093/files/{session_id}/<nomegrafico>.png`.
+  - Fornisci il link completo nel messaggio di output, sostituendo `<nomegrafico>.png` con il nome del file appropriato.
 
 - **Condivisione dei Link:**  
   Assicurati di condividere con l'utente il link completo del file o del grafico generato, accompagnato da una descrizione chiara del contenuto o della sezione a cui si riferisce.
@@ -324,7 +326,7 @@ def get_system_message(session_id, vectorstore_ids, file_descriptions):
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>bilancio di sostenibilità</title>
+    <title>12bilancio di sostenibilità</title>
     <style>
         body {{
             font-family: Arial, sans-serif;
@@ -663,12 +665,75 @@ def get_system_message(session_id, vectorstore_ids, file_descriptions):
 
     - Integra il grafico nel contenuto HTML utilizzando il link fornito, come spiegato sopra.**
 
+### **Strumento di Lettura dei File**
 
+#### **Funzione**  
+Utilizza la funzione `read_local_document` per leggere e processare il contenuto dei documenti locali.
 
+#### **Percorso dei File**
+I documenti si trovano nei seguenti percorsi:
+- `data/esrs_regulations/e1.md`
+- `data/esrs_regulations/e2.md`
+- `data/esrs_regulations/e3.md`
+- `data/esrs_regulations/e4.md`
+- `data/esrs_regulations/e5.md`
+- `data/esrs_regulations/s1.md`
+- `data/esrs_regulations/s2.md`
+- `data/esrs_regulations/s3.md`
+- `data/esrs_regulations/s4.md`
+- `data/esrs_regulations/g1.md`
 
+---
 
+### **Descrizione dei Documenti**
 
+#### **E1 - Cambiamento Climatico**
+- Contenuto: Piani di transizione, politiche, azioni e obiettivi relativi alla mitigazione del cambiamento climatico.
+- Utilizzo: Compilazione delle sezioni del report relative alle strategie climatiche.
 
+#### **E2 - Inquinamento**
+- Contenuto: Linee guida su politiche di prevenzione e controllo dell'inquinamento.
+- Utilizzo: Descrizione delle iniziative di riduzione dell'inquinamento nel report.
+
+#### **E3 - Risorse Idriche e Marine**
+- Contenuto: Politiche e azioni relative alla gestione delle risorse idriche e marine.
+- Utilizzo: Integrazione nelle sezioni del report sulla gestione sostenibile delle risorse idriche.
+
+#### **E4 - Biodiversità ed Ecosistemi**
+- Contenuto: Politiche e azioni per la protezione della biodiversità.
+- Utilizzo: Evidenziare iniziative di conservazione nel report.
+
+#### **E5 - Uso delle Risorse ed Economia Circolare**
+- Contenuto: Politiche e azioni per l’uso sostenibile delle risorse e l’economia circolare.
+- Utilizzo: Dettagli essenziali per le sezioni del report sull’efficienza delle risorse.
+
+#### **S1 - Standard Sociali 1**
+- Contenuto: Linee guida su pratiche sociali e di lavoro.
+- Utilizzo: Sezioni del report relative al benessere dei dipendenti e alla responsabilità sociale.
+
+#### **S2 - Standard Sociali 2**
+- Contenuto: Approfondimenti sulle pratiche sociali.
+- Utilizzo: Integrazione nelle sezioni del report sull’inclusione e diversità.
+
+#### **S3 - Standard Sociali 3**
+- Contenuto: Linee guida su diritti umani e pratiche etiche.
+- Utilizzo: Sezioni del report relative all’etica aziendale.
+
+#### **S4 - Standard Sociali 4**
+- Contenuto: Relazioni con la comunità e impatto sociale.
+- Utilizzo: Descrizione dell’impatto sociale aziendale nel report.
+
+#### **G1 - Governance**
+- Contenuto: Pratiche di governance aziendale.
+- Utilizzo: Sezioni del report su trasparenza e responsabilità.
+
+---
+
+### **Utilizzo nel Report**
+
+#### **Compilazione del Report**
+- **Obiettivo**: Utilizzare le informazioni estratte da questi documenti per compilare sezioni specifiche del report di sostenibilità.
+- **Conformità**: Assicurare che ogni sezione sia dettagliata e conforme alle normative ESRS.
 
 #### **Integrazione dei Dati**
 - **Coerenza**: Garantire l’integrazione coerente delle informazioni.

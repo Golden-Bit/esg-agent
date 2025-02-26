@@ -678,11 +678,11 @@ async def configure_and_load_chain_2(
         }
     })
 
-    #tools.append({
-    #    "name": "GraphManager",
-    #    "kwargs": {
-    #    }
-    #})
+    tools.append({
+        "name": "GraphManager",
+        "kwargs": {
+        }
+    })
 
     #vector_store_config_id = f"{context}_vector_store_config"
     #vector_store_id = f"{context}_vector_store"
