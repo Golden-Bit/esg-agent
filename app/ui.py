@@ -242,7 +242,7 @@ def login_page():
         if login_button:
             try:
                 # Costruisci l'URL per l'endpoint di login usando api_address
-                login_url = f"http://127.0.0.1:8000/login"
+                login_url = f"http://34.91.209.79:8000/login"
                 # Invia la richiesta POST con le credenziali come JSON
                 response = requests.post(login_url, json={"username": username, "password": password})
                 if response.status_code == 200:
@@ -280,7 +280,7 @@ def documents_page():
     st.header("Configurazione della Catena")
     if st.button("Configura e Carica Catena", key="configure_chain_button", use_container_width=True):
         with st.spinner("Configurazione e caricamento della catena in corso..."):
-            configure_chain_url = f"http://127.0.0.1:8000/configure_and_load_chain/?session_id={session_id}"
+            configure_chain_url = f"http://34.91.209.79:8000/configure_and_load_chain/?session_id={session_id}"
             try:
                 response = requests.post(configure_chain_url)
                 if response.status_code == 200:
@@ -344,7 +344,7 @@ def documents_page():
                         'file_id': file_id,
                         'description': description,
                     }
-                    upload_document_url = f"http://127.0.0.1:8000/upload_document"
+                    upload_document_url = f"http://34.91.209.79:8000/upload_document"
 
                     # 4) Prepara il file per la POST
                     if local_file_path and os.path.exists(local_file_path):
@@ -375,7 +375,7 @@ def documents_page():
             #with st.spinner("Configuring and loading the agent for all documents..."):
                 # TODO:
                 #  - aggiungi eliminazione catena e scaricamento da memoria, cosi da ricrearla ogni volta
-            #    configure_chain_url = f"http://127.0.0.1:8000/configure_and_load_chain/?session_id={session_id}"
+            #    configure_chain_url = f"http://34.91.209.79:8000/configure_and_load_chain/?session_id={session_id}"
             #    try:
             #        response = requests.post(configure_chain_url)
             #        if response.status_code == 200:
@@ -593,7 +593,7 @@ def dashboard_page():
         new_password = st.text_input("Password", type="password")
         submit_new_user = st.form_submit_button("Crea Utente")
         if submit_new_user:
-            register_url = f"http://127.0.0.1:8000/register"
+            register_url = f"http://34.91.209.79:8000/register"
             response = requests.post(register_url, json={"username": new_username, "password": new_password})
             if response.status_code == 200:
                 st.success("Utente creato con successo!")
