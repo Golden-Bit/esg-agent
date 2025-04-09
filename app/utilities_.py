@@ -806,664 +806,812 @@ tracciabile e coerente con i dati reali effettivamente disponibili.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 """
 
+
+
+
+
 linee_guida_intro = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione di Introduzione serve a presentare il Bilancio di Sostenibilità, offrendo una panoramica generale dell'azienda e sottolineando perché la sostenibilità è importante per l'organizzazione. Dovrebbe includere:
+La sezione di Introduzione serve a presentare il Bilancio di Sostenibilità, fornendo una panoramica generale dell'azienda e sottolineando l'importanza della sostenibilità per l'organizzazione. Dovrebbe includere:
 
-    • Presentazione dell'azienda: Una breve descrizione dell'azienda (mission, visione, valori fondamentali), 
-      basata sui dati forniti (senza inventare informazioni non disponibili).
+    Presentazione dell'azienda: Una breve descrizione dell'azienda, compresa la sua missione, visione e valori fondamentali.
 
-    • Impegno verso la sostenibilità: Come la sostenibilità rientra nella strategia aziendale e perché è fondamentale 
-      (descrivere solo se esistono dati concreti a supporto).
+    Impegno verso la sostenibilità: Spiegare come la sostenibilità sia integrata nella strategia aziendale e perché è fondamentale per l'azienda.
 
-    • Obiettivi principali del bilancio: Panoramica degli obiettivi del rapporto e delle aree tematiche trattate.
+    Obiettivi principali del bilancio: Fornire una panoramica degli obiettivi chiave del rapporto e delle aree tematiche che verranno trattate.
 
-    • Struttura del documento: Breve riferimento ai capitoli principali e alle relative tematiche.
+    Struttura del documento: Presentare brevemente la struttura del bilancio, indicando i capitoli principali e le relative tematiche.
 
 Linee guida per la compilazione:
 
-    • Mantenere un linguaggio chiaro e accessibile.
-    • Non introdurre tecnicismi se non sono presenti nei dati forniti.
-    • Assicurare coerenza di stile con il resto del documento.
+    Utilizzare un linguaggio chiaro e coinvolgente per catturare l'attenzione del lettore.
+
+    Evitare tecnicismi eccessivi; l'introduzione deve essere accessibile a tutti i lettori.
+
+    Mantenere coerenza con il tono e lo stile utilizzato nel resto del documento.
 
 Indicazioni su tabelle e grafici:
 
-    • Grafici e tabelle: Non necessari in questa sezione. Se non vi sono dati, non inventarne.
-
+    Grafici e tabelle: In questa sezione non sono necessari grafici o tabelle. L'introduzione dovrebbe essere testuale e focalizzata sulla presentazione generale.
+    
     {important_message}"""
 
 linee_guida_1_1 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 1.1 La nostra storia illustra l'evoluzione dell'azienda nel tempo, con attenzione ai fatti e alle tappe 
-che hanno portato allo sviluppo attuale, in ottica di sostenibilità.
+La sezione 1.1 La nostra storia racconta l'evoluzione dell'azienda dalla sua fondazione ad oggi, enfatizzando le tappe fondamentali e gli eventi chiave, con particolare attenzione agli aspetti legati alla sostenibilità.
 
-Contenuti da includere (solo se esistono dati reali in merito):
+Contenuti da includere:
 
-    • Fondazione dell'azienda (anno, motivazioni, ecc.) – specificare solo se il dato è disponibile.
-    • Crescita nel tempo: Principali traguardi raggiunti (apertura di sedi, lancio di prodotti/servizi).
-    • Momenti chiave di svolta in ottica di sostenibilità (ad es. l’avvio di progetti sostenibili).
+    Fondazione dell'azienda: Anno di nascita, fondatori e motivazioni alla base della creazione dell'azienda.
+
+    Evoluzione nel tempo: Principali traguardi raggiunti, come l'espansione del team, l'apertura di nuove sedi, l'introduzione di nuovi prodotti o servizi.
+
+    Impegno verso la sostenibilità: Come e quando la sostenibilità è diventata un elemento centrale nella strategia aziendale.
+
+    Eventi chiave: Ottenimento di certificazioni importanti (es. B Corp), partnership strategiche, investimenti significativi.
 
 Linee guida per la compilazione:
 
-    • Mantenere ordine cronologico per agevolare la comprensione.
-    • Usare uno stile narrativo coinvolgente solo entro i dati reali forniti.
+    Presentare le informazioni in ordine cronologico per facilitare la comprensione della progressione temporale.
+
+    Utilizzare un linguaggio narrativo coinvolgente per mantenere l'interesse del lettore.
+
+    Evidenziare come ogni tappa abbia contribuito a rafforzare l'impegno dell'azienda verso la sostenibilità.
 
 Indicazioni su tabelle e grafici:
 
-    • Timeline grafica: Inserirla solo se sono presenti date e momenti storici documentati.
-    • Se non ci sono informazioni storiche, astenersi dal menzionare date o eventi fittizi.
+    Timeline grafica: Inserire una linea del tempo che visualizzi le principali tappe storiche.
 
+        Assicurarsi che le date e le descrizioni siano chiare e non si sovrappongano.
+
+        Utilizzare icone o simboli per rappresentare eventi significativi senza appesantire il grafico.
+
+    Immagini storiche: Se disponibili, includere fotografie che rappresentino momenti chiave, assicurandosi di avere i diritti per l'uso.
+        
     {important_message}"""
 
 linee_guida_1_2 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 1.2 Chi siamo fornisce una descrizione dell'azienda, inclusa mission, visione, valori fondamentali, 
-eventuali settori d’attività e risultati raggiunti, sempre basati su dati concreti.
+La sezione 1.2 Chi siamo offre una panoramica completa dell'azienda, compresa la missione, la visione, i valori fondamentali, i settori di attività e i principali risultati ottenuti.
 
-Contenuti da includere (solo se realmente presenti nei dati forniti):
+Contenuti da includere:
 
-    • Mission aziendale: Se è stata chiaramente definita.
-    • Vision aziendale: Solo se ci sono riferimenti reali.
-    • Valori fondamentali: Elencare quelli noti, senza inventarne di aggiuntivi.
-    • Settori di attività: Specificare solo quelli effettivi.
-    • Riconoscimenti o premi: Citare esclusivamente quelli riscontrabili in documentazione reale.
+    Missione: Spiegare lo scopo principale dell'azienda e ciò che si propone di realizzare.
+
+    Visione: Descrivere l'aspirazione a lungo termine e come l'azienda vede il futuro del settore.
+
+    Valori fondamentali: Elencare e spiegare i valori che guidano l'azienda (es. sostenibilità, innovazione, trasparenza, responsabilità).
+
+    Settori di attività: Dettagliare i prodotti e servizi offerti, con enfasi su quelli legati alla sostenibilità.
+
+    Risultati e riconoscimenti: Menzionare premi, certificazioni o traguardi significativi raggiunti.
 
 Linee guida per la compilazione:
 
-    • Essere concisi ma completi, senza introdurre valori o premi inesistenti.
-    • Coerenza fra missione, visione e valori (se noti dai dati).
+    Essere concisi ma esaustivi, fornendo informazioni pertinenti.
+
+    Mantenere coerenza tra missione, visione e valori, mostrando come si integrano nella pratica quotidiana.
+
+    Utilizzare esempi concreti per illustrare i punti chiave.
 
 Indicazioni su tabelle e grafici:
 
-    • Infografica dei valori: Realizzabile solo se i valori aziendali sono chiaramente identificati.
-    • Diagramma dei settori: Solo se si hanno informazioni su come rappresentarli.
+    Schema dei valori: Creare un'infografica che rappresenti i valori aziendali.
 
+        Evitare sovrapposizioni tra testo e grafica.
+
+        Utilizzare colori e icone per distinguere i diversi valori, mantenendo una palette cromatica coerente.
+
+    Diagramma dei settori di attività: Se appropriato, inserire un diagramma a blocchi che mostri le diverse aree di business.
+        Assicurarsi che le etichette siano leggibili e posizionate correttamente.
+            
     {important_message}"""
 
 linee_guida_1_3 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 1.3 La nostra identità descrive il posizionamento di mercato dell'azienda, cosa la rende unica, 
-e come la sostenibilità si integra nel modello di business.
+La sezione 1.3 La nostra identità approfondisce come l'azienda si posiziona sul mercato, ciò che la distingue dai concorrenti e come la sostenibilità è integrata nel modello di business.
 
-Contenuti da includere (solo se supportati da dati reali):
+Contenuti da includere:
 
-    • Segmenti di mercato serviti (se conosciuti).
-    • Caratteristiche che distinguono l’azienda dalla concorrenza (ma senza generare ipotesi arbitrarie).
-    • Integrazione della sostenibilità nelle operazioni (solo se disponibili dati o esempi reali).
-    • Rapporto con i clienti (filosofia aziendale, metodologie di soddisfazione) – se descritte dalle fonti.
+    Posizionamento di mercato: Descrivere il ruolo dell'azienda nel settore e i segmenti di mercato serviti.
+
+    Elementi distintivi: Evidenziare le caratteristiche uniche dell'azienda, come l'innovazione tecnologica, l'approccio sostenibile o le partnership strategiche.
+
+    Sostenibilità nel modello di business: Spiegare come la sostenibilità è integrata nelle operazioni quotidiane, nei prodotti e servizi offerti.
+
+    Approccio al cliente: Descrivere la filosofia aziendale nel rapporto con i clienti e come viene garantita la soddisfazione.
 
 Linee guida per la compilazione:
 
-    • Utilizzare solo esempi concreti riportati dai dati forniti.
-    • Mantenere un tono positivo e professionale.
+    Utilizzare esempi concreti per illustrare i punti di forza.
+
+    Mantenere un tono positivo e proattivo, evitando confronti diretti con i concorrenti.
+
+    Evidenziare l'impegno dell'azienda verso pratiche sostenibili e responsabili.
 
 Indicazioni su tabelle e grafici:
 
-    • Modello di business: Rappresentarlo in schema solo se ci sono informazioni dettagliate.
-    • Evitare di inserire grafici superflui o ipotetici.
+    Modello di business: Considerare l'inserimento di un diagramma che rappresenti il modello di business sostenibile.
 
+        Utilizzare forme semplici per rappresentare i diversi componenti.
+
+        Etichette chiare e posizionate in modo da evitare sovrapposizioni.
+
+    Non eccedere con i grafici: Se le informazioni possono essere descritte efficacemente nel testo, evitare grafici superflui.
+        
     {important_message}"""
 
 linee_guida_1_4 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 1.4 La cultura aziendale illustra i valori/principi interni, le pratiche di innovazione, collaborazione, 
-inclusione e come tali aspetti favoriscono obiettivi di sostenibilità.
+La sezione 1.4 La cultura aziendale presenta i valori e i principi che guidano la cultura interna, le pratiche che promuovono l'innovazione, la collaborazione e l'inclusione, e come questi elementi contribuiscono al raggiungimento degli obiettivi di sostenibilità.
 
-Contenuti da includere (solo se comprovati da dati):
+Contenuti da includere:
 
-    • Valori vissuti quotidianamente, se documentati.
-    • Pratiche interne: team building, programmi inclusione, lavoro flessibile ecc., ma solo se supportate da fonti.
-    • Metodi di promozione dell’innovazione (solo se realmente esistenti).
-    • Politiche di inclusione/diversità, con esempi concreti (se forniti).
+    Valori aziendali: Dettagliare come i valori si riflettono nella cultura quotidiana.
+
+    Pratiche interne: Descrivere iniziative come team building, programmi di inclusione, politiche di lavoro flessibile.
+
+    Promozione dell'innovazione: Spiegare come l'azienda incoraggia l'innovazione tra i dipendenti.
+
+    Inclusione e diversità: Evidenziare le politiche per promuovere un ambiente inclusivo.
 
 Linee guida per la compilazione:
 
-    • Fare riferimenti concreti. Non inventare “attività di team building” se non menzionate.
-    • Sottolineare l’impatto sulla sostenibilità solo se effettivamente indicato nei dati.
+    Fornire esempi concreti di come la cultura aziendale si manifesta nella pratica.
+
+    Mantenere un tono coinvolgente che rifletta lo spirito dell'azienda.
+
+    Sottolineare l'impatto positivo della cultura aziendale sugli obiettivi di sostenibilità.
 
 Indicazioni su tabelle e grafici:
 
-    • Infografiche, immagini del team: utilizzabili solo se disponibili.
-    • Evitare grafici complessi in mancanza di dati reali.
+    Infografica dei valori culturali: Se appropriato, rappresentare visivamente i principi chiave.
+        Assicurarsi che il design sia semplice e non sovraccaricato.
 
+    Immagini del team: Includere fotografie che mostrano il team in attività di collaborazione (con attenzione alla privacy e ai diritti d'immagine).
+
+    Evitare grafici complessi; la sezione dovrebbe essere più narrativa.
+        
     {important_message}"""
 
 linee_guida_1_5 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 1.5 Il processo di doppia materialità illustra l’adozione e l’applicazione degli ESRS (European Sustainability Reporting Standards) 
-per identificare i temi materiali, considerando sia l’impatto dell’azienda (materialità d’impatto) sia l’influenza di fattori esterni 
-(materialità finanziaria).
+La sezione 1.5 Il processo di doppia materialità illustra come l'azienda ha adottato gli European Sustainability Reporting Standards (ESRS) per identificare e analizzare i temi materiali, considerando sia l'impatto dell'azienda su ambiente e società (materialità d'impatto), sia l'influenza dei fattori esterni sulle performance aziendali (materialità finanziaria).
 
-Contenuti da includere (solo se disponibili informazioni concrete a riguardo):
+Contenuti da includere:
 
-    • Concetto di doppia materialità: Spiegazione (evitando eccessivo tecnicismo se non supportato).
-    • Processo di identificazione: Passaggi seguiti (analisi di contesto, stakeholder ecc.), se documentati.
-    • Mappatura degli stakeholder: Solo se esistono elenchi e categorie reali.
-    • Matrice di doppia materialità: Da presentare solo se i dati su priorità dei temi sono forniti.
-    • Temi materiali: Elencare quelli effettivamente riscontrati in documenti.
+    Spiegazione del concetto di doppia materialità: Definire cosa si intende per doppia materialità e la sua importanza nel contesto della sostenibilità.
+
+    Processo di identificazione: Descrivere i passaggi seguiti per identificare i temi materiali, inclusa l'analisi di contesto e il coinvolgimento degli stakeholder.
+
+    Mappatura degli stakeholder: Presentare la classificazione degli stakeholder e come sono stati coinvolti nel processo.
+
+    Matrice di doppia materialità: Mostrare i risultati dell'analisi, evidenziando i temi prioritari.
+
+    Temi materiali: Elencare e descrivere i principali temi ambientali, sociali ed economici/governance identificati.
 
 Linee guida per la compilazione:
 
-    • Rendere la sezione comprensibile anche a non esperti.
-    • Mostrare come i risultati impattano la strategia, se e solo se esiste un riscontro nei dati.
+    Assicurarsi che la spiegazione sia chiara e accessibile anche a lettori non specialisti.
+
+    Fornire dettagli sufficienti sul processo per dimostrare la rigorosità dell'analisi.
+
+    Evidenziare come i risultati hanno influenzato la strategia e le azioni dell'azienda.
 
 Indicazioni su tabelle e grafici:
 
-    • Mappa degli stakeholder: Inserirla solo se si hanno abbastanza informazioni per distinguerne categorie.
-    • Matrice di doppia materialità: Sì, ma solo se ci sono dati su impatto e significatività per ogni tema.
-    • Tabelle dei temi materiali: Fornire i contenuti veri, senza completare campi con dati inesistenti.
+    Mappa degli stakeholder: Inserire una figura che rappresenti graficamente gli stakeholder coinvolti.
 
-**Nota**: 
-Al termine, nel testo vengono indicati i “Report: ESRS Categories Overview (E1-E5, S1-S4, G1)”. Tali standard sono generici ed esemplificativi, 
-non dati reali dell’azienda. Andrebbero trattati come riferimenti teorici, evitando di attribuire all’azienda emissioni o caratteristiche 
-non confermate da fonti reali.
+        Etichette chiare per ogni categoria di stakeholder.
+
+        Evitare sovrapposizioni tra testi e grafica.
+
+    Matrice di doppia materialità: Presentare la matrice con l'asse delle ascisse per la materialità d'impatto e l'asse delle ordinate per la materialità finanziaria.
+
+        Utilizzare punti o bolle per rappresentare i temi, con dimensioni o colori differenti per indicare la significatività.
+
+        Assicurarsi che le etichette dei temi siano leggibili e non si accavallino.
+
+    Tabelle dei temi materiali: Per i temi ambientali, sociali ed economici/governance, inserire tabelle chiare con le colonne indicate (SDG, Tema materiale, Impatto, Tipo di impatto, Significatività, Descrizione).
+        Evitare tabelle troppo dense; se necessario, suddividere in più tabelle.
+        
+**Di seguito alcune informazioni sulle metriche ESG da trattare**:
+
+### **Report: ESRS Categories Overview**
+
+#### **Environmental Standards (ESRS E1–E5)**
+
+1. **ESRS E1 – Climate Change**
+   - **Themes**: Adaptation and mitigation of climate change, renewable energy transition.
+   - **Sub-themes**: Actions to reduce greenhouse gas emissions (Scope 1, 2, 3), decarbonization efforts, energy efficiency measures.
+   - **Details**: Includes both preventive measures against climate risks and active efforts for sustainable energy use.
+
+2. **ESRS E2 – Pollution**
+   - **Themes**: Air, water, soil pollution, and hazardous substances.
+   - **Sub-themes**:
+     - Air pollution (e.g., NOx, SOx emissions).
+     - Soil and water contamination.
+     - Hazardous chemicals and microplastics.
+   - **Details**: Focus on reducing emissions and minimizing the impact of pollutants on ecosystems and human health.
+
+3. **ESRS E3 – Water and Marine Resources**
+   - **Themes**: Water consumption, marine resource management.
+   - **Sub-themes**:
+     - Water usage (extraction and discharge).
+     - Marine ecosystem exploitation and preservation.
+   - **Details**: Prioritizes efficient water use and sustainable marine practices to protect aquatic biodiversity.
+
+4. **ESRS E4 – Biodiversity and Ecosystems**
+   - **Themes**: Loss of biodiversity, degradation of ecosystems.
+   - **Sub-themes**:
+     - Impact on species and ecosystem services.
+     - Issues like desertification, invasive species, and habitat destruction.
+   - **Details**: Measures to mitigate ecosystem degradation and maintain ecological balance.
+
+5. **ESRS E5 – Circular Economy**
+   - **Themes**: Resource flow management, waste reduction.
+   - **Sub-themes**:
+     - Resource inflows (input) and outflows (product life cycle).
+     - Waste management practices.
+   - **Details**: Encourages companies to adopt sustainable material usage and recycling methods.
 
 ---
 
-### **Report: ESRS Categories Overview** (E1–E5, S1–S4, G1)
-Selezionare e descrivere solo gli standard effettivamente pertinenti, evitando di presentare 
-informazioni non verificabili come se fossero dati dell’azienda.
+#### **Social Standards (ESRS S1–S4)**
 
-{important_message}
-"""
+1. **ESRS S1 – Own Workforce**
+   - **Themes**: Working conditions and equal opportunities.
+   - **Sub-themes**:
+     - Secure employment, fair wages, work-life balance.
+     - Gender equality, safety, training, and diversity.
+   - **Details**: Focused on creating safe and equitable work environments.
+
+2. **ESRS S2 – Workers in the Value Chain**
+   - **Themes**: Labor rights and safety in the supply chain.
+   - **Sub-themes**:
+     - Employment security, wage fairness.
+     - Anti-discrimination and inclusion initiatives.
+   - **Details**: Ensures fair treatment and safe conditions throughout the supply chain.
+
+3. **ESRS S3 – Affected Communities**
+   - **Themes**: Community engagement and impact mitigation.
+   - **Sub-themes**:
+     - Human rights defenders’ protection.
+     - Avoiding adverse effects on local populations.
+   - **Details**: Emphasizes ethical practices that safeguard community well-being.
+
+4. **ESRS S4 – Consumers and End Users**
+   - **Themes**: Consumer privacy, safety, and social inclusion.
+   - **Sub-themes**:
+     - Data protection, freedom of expression.
+     - Non-discrimination, access to products/services.
+   - **Details**: Focuses on ethical treatment of consumers and user data security.
+
+---
+
+#### **Governance Standard (ESRS G1)**
+
+1. **ESRS G1 – Corporate Conduct**
+   - **Themes**: Business ethics, transparency, and anti-corruption.
+   - **Sub-themes**:
+     - Corporate culture, whistleblower protection.
+     - Supplier relationships, political lobbying.
+   - **Details**: Encourages ethical practices, corruption prevention, and responsible lobbying.
+
+---
+
+### **Concluding Notes**
+This report synthesizes the ESRS environmental (E1–E5), social (S1–S4), and governance (G1) standards into actionable categories for companies aiming to align with sustainability and ethical practices. For detailed implementation, companies should focus on mitigating their environmental impact, fostering equitable social practices, and maintaining governance transparency.
+            
+    {important_message}"""
+
 
 linee_guida_2 = f"""Descrizione dettagliata del contenuto da inserire:
 
-Il Capitolo 2 è focalizzato sulle persone dell'azienda (capitale umano), descrivendo:
-    – Le iniziative rivolte al benessere (fisico e mentale) dei dipendenti
-    – Lo sviluppo professionale e personale
-    – Le strategie per attrarre e mantenere i talenti
+Il Capitolo 2 è focalizzato sulle persone dell'azienda, evidenziando l'importanza del capitale umano e come viene valorizzato. Descrive le iniziative intraprese per il benessere dei dipendenti, lo sviluppo professionale e personale, e le strategie per attrarre e mantenere i talenti.
 
-Contenuti da includere (solo se forniti dai dati reali):
-    • Valorizzazione del personale: Come l’azienda vede le persone come risorsa fondamentale (se documentato).
-    • Benessere e salute: Politiche e iniziative esistenti per garantire benessere e sicurezza.
-    • Formazione e sviluppo: Programmi di crescita professionale (solo se esistono fonti).
-    • Cultura aziendale: Se effettivamente collegata alle persone e al loro coinvolgimento.
+Contenuti da includere:
+
+    Valorizzazione del personale: Spiegare come l'azienda considera le persone come risorsa fondamentale.
+
+    Benessere e salute: Descrivere le politiche e le iniziative per garantire il benessere fisico e mentale dei dipendenti.
+
+    Formazione e sviluppo: Presentare i programmi di crescita professionale offerti.
+
+    Cultura aziendale: Come la cultura interna promuove un ambiente di lavoro positivo.
 
 Linee guida per la compilazione:
-    • Evitare di aggiungere “risultati ottenuti” se non riscontrati in modo esplicito nei dati (es. tassi di retention, se non disponibili).
-    • Mantenere un tono positivo e inclusivo, ma non inventare politiche o successi non supportati.
+
+    Utilizzare esempi concreti per illustrare le iniziative.
+
+    Mantenere un tono positivo e inclusivo.
+
+    Evidenziare i risultati ottenuti grazie a queste politiche (es. tassi di retention elevati).
 
 Indicazioni su tabelle e grafici:
-    • Se ci sono statistiche reali sul personale (genere, età, contratto), presentarle in tabelle chiare.
-    • Non generare grafici superflui: inserirli solo se i dati sono presenti e significativi.
 
+    Statistiche sul personale: Inserire tabelle con dati sulla composizione del personale (es. numero di dipendenti per genere, età, contratto).
+        Assicurarsi che le tabelle siano chiare e ben organizzate.
+
+    Evitare grafici ridondanti se le informazioni sono già presentate efficacemente nelle tabelle.
+        
     {important_message}"""
-
 
 linee_guida_2_1 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 2.1 Il Green Team descrive il team dedicato alle iniziative di sostenibilità (se realmente esistente). 
+La sezione 2.1 Il Green Team descrive il team aziendale, con particolare attenzione alle persone coinvolte nelle iniziative di sostenibilità.
 
-Contenuti da includere (solo se i dati lo confermano):
-    • Composizione del team (numero di dipendenti, diversità) – non inventare cifre se non presenti.
-    • Ruoli chiave e responsabilità, ma solo se documentati.
-    • Valori condivisi: indicare come il team rispecchia i valori dell’azienda, se effettivamente riportato.
+Contenuti da includere:
+
+    Composizione del team: Numero di dipendenti, crescita nel tempo, diversità di genere ed età.
+
+    Ruoli chiave: Presentare i ruoli principali e le responsabilità assegnate.
+
+    Valori condivisi: Come il team incarna i valori aziendali.
 
 Linee guida per la compilazione:
-    • Evitare di attribuire al team attività o obiettivi non menzionati nelle fonti.
-    • Mostrare il collegamento con la strategia di sostenibilità solo se c’è un riscontro reale.
+
+    Evidenziare l'importanza della collaborazione e del lavoro di squadra.
+
+    Sottolineare come il team contribuisce agli obiettivi di sostenibilità.
 
 Indicazioni su tabelle e grafici:
-    • Tabella del personale: Inserire solo se si hanno dati affidabili (es. contratto, genere, ecc.).
-      – Evitare di ipotizzare numeri. 
-    • Grafico a barre: Facoltativo, se i dati riguardanti la crescita del team lo consentono.
 
+    Tabella del personale: Presentare una tabella con la suddivisione del personale per tipo di contratto e genere.
+
+        Colonne: Uomini, Donne.
+
+        Righe: Contratto a tempo indeterminato, Contratto a tempo determinato, Totale dipendenti per sesso, Totale dipendenti.
+
+    Grafici: Se si desidera, inserire un grafico a barre per visualizzare la crescita del personale nel tempo.
+        Evitare sovraccarico visivo; se i dati sono chiari nella tabella, il grafico potrebbe non essere necessario.
+            
     {important_message}"""
-
 
 linee_guida_2_2 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 2.2 Attrazione e conservazione dei talenti descrive politiche e strategie per assumere nuovi talenti 
-e mantenere quelli esistenti.
+La sezione 2.2 Attrazione e conservazione dei talenti dettaglia le strategie e le politiche adottate per attrarre nuovi talenti e mantenere quelli esistenti.
 
-Contenuti da includere (solo se disponibili):
-    • Strategie di recruitment: come avvengono i processi di selezione (evitare dettagli non documentati).
-    • Politiche di retention: es. piani di carriera, benefit, work-life balance, solo se noti.
-    • Dati concreti: se esistono numeri su assunzioni, turnover, retention.
-    • Non inserire cifre o percentuali se non forniti dai dati.
+Contenuti da includere:
+
+    Strategie di recruitment: Descrivere come l'azienda attira nuovi talenti (es. processi di selezione, employer branding).
+
+    Politiche di retention: Iniziative per mantenere il personale, come piani di carriera, benefit, equilibrio vita-lavoro.
+
+    Formazione e sviluppo: Programmi di formazione continua e opportunità di crescita professionale.
+
+    Risultati ottenuti: Tassi di retention, numero di nuove assunzioni, riduzione del turnover.
 
 Linee guida per la compilazione:
-    • Supportare eventuali affermazioni con cifre reali (se presenti).
-    • Non inventare “iniziative di employer branding” se non documentate.
+
+    Fornire dati concreti per supportare le affermazioni (es. percentuali, numeri).
+
+    Evidenziare le iniziative più innovative o di successo.
 
 Indicazioni su tabelle e grafici:
-    • Tabelle su assunzioni e cessazioni (per genere e fascia d’età) solo se i dati sono effettivamente disponibili.
-      – No ipotesi o stime arbitrarie.
-    • Grafici: Da evitare se le tabelle già bastano e/o se non vi sono informazioni sufficienti.
 
+    Tabelle su assunzioni e cessazioni: Presentare tabelle che mostrano il numero di assunzioni e cessazioni per genere e fascia d'età.
+
+        Righe: Minori di 30 anni, Tra 30 e 50 anni, Maggiori di 50 anni, Totale per genere, Totale.
+
+        Colonne: Uomini, Donne.
+
+    Grafici: Evitare grafici se le tabelle già comunicano efficacemente le informazioni.
+        
     {important_message}"""
-
 
 linee_guida_2_3 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 2.3 Crescita e sviluppo del personale descrive opportunità di formazione e sviluppo professionale 
-a disposizione dei dipendenti (solo se confermato dai dati).
+La sezione 2.3 Crescita e sviluppo del personale illustra le opportunità di formazione e sviluppo professionale offerte ai dipendenti.
 
-Contenuti da includere (se reali):
-    • Programmi di formazione (corsi, seminari) con riferimenti concreti (nome, contenuti) se disponibili.
-    • Piani di carriera interni (eventuali meccanismi di promozione).
-    • Iniziative speciali (mentoring, partnership) – solo se effettivamente documentate.
-    • Risultati tangibili (ore di formazione, feedback dei dipendenti).
+Contenuti da includere:
+
+    Programmi di formazione: Descrivere i corsi, workshop, seminari disponibili.
+
+    Piani di carriera: Come l'azienda supporta la crescita interna e le promozioni.
+
+    Iniziative speciali: Mentoring, coaching, partnership con istituzioni educative.
+
+    Risultati: Ore di formazione erogate, competenze sviluppate, feedback dei dipendenti.
 
 Linee guida per la compilazione:
-    • Usare esempi specifici solo se menzionati nei dati.
-    • Non creare “programmi formativi” o “workshop” inesistenti.
+
+    Utilizzare esempi specifici per illustrare i programmi.
+
+    Evidenziare l'impatto della formazione sulle performance aziendali.
 
 Indicazioni su tabelle e grafici:
-    • Grafico a torta delle ore di formazione: Inserirlo solo se esistono dati affidabili e suddivisi 
-      (es. obbligatoria, tecnica, specifica).
-    • Tabella delle ore di formazione: Se i dati sono più adatti a un formato testuale.
 
+    Grafico a torta delle ore di formazione: Visualizzare la suddivisione delle ore di formazione tra formazione obbligatoria, tecnica e specifica.
+        Assicurarsi che le sezioni siano proporzionate e le etichette leggibili.
+
+    Tabella delle ore di formazione: Se più efficace, presentare i dati in una tabella chiara.
+
+    
     {important_message}"""
-
 
 linee_guida_2_4 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 2.4 Salute mentale e fisica delle persone descrive le azioni concrete prese per il benessere mentale e fisico 
-dei dipendenti (se i dati disponibili lo confermano).
+La sezione 2.4 Salute mentale e fisica delle persone descrive le misure adottate per garantire il benessere fisico e mentale dei dipendenti.
 
-Contenuti da includere (solo se realmente esistenti):
-    • Programmi di supporto psicologico, consulenza esterna, se menzionati nei dati.
-    • Attività di wellness, politiche di smart working, solo se fornite nelle fonti.
-    • Salute e sicurezza: formazione obbligatoria, procedure di prevenzione infortuni, se disponibili.
-    • Risultati e feedback: percentuali di soddisfazione o dati di miglioramento, non inventati.
+Contenuti da includere:
+
+    Programmi di supporto: Bonus benessere psicologico, accesso a servizi di consulenza.
+
+    Promozione del benessere: Attività di wellness, equilibrio vita-lavoro, politiche di smart working.
+
+    Salute e sicurezza sul lavoro: Formazione obbligatoria, misure preventive, gestione degli infortuni.
+
+    Risultati e feedback: Soddisfazione dei dipendenti, eventuali miglioramenti riscontrati.
 
 Linee guida per la compilazione:
-    • Trattare con delicatezza i temi di salute mentale (solo se ci sono dati o testimonianze reali).
-    • Non affermare che esistono “survey interne” se non fornite.
+
+    Trattare con sensibilità i temi legati alla salute mentale.
+
+    Utilizzare dati e testimonianze per supportare le affermazioni.
 
 Indicazioni su tabelle e grafici:
-    • Grafici di soddisfazione (es. a torta) solo se i dati di survey esistono davvero.
-    • Tabella infortuni: inserire solo in presenza di dati concreti (numero infortuni, tipologie).
 
+    Grafici di soddisfazione: Se disponibili, inserire grafici a torta che mostrano i risultati di survey interne sulla soddisfazione dei dipendenti.
+        Evitare sovraccarico di informazioni; presentare solo i dati più significativi.
+
+    Tabella degli infortuni: Se pertinente, indicare il numero di infortuni registrati (es. inabilità temporanea, permanente, incidenti mortali).
+        
     {important_message}"""
-
 
 linee_guida_2_5 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 2.5 Valutazione delle performance descrive il sistema adottato per valutare prestazioni individuali 
-e di gruppo (se esiste documentazione a supporto).
+La sezione 2.5 Valutazione delle performance spiega il processo di valutazione utilizzato dall'azienda per migliorare le performance individuali e organizzative.
 
-Contenuti da includere (solo se noti):
-    • Processo di valutazione: autovalutazione, feedback 360°, colloqui manager – citarli solo se presenti nelle fonti.
-    • Criteri di valutazione (soft skills, competenze tecniche, obiettivi).
-    • Utilizzo del feedback: come viene sfruttato per piani di sviluppo.
-    • Impatto sul personale: miglioramenti osservati, se descritti dai dati reali.
+Contenuti da includere:
+
+    Processo di valutazione: Descrivere come avviene la valutazione (es. autovalutazione, feedback 360°, colloqui con i manager).
+
+    Criteri di valutazione: Soft skills, competenze tecniche, raggiungimento degli obiettivi.
+
+    Utilizzo dei feedback: Come i risultati vengono utilizzati per piani di sviluppo individuali.
+
+    Impatto sul personale: Miglioramenti osservati, coinvolgimento dei dipendenti.
 
 Linee guida per la compilazione:
-    • Mostrare trasparenza sul processo, ma senza inventare fasi non menzionate.
-    • Non aggiungere “benefici riscontrati” senza un riscontro reale.
+
+    Essere trasparenti sul processo, mostrando l'attenzione dell'azienda allo sviluppo del personale.
+
+    Evidenziare i benefici del sistema di valutazione per l'azienda e i dipendenti.
 
 Indicazioni su tabelle e grafici:
-    • Evitare grafici complessi se i dati non lo richiedono.
-    • Eventuale diagramma di flusso: solo se ne esiste uno nei materiali forniti.
 
+    Evitare grafici complessi: Se i dettagli del processo possono essere descritti efficacemente nel testo, non è necessario aggiungere grafici.
+
+    Diagramma di flusso: Se utile, inserire un semplice diagramma che mostri le fasi del processo di valutazione.
+        Assicurarsi che il diagramma sia chiaro e privo di sovrapposizioni.
+            
     {important_message}"""
-
 
 linee_guida_2_6 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 2.6 Condivisione, retreat e team building elenca le attività di coesione del team, 
-workshop collaborativi, e ne evidenzia i benefici. Tutto ciò, però, **solo** se i dati lo confermano.
+La sezione 2.6 Condivisione, retreat e team building presenta le attività organizzate per promuovere la coesione del team e migliorare la comunicazione tra i dipendenti.
 
-Contenuti da includere (solo se presenti nei dati):
-    • Descrizione degli eventi (retreat aziendali, team building), ma non inventare dettagli se non specificati.
-    • Obiettivi (collaborazione, creatività) e feedback raccolti, se documentati.
-    • Impatto sull’azienda in termini di cultura e raggiungimento obiettivi, solo se i dati reali lo dimostrano.
+Contenuti da includere:
+
+    Eventi organizzati: Descrivere retreat, team building, workshop collaborativi.
+
+    Obiettivi delle attività: Migliorare la collaborazione, incentivare la creatività, rafforzare le relazioni.
+
+    Feedback dei partecipanti: Impressioni raccolte, benefici osservati.
+
+    Impatto sull'azienda: Come queste attività contribuiscono alla cultura aziendale e al raggiungimento degli obiettivi.
 
 Linee guida per la compilazione:
-    • Utilizzare esempi o citazioni di partecipanti solo se reperiti dalle fonti.
-    • Evitare di menzionare retreat immaginari o aneddoti non supportati.
+
+    Utilizzare un tono coinvolgente, magari includendo aneddoti o citazioni dei partecipanti.
+
+    Evidenziare l'importanza di queste iniziative per il benessere del team.
 
 Indicazioni su tabelle e grafici:
-    • Fotografie: Inserirle solo se disponibili (e attenzione alla privacy).
-    • Nessun grafico necessario in assenza di dati misurabili.
 
+    Fotografie: Includere immagini delle attività (con attenzione alla privacy).
+        Assicurarsi che le immagini siano di buona qualità e rappresentino positivamente l'azienda.
+
+    Evitare grafici; questa sezione beneficia di un approccio più visivo e narrativo.
+
+    
     {important_message}"""
+
 
 linee_guida_3 = f"""Descrizione dettagliata del contenuto da inserire:
 
-Il Capitolo 3 è focalizzato sull'impegno dell'azienda verso la sostenibilità ambientale, 
-descrivendo le iniziative effettive (se documentate) per ridurre l'impatto ambientale. 
-Si riferisce a strategie per affrontare il cambiamento climatico, agli impatti ambientali 
-associati a prodotti/servizi, e al supporto (se esiste) al Mercato Volontario del Carbonio.
+Il Capitolo 3 è focalizzato sull'impegno dell'azienda verso la sostenibilità ambientale e le iniziative intraprese per ridurre l'impatto ambientale. Descrive le strategie adottate per affrontare il cambiamento climatico, gli impatti ambientali associati ai prodotti e servizi offerti, e come l'azienda supporta il Mercato Volontario del Carbonio.
 
-Contenuti da includere (solo se disponibili fonti a supporto):
+Contenuti da includere:
 
-    • Impegno ambientale: La visione dell'azienda in materia ambientale e il ruolo che 
-      desidera/ha assunto nella lotta al cambiamento climatico (senza aggiungere affermazioni 
-      non supportate dai dati).
-
-    • Iniziative chiave: Elencare, in modo concreto, le principali azioni intraprese 
-      (ad esempio: riduzione delle emissioni, installazione di impianti a energia rinnovabile, 
-      etc.) solo se fornite.
-
-    • Risultati e progressi: Inserire i risultati raggiunti o gli obiettivi soddisfatti 
-      (percentuali di riduzione, miglioramenti misurabili), esclusivamente se tali 
-      informazioni reali sono disponibili.
+    Impegno ambientale: Spiegare la visione dell'azienda in materia ambientale e il suo ruolo nella lotta al cambiamento climatico.
+    Iniziative chiave: Presentare le principali azioni intraprese per ridurre l'impatto ambientale.
+    Risultati e progressi: Evidenziare i progressi compiuti e gli obiettivi raggiunti.
 
 Linee guida per la compilazione:
 
-    • Mantenere un linguaggio chiaro, focalizzato sugli impatti concreti reali.
-    • Se non ci sono riferimenti ad Accordo di Parigi, SDG o altri framework, non aggiungerli 
-      arbitrariamente. È possibile citarli solo se il testo effettivo li menziona.
+    Utilizzare un linguaggio chiaro e focalizzato sugli impatti concreti.
+    Sottolineare l'importanza delle iniziative nel contesto degli obiettivi globali di sostenibilità (es. Accordo di Parigi, SDG).
 
 Indicazioni su tabelle e grafici:
 
-    • Evitare di creare grafici in assenza di dati.
-    • Se le iniziative sono documentate con numeri, usare tabelle o brevi figure (foto) se esistono.
-    • Non inserire immagini/foto generiche se non fornite.
-
+    Evitare grafici superflui: Se i dati possono essere descritti efficacemente nel testo, non è necessario inserire grafici.
+    Fotografie o immagini: Se disponibili, possono essere inserite immagini che rappresentano le iniziative ambientali, assicurandosi che siano pertinenti e di buona qualità.
+        
     {important_message}"""
-
 
 linee_guida_3_1 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 3.1 Attenzione al cambiamento climatico illustra le strategie adottate 
-dall'azienda per affrontare il cambiamento climatico, se realmente presenti. 
-Può includere obiettivi di riduzione delle emissioni, azioni per efficienza energetica 
-e l'uso di fonti rinnovabili.
+La sezione 3.1 Attenzione al cambiamento climatico descrive le strategie adottate dall'azienda per affrontare il cambiamento climatico. Include gli obiettivi di riduzione delle emissioni di CO₂, le azioni intraprese per migliorare l'efficienza energetica, l'utilizzo di energie rinnovabili e i progressi compiuti verso questi obiettivi.
 
-Contenuti da includere (solo se i dati ne danno evidenza):
+Contenuti da includere:
 
-    • Strategia climatica: Come l’azienda ha definito la propria visione o piano 
-      per mitigare i cambiamenti climatici, se esiste un documento in merito.
-    • Obiettivi di riduzione: Esempio (se riportato): ridurre le emissioni di un 
-      certo valore/percentuale entro una data. Non inventare numeri se non specificati.
-    • Azioni intraprese: Descrivere interventi reali (energia rinnovabile, riduzione 
-      delle emissioni Scope 1,2,3). Non aggiungere esempi ipotetici.
-    • Misurazione e monitoraggio: Se si dispone di informazioni (es. utilizzo di uno 
-      standard GHG Protocol).
-    • Risultati: Dati reali sulle emissioni e progressi effettivi.
+    Strategia climatica: Presentare la strategia complessiva dell'azienda per mitigare i cambiamenti climatici.
+    Obiettivi di riduzione: Dettagliare gli obiettivi specifici (es. riduzione delle emissioni del 42% entro il 2030 rispetto al 2022).
+    Azioni intraprese: Descrivere le iniziative implementate, come l'uso di energia rinnovabile, l'efficienza energetica, la riduzione delle emissioni di Scope 1, 2 e 3.
+    Monitoraggio e calcolo delle emissioni: Spiegare come l'azienda misura le proprie emissioni (es. utilizzo di CliMax, standard GHG Protocol).
+    Risultati: Presentare i dati sulle emissioni attuali, i progressi fatti e le sfide incontrate.
 
 Linee guida per la compilazione:
 
-    • Fornire dati quantitativi solo se disponibili.
-    • Non menzionare standard internazionali (Accordo di Parigi, SBTi) se non sono 
-      indicati nelle fonti.
+    Fornire dati quantitativi per supportare le affermazioni (es. tonnellate di CO₂ equivalente emesse, percentuali di riduzione).
+    Spiegare in modo chiaro i termini tecnici, per rendere la sezione accessibile a tutti i lettori.
+    Evidenziare come le azioni dell'azienda si allineano con gli standard internazionali (es. Accordo di Parigi, SBTi).
 
 Indicazioni su tabelle e grafici:
 
-    • Grafici a barre/linee per l’andamento delle emissioni nel tempo: 
-      Inserirli soltanto se si posseggono dati storici reali.
-    • Tabelle delle emissioni (Scope 1, 2, 3): Solo se i dati sono effettivi 
-      (colonne: Fonte di emissione, Emissioni, etc.).
-    • Grafici delle emissioni per Scope: Usarli se chiari e non ridondanti.
-
+    Grafici a barre o a linee: Utili per mostrare l'andamento delle emissioni nel tempo.
+        Assicurarsi che gli assi siano etichettati chiaramente.
+        Evitare sovrapposizioni tra etichette e dati.
+    Tabelle delle emissioni: Presentare i dati sulle emissioni suddivisi per Scope 1, 2 e 3.
+        Colonne: Fonte di emissione, Emissioni (ton CO₂ eq.), Percentuale sul totale.
+    Grafici delle emissioni per Scope: Se si decide di utilizzare un grafico, ad esempio un grafico a torta per mostrare la percentuale di emissioni per ciascuno Scope.
+        Evitare grafici ridondanti se le informazioni sono già chiare nelle tabelle.
+        
+            
     {important_message}"""
-
 
 linee_guida_3_2 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 3.2 Impatti ambientali valuta gli impatti legati ai prodotti e/o servizi dell'azienda. 
-Può trattare l'impronta di carbonio dei prodotti, l'uso di risorse naturali, e eventuali 
-iniziative di sostenibilità durante il ciclo di vita dei prodotti.
+La sezione 3.2 Impatti ambientali analizza gli impatti ambientali associati ai prodotti e servizi dell'azienda. Descrive l'impronta di carbonio dei prodotti, l'uso di risorse naturali e le iniziative per migliorare la sostenibilità lungo il ciclo di vita dei prodotti e servizi offerti.
 
-Contenuti da includere (solo se confermati dalle fonti):
+Contenuti da includere:
 
-    • Analisi degli impatti: Specificare i tipi di impatto ambientale (diretti/indiretti) 
-      solo se c’è documentazione. 
-    • Impatto positivo: Descrivere come i prodotti/servizi riducono emissioni dei clienti 
-      (p.es. se l’azienda fornisce soluzioni di efficienza).
-    • Gestione degli impatti: Misure concrete per mitigare gli effetti negativi 
-      (es. data center a minor consumo, politiche di viaggio sostenibili), se disponibili.
-    • Risultati: Se ci sono stime di CO₂ risparmiata o ridotta, citarle. 
-      Altrimenti, evitare di creare valori immaginari.
+    Analisi degli impatti: Identificare gli impatti ambientali diretti e indiretti derivanti dalle attività aziendali.
+    Impatto positivo: Descrivere come i prodotti e servizi offerti contribuiscono alla riduzione delle emissioni dei clienti (es. tramite la piattaforma CliMax, PlaNet).
+    Gestione degli impatti: Presentare le misure adottate per mitigare gli impatti negativi (es. riduzione dell'uso di data center ad alto consumo energetico, promozione dello smart working).
+    Risultati: Evidenziare i benefici ambientali generati dalle iniziative (es. quantità di CO₂ risparmiata dai clienti grazie ai servizi offerti).
 
 Linee guida per la compilazione:
 
-    • Non introdurre concetti tecnici (es. “PlaNet”, “CliMax”, etc.) 
-      se non risultano effettivamente documentati. 
-    • Mantenere chiarezza e semplicità, 
-      evitando di generare impatti “potenziali” non menzionati.
+    Utilizzare un linguaggio chiaro e focalizzato sulle azioni concrete.
+    Evitare tecnicismi eccessivi; spiegare i concetti complessi in modo semplice.
 
 Indicazioni su tabelle e grafici:
 
-    • Tabelle degli impatti: se i dati esistono, includere colonne come “Impatto”, 
-      “Tipo (diretto/indiretto)”, “Azioni intraprese”. 
-    • Non inserire grafici superflui: preferire il testo se mancano dati numerici.
-
+    Tabelle degli impatti: Se appropriato, inserire una tabella che elenca gli impatti ambientali identificati, con descrizione e azioni di mitigazione.
+        Colonne: Impatto, Tipo (diretto/indiretto), Azioni intraprese.
+    Non eccedere con i grafici: Se le informazioni possono essere comunicate efficacemente nel testo o in una tabella, evitare grafici superflui.
+        
     {important_message}"""
-
 
 linee_guida_3_3 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 3.3 Supporto al Voluntary Carbon Market descrive le modalità con cui 
-l’azienda partecipa (se lo fa davvero) al Mercato Volontario del Carbonio, 
-finanziando progetti di compensazione e illustrandone l’impatto.
+La sezione 3.3 Supporto al Voluntary Carbon Market spiega come l'azienda partecipa e supporta il Mercato Volontario del Carbonio. Includere dettagli sui progetti di compensazione delle emissioni sostenuti, i criteri di selezione dei progetti e l'impatto ambientale e sociale generato da tali iniziative.
 
-Contenuti da includere (solo se fonti lo confermano):
+Contenuti da includere:
 
-    • Ruolo dell'azienda nel VCM: Indicare l’importanza data al Mercato Volontario 
-      e il tipo di contributo, se presente.
-    • Selezione dei progetti: Spiegare come l’azienda valuta i progetti di compensazione, 
-      se ci sono procedure interne documentate.
-    • Progetti supportati: Elencare quelli reali (nome del progetto, paese, 
-      eventuali certificazioni). Non aggiungere esempi come “Delta Blue Carbon” 
-      se non forniti concretamente.
-    • Impatto generato: Ton CO₂ compensate, benefici per comunità locali, 
-      contributo agli SDG, ma solo se ci sono dati reali.
+    Ruolo dell'azienda nel VCM: Spiegare l'importanza del Mercato Volontario del Carbonio e come l'azienda vi contribuisce.
+    Selezione dei progetti: Descrivere il processo interno di valutazione e selezione dei progetti di compensazione (quattro fasi principali).
+    Progetti supportati: Presentare esempi concreti dei progetti sostenuti (es. Delta Blue Carbon, Rimba Raya Biodiversity Reserve, Cordillera Azul National Park).
+    Impatto generato: Quantificare l'impatto ambientale (es. tonnellate di CO₂ compensate), benefici per le comunità locali, contributo agli SDG.
 
 Linee guida per la compilazione:
 
-    • Fornire informazioni dettagliate se disponibili, ma evitare “schede” 
-      con KPI immaginari. 
-    • Sottolineare i benefici ambientali e sociali soltanto se effettivamente dichiarati.
+    Fornire informazioni dettagliate sui progetti, ma mantenendo la chiarezza e la concisione.
+    Evidenziare i benefici sia ambientali che sociali dei progetti sostenuti.
 
 Indicazioni su tabelle e grafici:
 
-    • Schede dei progetti: Solo se i dati reali esistono (nome, località, 
-      quantità di emissioni compensate, ecc.).
-    • Immagini dei progetti: Inserirle se fornite e con i diritti d’uso.
-    • Evitare grafici aggiuntivi se le schede sono già esaustive.
-
+    Schede dei progetti: Per ogni progetto, presentare una scheda con i principali KPI.
+        Informazioni da includere: Nome del progetto, Paese, ID, Specie animali protette, Persone coinvolte, Ettari salvati, Certificazioni, SDG correlati.
+    Immagini dei progetti: Se disponibili, inserire fotografie rappresentative dei progetti (con diritti d'uso appropriati).
+    Evitare grafici complessi: Se le schede dei progetti comunicano efficacemente le informazioni, non è necessario inserire ulteriori grafici.
+        
     {important_message}"""
 
 linee_guida_4 = f"""Descrizione dettagliata del contenuto da inserire:
 
-Il Capitolo 4 si concentra sulla crescita sostenibile, includendo governance, etica nei rapporti commerciali 
-e innovazione tecnologica a supporto dell'azione climatica (solo se tali informazioni esistono nei dati forniti).
+Il Capitolo 4 è focalizzato sulla crescita sostenibile dell'azienda, descrivendo le pratiche di governance, l'etica nei rapporti commerciali e l'innovazione tecnologica a supporto dell'azione climatica.
 
-Contenuti da includere (se realmente presenti):
+Contenuti da includere:
 
-    • Governance aziendale: Struttura e modalità di gestione che supportano la sostenibilità.
-    • Etica e integrità: Politiche e procedure per prevenire corruzione, assicurare trasparenza.
-    • Innovazione tecnologica: Come la tecnologia è usata per favorire la sostenibilità e l'azione climatica.
+    Governance aziendale: Presentare la struttura di governance e come questa supporta gli obiettivi di sostenibilità.
+    Etica e integrità: Descrivere le politiche etiche adottate, la prevenzione della corruzione e l'integrità nelle operazioni commerciali.
+    Innovazione tecnologica: Illustrare come l'azienda utilizza la tecnologia per promuovere la sostenibilità e l'azione climatica.
 
 Linee guida per la compilazione:
 
-    • Mantenere un tono professionale, con riferimenti concreti.
-    • Evitare di introdurre grafici o esempi non supportati.
+    Mantenere un tono professionale e informativo.
+    Evidenziare l'allineamento tra governance, etica e innovazione con gli obiettivi di sostenibilità.
 
 Indicazioni su tabelle e grafici:
 
-    • Evitare grafici ridondanti o che si basino su dati non forniti.
-    • Eventuale organigramma: inserirlo solo se effettivamente disponibile.
-
+    Evitare grafici ridondanti: Se le informazioni possono essere descritte chiaramente nel testo, non inserire grafici superflui.
+    Organigramma aziendale: Se appropriato, inserire un organigramma semplificato della struttura di governance, assicurandosi che sia chiaro e leggibile.
+        
     {important_message}"""
 
 linee_guida_4_1 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 4.1 descrive la struttura di governance dell'azienda, 
-inclusa composizione del CdA (Consiglio di Amministrazione) e altre funzioni chiave, 
-solo se tali informazioni sono presenti nei dati.
+La sezione 4.1 descrive la struttura di governance dell'azienda. Include la composizione del Consiglio di Amministrazione, i ruoli chiave, le politiche di governance adottate per garantire trasparenza e responsabilità, e come queste pratiche supportano gli obiettivi di sostenibilità.
 
 Contenuti da includere:
 
-    • Struttura di governance: Se esistono riferimenti a CdA, CdM o altre entità.
-    • Composizione del CdA: Numero di membri, eventuale diversità (genere, età), 
-      solo se documentata.
-    • Politiche di governance: Come si garantisce trasparenza, responsabilità, 
-      allineamento con obiettivi di sostenibilità (es. Società Benefit se applicabile).
-    • Gestione del rischio: Se i dati mostrano come l’azienda identifica e affronta rischi, 
-      inclusi quelli climatici.
-    • Performance economica: Inserire risultati reali e come la governance sostiene 
-      la crescita sostenibile, ma soltanto se ci sono dati.
+    Struttura di governance: Descrivere il Consiglio di Amministrazione (CdA), il Consiglio dei Manager (CdM) e le loro funzioni.
+    Composizione del CdA: Numero di membri, diversità di genere ed età, ruoli esecutivi e non esecutivi.
+    Politiche di governance: Spiegare come l'azienda garantisce trasparenza, responsabilità e allineamento con gli obiettivi di sostenibilità (es. essere una Società Benefit).
+    Gestione del rischio: Descrivere il processo di identificazione e gestione dei rischi, inclusi quelli legati al cambiamento climatico.
+    Performance economica: Presentare i risultati economici recenti e come la governance supporta la crescita sostenibile.
 
 Linee guida per la compilazione:
 
-    • Fornire informazioni precise, evitando descrizioni generiche o inventate.
-    • Collegare la governance alla sostenibilità solo se c’è evidenza nei dati.
+    Fornire informazioni dettagliate ma concise sulla struttura e le pratiche di governance.
+    Evidenziare l'allineamento tra governance e sostenibilità.
+    Evitare linguaggio eccessivamente tecnico o giuridico.
 
 Indicazioni su tabelle e grafici:
 
-    • Tabella del CdA: Se ci sono i nomi e i ruoli, includere colonna con ruolo/esecutivo 
-      e altre info reali. Non creare membri fittizi.
-    • Grafico dei risultati economici: Solo se si hanno dati storici su ricavi/profitti 
-      e si vuole mostrare un andamento.
-    • Matrice di rischio: Inserirla se effettivamente descritta dai dati.
-
+    Tabella della composizione del CdA: Presentare una tabella con i membri del CdA, indicando ruolo, genere, età.
+        Colonne: Nome, Ruolo, Genere, Età, Esecutivo/Non esecutivo.
+    Grafico dei risultati economici: Se appropriato, inserire un grafico che mostra l'andamento dei ricavi negli ultimi anni.
+        Assicurarsi che il grafico sia chiaro, con assi etichettati correttamente.
+    Matrice di rischio: Se si descrive la gestione del rischio, considerare l'inclusione di una matrice che visualizza la probabilità e l'impatto dei rischi identificati.
+        Evitare sovrapposizioni e assicurarsi che le etichette siano leggibili.
+            
     {important_message}"""
 
 linee_guida_4_2 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 4.2 Rapporti commerciali etici illustra le politiche e pratiche di etica 
-nei rapporti commerciali. Copre temi di prevenzione corruzione, integrità nelle vendite, 
-trasparenza e correttezza con clienti e fornitori.
+La sezione 4.2 Rapporti commerciali etici presenta le politiche e le pratiche etiche adottate nei rapporti commerciali. Descrive il rispetto delle normative, la prevenzione della corruzione, l'integrità nelle vendite e come l'azienda garantisce trasparenza e correttezza nelle transazioni commerciali.
 
-Contenuti da includere (solo se confermati dalle fonti):
+Contenuti da includere:
 
-    • Politiche etiche: Se esiste un codice etico, policy anticorruzione, regolamenti interni.
-    • Conformità normativa: Leggi e regolamenti (GDPR, leggi anti-corruzione) rispettati 
-      dall’azienda, se effettivamente citati nei documenti.
-    • Pratiche commerciali: Come viene gestito il rapporto con clienti/fornitori 
-      (pricing, contratti), solo se esistono dati a riguardo.
-    • Formazione e sensibilizzazione: Eventuali iniziative interne su temi etici e legali.
-    • Risultati: Se ci sono dati su assenza di sanzioni o casi di corruzione, citarli; 
-      non inventare se mancano.
+    Politiche etiche: Descrivere le politiche aziendali relative all'etica, alla trasparenza e all'integrità.
+    Conformità normativa: Spiegare come l'azienda rispetta le leggi e regolamenti (es. leggi anti-corruzione, GDPR).
+    Pratiche commerciali: Descrivere come vengono gestiti i rapporti con clienti, fornitori e partner, inclusa la gestione del pricing e dei contratti.
+    Formazione e sensibilizzazione: Iniziative per formare il personale su temi etici e legali.
+    Risultati: Evidenziare l'assenza di sanzioni o casi di corruzione.
 
 Linee guida per la compilazione:
 
-    • Fornire esempi concreti di pratiche etiche se effettivamente documentati.
-    • Mantenere un tono semplice e trasparente.
+    Utilizzare esempi concreti per illustrare le pratiche adottate.
+    Mantenere un tono trasparente e onesto.
+    Evitare linguaggio legale complesso; spiegare in modo accessibile.
 
 Indicazioni su tabelle e grafici:
 
-    • Evitare grafici non necessari: Se le info sono chiare nel testo, non serve un grafico.
-    • Elenco di politiche chiave: Può essere utile un elenco puntato, 
-      ma senza aggiunte arbitrarie.
-
+    Evitare grafici non necessari: Se le informazioni sono chiare nel testo, non è necessario inserire grafici.
+    Se appropriato, inserire un elenco puntato delle politiche chiave.
+        
     {important_message}"""
 
 linee_guida_4_3 = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione 4.3 Tecnologia al servizio dell’azione climatica descrive come l’azienda impiega 
-soluzioni digitali (p. es. piattaforme interne), aggiornamenti implementati, e impatti positivi 
-in ottica di sostenibilità ambientale. Solo se esistono davvero informazioni a riguardo.
+La sezione 4.3 Tecnologia al servizio dell’azione climatica illustra come l'azienda utilizza la tecnologia per promuovere l'azione climatica. Descrive le soluzioni digitali sviluppate, come la piattaforma CliMax e PlaNet, gli aggiornamenti implementati nel periodo di rendicontazione e l'impatto positivo generato.
 
-Contenuti da includere (se i dati lo supportano):
+Contenuti da includere:
 
-    • Innovazione tecnologica: Spiegare la filosofia dell’azienda nell’uso della tecnologia 
-      per la sostenibilità.
-    • Descrizione delle piattaforme (es. “CliMax” o “PlaNet”) ma solo se citate dai dati. 
-      Non introdurre nomi fittizi.
-    • Qualità del prodotto: Se c’è un processo di sviluppo/test documentato, descriverlo.
-    • Sicurezza dei dati e privacy: Se l’azienda fa riferimento a GDPR o altre politiche, 
-      citarle.
+    Innovazione tecnologica: Spiegare la filosofia aziendale nell'utilizzo della tecnologia per la sostenibilità.
+    Descrizione delle piattaforme:
+        CliMax: Funzionalità principali, aggiornamenti recenti, benefici per i clienti.
+        PlaNet: Finalità, miglioramenti apportati, impatto sull'engagement e la formazione.
+    Qualità del prodotto: Descrivere come l'azienda garantisce l'eccellenza nello sviluppo di prodotti digitali (processi di sviluppo, testing, feedback dei clienti).
+    Sicurezza dei dati e privacy: Spiegare le misure adottate per proteggere i dati degli utenti e garantire la conformità al GDPR.
 
 Linee guida per la compilazione:
 
-    • Evitare tecnicismi non presenti nei dati.
-    • Evidenziare benefici concreti (per clienti, ambiente) solo con riscontri reali.
+    Fornire dettagli tecnici in modo accessibile, evitando eccessivi tecnicismi.
+    Evidenziare i benefici concreti per i clienti e l'ambiente.
+    Sottolineare l'impegno per la qualità e la sicurezza.
 
 Indicazioni su tabelle e grafici:
 
-    • Nessun grafico complesso se i dati non lo richiedono.
-    • Screenshot piattaforme: Inserire solo se i materiali forniscono tali immagini, 
-      e con attenzione alla privacy.
-
+    Evitare grafici complessi: Se le informazioni possono essere descritte chiaramente nel testo, non inserire grafici inutili.
+    Screenshot delle piattaforme: Se appropriato e con attenzione alla privacy, inserire immagini delle interfacce delle piattaforme.
+        Assicurarsi che le immagini siano chiare e non contengano informazioni sensibili.
+    
     {important_message}"""
+
 
 linee_guida_conclusione = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione di Conclusione riassume le parti principali del bilancio di sostenibilità, 
-rilancia l’impegno futuro e ringrazia i lettori.
+La sezione di Conclusione riassume i punti chiave del bilancio di sostenibilità. Esprime l'impegno continuo dell'azienda verso la sostenibilità, delinea le prospettive future e ringrazia i lettori per l'attenzione.
 
-Contenuti da includere (in modo sintetico):
+Contenuti da includere:
 
-    • Riassunto dei punti chiave: Non introdurre nuove informazioni.
-    • Impegno futuro: Esplicitare obiettivi prossimi o miglioramenti futuri, 
-      se menzionati nelle fonti.
-    • Ringraziamenti: A stakeholder, dipendenti, partner, se opportuno.
+    Riassunto dei punti chiave: Riepilogare le principali iniziative e risultati descritti nel bilancio.
+    Impegno futuro: Esprimere l'intenzione dell'azienda di continuare a migliorare e perseguire obiettivi di sostenibilità.
+    Ringraziamenti: Ringraziare i lettori, i dipendenti, i partner e gli stakeholder per il loro supporto.
 
 Linee guida per la compilazione:
 
-    • Tono positivo e ispirazionale, ma senza aggiungere dettagli inventati.
-    • Evitare ripetizioni di sezioni precedenti.
+    Mantenere un tono positivo e ispirazionale.
+    Essere sintetici, evitando di ripetere dettagli già espressi nelle sezioni precedenti.
 
 Indicazioni su tabelle e grafici:
 
-    • Nessun grafico: la conclusione è testuale e concisa.
-
+    Nessun grafico necessario: La conclusione dovrebbe essere testuale e focalizzata sul messaggio finale.
+        
     {important_message}"""
 
 linee_guida_nota_motedologica = f"""Descrizione dettagliata del contenuto da inserire:
 
-La Nota metodologica spiega come è stato redatto il bilancio di sostenibilità (standard seguiti, perimetro, fonti dati, ecc.).
+La Nota metodologica descrive la metodologia adottata per la redazione del bilancio di sostenibilità. Specifica gli standard e le linee guida seguite (ad esempio, ESRS), il perimetro di rendicontazione, le fonti dei dati utilizzati, eventuali cambiamenti rispetto all'anno precedente e informazioni sulla verifica dei dati.
 
-Contenuti da includere (solo se disponibili informazioni concrete):
+Contenuti da includere:
 
-    • Standard utilizzati (ESRS, GRI, ecc.), se effettivamente adottati.
-    • Perimetro di rendicontazione (sedi, attività incluse).
-    • Processo di raccolta dati: come si è svolto, se documentato.
-    • Cambiamenti metodologici: rispetto all’anno precedente, se noti.
-    • Verifica dei dati: indicare se ci sono stati audit esterni o verifiche di terze parti.
+    Standard utilizzati: Indicare gli standard di rendicontazione adottati (es. ESRS, GRI).
+    Perimetro di rendicontazione: Specificare quali sedi e attività sono incluse nel bilancio.
+    Processo di raccolta dati: Descrivere come sono stati raccolti e verificati i dati.
+    Cambiamenti metodologici: Evidenziare eventuali modifiche rispetto all'anno precedente.
+    Verifica dei dati: Se applicabile, indicare se il bilancio è stato verificato da terze parti.
 
 Linee guida per la compilazione:
 
-    • Precisione e chiarezza. Non inserire standard o procedure se non fornite.
-    • Linguaggio tecnico ma comprensibile.
+    Essere chiari e precisi nelle informazioni fornite.
+    Utilizzare un linguaggio tecnico appropriato, ma comprensibile.
 
 Indicazioni su tabelle e grafici:
 
-    • Nessun grafico. È una sezione descrittiva.
-
+    Evitare grafici: Questa sezione è principalmente testuale e informativa.
+        
     {important_message}"""
 
 linee_guida_indice_esrs = f"""Descrizione dettagliata del contenuto da inserire:
 
-L’Indice ESRS fornisce un elenco o una tabella di correlazione tra i contenuti del bilancio 
-e i requisiti ESRS, per facilitarne la consultazione.
+L'Indice ESRS fornisce una tabella o un elenco che mappa i contenuti del bilancio di sostenibilità con i requisiti specifici degli standard ESRS. Facilita la consultazione e la verifica della conformità da parte dei lettori interessati.
 
 Contenuti da includere:
 
-    • Tabella con righe per gli standard ESRS applicabili, indicando dove sono trattati 
-      nel documento (capitoli, pagine).
-    • Note esplicative se servono.
+    Tabella di correlazione: Elencare gli standard ESRS applicabili e indicare dove nel bilancio sono trattati.
+        Colonne tipiche: Standard, Pilastro (Environmental, Social, Governance), Modulo, KPI, Note, Pagina.
+    Note esplicative: Se necessario, fornire brevi spiegazioni o riferimenti.
 
 Linee guida per la compilazione:
 
-    • Assicurarsi che la tabella sia completa e chiara solo in base ai dati effettivi. 
-      Non elencare standard se l’azienda non li ha considerati.
-    • Evitare sovrapposizioni: la formattazione dev’essere leggibile.
+    Assicurarsi che la tabella sia completa e accurata.
+    Facilitare la leggibilità con un formato chiaro e ben organizzato.
 
 Indicazioni su tabelle e grafici:
 
-    • La tabella deve risultare facilmente consultabile. 
-    • Nessun grafico necessario.
-
+    Tabella dettagliata: La tabella dovrebbe essere formattata in modo che le informazioni siano facilmente consultabili.
+        Evitare sovrapposizioni e assicurarsi che le colonne siano allineate.
+    Nessun grafico necessario.
+        
     {important_message}"""
 
 linee_guida_info_contatto = f"""Descrizione dettagliata del contenuto da inserire:
 
-La sezione Informazioni di contatto serve a fornire recapiti per chi volesse 
-approfondire o chiedere chiarimenti sul bilancio di sostenibilità.
+La sezione Informazioni di contatto inserisce le informazioni per domande, commenti o richieste di ulteriori informazioni riguardanti il bilancio di sostenibilità. Include indirizzi email, sito web e indirizzi fisici delle sedi principali.
 
 Contenuti da includere:
 
-    • Indirizzo email dedicato (se esiste).
-    • Sito web aziendale (se fornito).
-    • Indirizzi fisici delle sedi (se disponibili).
-    • Eventuali nomi di responsabili (se supportato da dati).
+    Dati di contatto:
+        Indirizzo email per contatti relativi al bilancio.
+        Sito web aziendale.
+        Indirizzi fisici delle sedi principali.
+    Eventuali riferimenti a persone specifiche: Se appropriato, indicare il nome e il ruolo della persona responsabile per la sostenibilità o le relazioni con gli stakeholder.
 
 Linee guida per la compilazione:
 
-    • Mantenere un formato semplice. Non aggiungere contatti se non forniti.
+    Assicurarsi che le informazioni siano aggiornate e accurate.
+    Mantenere un formato semplice e chiaro.
 
 Indicazioni su tabelle e grafici:
 
-    • Nessun grafico richiesto: questa sezione è informativa.
-    • Se si desidera, presentare i contatti in elenco puntato o in stile biglietto da visita.
+    Evitare grafici: Questa sezione è informativa e non richiede grafici.
+    Formato: Presentare le informazioni in un elenco puntato o in forma di contatti standard.
 
 {important_message}"""

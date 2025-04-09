@@ -1,0 +1,51 @@
+[
+    {
+        "custom_asset_name": "Leased Office Building",
+        "ghg_category": "upstream-leased-assets",
+        "method": "leased_building_average_data",
+        "type": "leased_asset",
+        "subtype": "building",
+        "name": "Leased Downtown Office",
+        "unit": "m2",
+        "description_from_json": "Emissioni basate su dati medi di settore per edifici in leasing.",
+        "custom_description": "Edificio uffici in leasing nel centro città.",
+        "average_emission_factor": 20.0,
+        "multiplying_factor": 1000.0,
+        "year": 2024,
+        "leased_floor_space": 1000.0,
+        "months_leased": 12,
+        "average_emission_factor": 20.0
+    },
+    {
+        "custom_asset_name": "Leased Vehicles",
+        "ghg_category": "upstream-leased-assets",
+        "method": "leased_vehicles_fuel_amount",
+        "type": "leased_asset",
+        "subtype": "vehicle",
+        "name": "Leased Delivery Van",
+        "unit": "liters",
+        "description_from_json": "Emissioni basate sul consumo di carburante dei veicoli in leasing.",
+        "custom_description": "Furgone a noleggio per consegne aziendali.",
+        "emission_factor": 2.5,
+        "multiplying_factor": 4000.0,
+        "year": 2024,
+        "fuel_consumed": 1600.0,
+        "emission_factor": 2.5
+    },
+    {
+        "custom_asset_name": "Leased Electric Cars",
+        "ghg_category": "upstream-leased-assets",
+        "method": "leased_vehicles_vehicle_type",
+        "type": "leased_asset",
+        "subtype": "vehicle",
+        "name": "Leased Electric Car",
+        "unit": "km",
+        "description_from_json": "Emissioni basate sulla distanza percorsa da veicoli elettrici in leasing.",
+        "custom_description": "Auto elettrica a noleggio per dipendenti.",
+        "emission_factor": 0.0,
+        "multiplying_factor": 0.0,
+        "year": 2024,
+        "distance_per_year": 15000.0,
+        "emission_factor": 0.0
+    }
+]

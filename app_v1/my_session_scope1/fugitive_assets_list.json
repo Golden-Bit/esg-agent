@@ -1,0 +1,34 @@
+[
+  {
+    "custom_asset_name": "Refrigerant Circuit #1",
+    "ghg_category": "fugitive-emissions",
+    "method": "mass_balance_method",
+    "type": "gas",
+    "subtype": "Refrigerant",
+    "name": "R-410A",
+    "unit": "kg",
+    "description_from_json": "Mass Balance approach for R-410A",
+    "custom_description": "Circuito principale AC",
+    "begin_year_storage": 100.0,
+    "end_year_storage": 70.0,
+    "purchased": 10.0,
+    "acquired": 0.0,
+    "year": 2022
+  },
+  {
+    "custom_asset_name": "Circuit #2 (Small AC)",
+    "ghg_category": "fugitive-emissions",
+    "method": "screening_method",
+    "type": "gas",
+    "subtype": "Refrigerant",
+    "name": "R-134a",
+    "unit": "kg",
+    "description_from_json": "Screening approach for R-134a",
+    "custom_description": "Seconda climatizzazione sale server",
+    "quantity": 5,
+    "capacity": 2.0,
+    "gas_gwp": 1430,
+    "emission_factor_kg": 1.0,
+    "year": 2023
+  }
+]

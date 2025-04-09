@@ -1,0 +1,49 @@
+{
+    "2023": {
+        "purchased_electricity_kg": 11500.0,
+        "purchased_heat_or_steam_kg": 4250.0,
+        "total_kg": 15750.0,
+        "sources": [
+            {
+                "asset_name": "Elettricit\u00e0 Ufficio Milano",
+                "category": "purchased_electricity",
+                "method": "location_based",
+                "multiplying_factor": 10000.0,
+                "emissions_kg": 4500.0,
+                "emissions_tonnes": 4.5,
+                "source": "Unknown",
+                "source_year": "Unknown"
+            },
+            {
+                "asset_name": "Elettricit\u00e0 Stabilimento Torino",
+                "category": "purchased_electricity",
+                "method": "market_based",
+                "multiplying_factor": 20000.0,
+                "emissions_kg": 7000.0,
+                "emissions_tonnes": 7.0,
+                "source": "Unknown",
+                "source_year": "Unknown"
+            },
+            {
+                "asset_name": "Calore Ufficio Roma",
+                "category": "purchased_heat_or_steam",
+                "method": "location_based",
+                "multiplying_factor": 8000.0,
+                "emissions_kg": 2000.0,
+                "emissions_tonnes": 2.0,
+                "source": "Unknown",
+                "source_year": "Unknown"
+            },
+            {
+                "asset_name": "Vapore Stabilimento Napoli",
+                "category": "purchased_heat_or_steam",
+                "method": "market_based",
+                "multiplying_factor": 15000.0,
+                "emissions_kg": 2250.0,
+                "emissions_tonnes": 2.25,
+                "source": "Unknown",
+                "source_year": "Unknown"
+            }
+        ]
+    }
+}

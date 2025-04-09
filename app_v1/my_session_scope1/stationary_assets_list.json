@@ -1,0 +1,44 @@
+[
+  {
+    "custom_asset_name": "Boiler #1 (Main Building)",
+    "ghg_category": "stationary-combustion",
+    "method": "generic-method",
+    "type": "fuel",
+    "subtype": "Oil products",
+    "name": "Diesel",
+    "unit": "liters",
+    "description_from_json": "Diesel EF from standard dataset",
+    "custom_description": "Utilizzato per riscaldamento invernale",
+    "emission_factor_kg": 2.31,
+    "multiplying_factor": 1500.0,
+    "year": 2022
+  },
+  {
+    "custom_asset_name": "Generator #2 (Backup)",
+    "ghg_category": "stationary-combustion",
+    "method": "generic-method",
+    "type": "fuel",
+    "subtype": "Oil products",
+    "name": "Biodiesel",
+    "unit": "liters",
+    "description_from_json": "Biodiesel EF standard",
+    "custom_description": "Backup generator test-run monthly",
+    "emission_factor_kg": 2.50,
+    "multiplying_factor": 600.0,
+    "year": 2022
+  },
+  {
+    "custom_asset_name": "Boiler #3 (Office Annex)",
+    "ghg_category": "stationary-combustion",
+    "method": "generic-method",
+    "type": "fuel",
+    "subtype": "Gas products",
+    "name": "Natural gas",
+    "unit": "m3",
+    "description_from_json": "Natural Gas EF standard",
+    "custom_description": "Riserva riscaldamento secondario",
+    "emission_factor_kg": 1.90,
+    "multiplying_factor": 2200.0,
+    "year": 2023
+  }
+]

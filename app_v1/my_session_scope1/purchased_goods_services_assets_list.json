@@ -1,0 +1,50 @@
+[
+    {
+        "custom_asset_name": "Componenti Elettronici",
+        "ghg_category": "purchased-goods-and-services",
+        "method": "spend_based",
+        "type": "electronics",
+        "subtype": "components",
+        "name": "Circuiti Stampati",
+        "unit": "EUR",
+        "description_from_json": "Emmissioni calcolate sulla spesa totale.",
+        "custom_description": "Acquisto di circuiti stampati per produzione.",
+        "emission_factor_kg": 0.5,
+        "multiplying_factor": 10000.0,
+        "year": 2024,
+        "spend": 10000.0,
+        "emission_factor": 0.05
+    },
+    {
+        "custom_asset_name": "Materie Prime Plastica",
+        "ghg_category": "purchased-goods-and-services",
+        "method": "supplier_specific",
+        "type": "plastics",
+        "subtype": "raw_materials",
+        "name": "Polietilene",
+        "unit": "kg",
+        "description_from_json": "Emmissioni fornite dal fornitore.",
+        "custom_description": "Acquisto di polietilene da fornitore certificato.",
+        "emission_factor_kg": 2.5,
+        "multiplying_factor": 5000.0,
+        "year": 2024,
+        "quantity": 5000.0,
+        "emission_factor": 2.5
+    },
+    {
+        "custom_asset_name": "Servizi di Logistica",
+        "ghg_category": "purchased-goods-and-services",
+        "method": "average_data",
+        "type": "services",
+        "subtype": "logistics",
+        "name": "Gestione Magazzino",
+        "unit": "kg",
+        "description_from_json": "Emmissioni basate su dati medi di settore.",
+        "custom_description": "Servizi di gestione magazzino esternalizzati.",
+        "emission_factor_kg": 1.2,
+        "multiplying_factor": 8000.0,
+        "year": 2024,
+        "quantity": 8000.0,
+        "average_emission_factor": 1.2
+    }
+]
