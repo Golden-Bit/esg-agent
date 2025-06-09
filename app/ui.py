@@ -13,9 +13,9 @@ import os
 
 from prompt_utils import gather_all_forms_data
 #-
-#from scope3_form import render_scope3_form
-#from scope1_form import render_scope1_form
-#from scope2_form import render_scope2_form
+from scope3_form import render_scope3_form
+from scope1_form import render_scope1_form
+from scope2_form import render_scope2_form
 from forms_ui import render_questionnaire, load_questions, merge_questions_with_responses
 #from utilities import graph_notes_2, graph_notes_1_5, graph_notes_3_1, graph_notes_4_1, graph_notes_ESRS_index
 from utilities import linee_guida_intro, linee_guida_1_1, linee_guida_1_2, linee_guida_1_3, linee_guida_2, linee_guida_3, linee_guida_1_4, linee_guida_1_5, linee_guida_2_1, linee_guida_2_2, linee_guida_2_3, linee_guida_2_4, linee_guida_2_5, linee_guida_2_6, linee_guida_3_1, linee_guida_4_1, linee_guida_conclusione, linee_guida_4, linee_guida_info_contatto, linee_guida_nota_motedologica, linee_guida_3_2, linee_guida_3_3, linee_guida_4_2, linee_guida_4_3, linee_guida_indice_esrs
@@ -1491,16 +1491,16 @@ def main():
             st.session_state["current_page"] = "questionnaire"
         #-
         # AGGIUNTA: bottone per la pagina Scope 2
-        #if st.sidebar.button("GHG Form (Scope 1)", key="scope1_button", use_container_width=True):
-        #    st.session_state["current_page"] = "scope1"
+        if st.sidebar.button("GHG Form (Scope 1)", key="scope1_button", use_container_width=True):
+            st.session_state["current_page"] = "scope1"
 
         # AGGIUNTA: bottone per la pagina Scope 2
-        #if st.sidebar.button("GHG Form (Scope 2)", key="scope2_button", use_container_width=True):
-        #    st.session_state["current_page"] = "scope2"
+        if st.sidebar.button("GHG Form (Scope 2)", key="scope2_button", use_container_width=True):
+            st.session_state["current_page"] = "scope2"
 
         # AGGIUNTA: bottone per la pagina Scope 2
-        #if st.sidebar.button("GHG Form (Scope 3)", key="scope3_button", use_container_width=True):
-        #    st.session_state["current_page"] = "scope3"
+        if st.sidebar.button("GHG Form (Scope 3)", key="scope3_button", use_container_width=True):
+            st.session_state["current_page"] = "scope3"
 
         if st.button("Documents", key="documents_button", use_container_width=True):
             st.session_state["current_page"] = "documents"
@@ -1520,12 +1520,12 @@ def main():
     elif st.session_state.get("current_page") == "questionnaire":
         questionnaire_page()
     #-
-    #elif st.session_state.get("current_page") == "scope1":
-    #    render_scope1_form(session_id=st.session_state.session_id)
-    #elif st.session_state.get("current_page") == "scope2":
-    #    render_scope2_form(session_id=st.session_state.session_id)
-    #elif st.session_state.get("current_page") == "scope3":
-    #    render_scope3_form(session_id=st.session_state.session_id)
+    elif st.session_state.get("current_page") == "scope1":
+        render_scope1_form(session_id=st.session_state.session_id)
+    elif st.session_state.get("current_page") == "scope2":
+        render_scope2_form(session_id=st.session_state.session_id)
+    elif st.session_state.get("current_page") == "scope3":
+        render_scope3_form(session_id=st.session_state.session_id)
     elif st.session_state.get("current_page") == "dashboard":  # <<-- AGGIUNGI QUESTA CONDIZIONE
         dashboard_page()
     elif st.session_state.get("current_page") == "documents":
